@@ -1,0 +1,45 @@
+body{
+    background-color: #3F88C5;
+}
+h1{
+    font-size: 50px;
+    color: black;
+    font: bold;
+}
+p{
+    font-size: 15px;
+    color:black;
+}
+.header-box{
+    height: 150px;
+    width: 800px;
+    background-color: #A2AEBB;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-wrap: wrap;
+}
+.content{
+    display:flex;
+    background-color: #A2AEBB;
+    margin-top: 10px;
+    height: 500px;
+    width: 1000px;
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.content >div{
+    width: 32%;
+    background-color: green;
+    margin: 5px;
+}
