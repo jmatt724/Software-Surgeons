@@ -70,7 +70,7 @@ p{
 .description-features{
     background-color:white;
     width: 800px;
-    height:425px;
+    height:600px;
 
     display: flex;
     flex-direction: column;
@@ -88,7 +88,10 @@ p{
 .features{
     width: 100%;
     height: 100%;
-    margin-left: 20px;
+    padding-right: 20px;
+}
+.features h2{
+    padding-left: 20px;
 }
 .ul{
     margin: 0;
