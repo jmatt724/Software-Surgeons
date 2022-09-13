@@ -18,6 +18,9 @@ p{
     font-size: 20px;
     color:black;
 }
+.webpage{
+    margin-left: 20px;
+}
 .header-box{
     height: 150px;
     width: 800px;
@@ -157,4 +160,18 @@ p{
 }
 .video-link h2, p{
     margin-left: 20px;
+}
+.image-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.image1 img{
+    width: 500px;
+    height: 300px;
+}
+.image2 img{
+    width: 500px;
+    height: 300px;
 }
