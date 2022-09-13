@@ -6,18 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AccountAid-landing_page</title>
-    <style> body{background-image: url('./images/background2.jpg');}</style>
+    <style> 
+        body{ 
+            background-image: url('./images/background2.jpg');
+            background-size: 1600px 800px;
+            background-position: 0px 0px;
+            background-repeat:repeat;
+        }
+        .card{
+                background: #fff;
+                box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+                transition: .2s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+                cursor: pointer;
+        }
+
+        .card:hover{
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+    </style>
 </head>
 
 <body>
     <div class = "container" style = "display:flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div class = "card m-2" style = "width:900px; height: 250px;">
+        <div class = "card-logo m-2" style = "width:900px; height: 250px;">
             <img src = "images/logo.png" style = "width: 100%; height: 100%;"/>
         </div>
         <div class = "row row-cols-2">
             <div class = "col">
                 <div class = "card mb-2" style = "width:400px;">
-                    <img src = "images/Picture2.png" class = "card-img-top" style="height:200px"/>
+                    <img src = "images/Picture2.png" class="card-img-top" style="height:200px"/>
                     <div class = "card-body">
                         <h5 class = "card-title">
                             Our Vision
@@ -56,9 +74,9 @@
                             What is AccountAid
                         </h5>
                         <p class = "card-text" style="height: 175px;">
-                            Finding a way to balance your finances can be difficult in more ways than one!
-                            AccountAid puts every tool you need at your fingertips. 
-                            From banking and monetary transactions to budgeting, our application encompasses the basics for everyone!
+                            Finding a way to balance your finances can be difficult in more ways than one!
+                            AccountAid puts every tool you need at your fingertips. 
+                            From banking and monetary transactions to budgeting, our application encompasses the basics for everyone!
                         </p>
                     </div>
                 </div>
