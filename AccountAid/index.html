@@ -12,6 +12,7 @@
             background-size: 1600px 800px;
             background-position: 0px 0px;
             background-repeat:repeat;
+            margin: 0;
         }
         .card{
                 background: #fff;
@@ -24,14 +25,39 @@
             transform: scale(1.03);
             box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
         }
+        hr{
+            height:100vh;
+            width:.5vw;
+            border-width:0;
+            color:#000;
+            background-color:#000;
+        }
     </style>
 </head>
 
+<!--
+    LOGO IMAGE
+    <div class = "card-logo m-2" style = "width:900px; height: 250px;">
+        <img src = "images/logo.png" style = "width: 100%; height: 100%;"/>
+    </div>
+-->
+
+
 <body>
+    <div class = "container" style = "display:flex; align-items: center; justify-content: center; flex-direction: row; height: 150px; background-color: white; margin-bottom: 20px; width: 100vw;">
+        <img src="./images/AccountAid-Logo-Solo.png" style="width: 125px; height: 125px;"/>
+        <h1 class = "display-1">
+            AccountAid
+        </h1>
+        <h1 class = "display-2" style="margin-left: 10px; margin-right: 10px; margin-bottom: 15px;">
+            |
+        </h1>
+        <h3 style="margin-top: 5px;">
+            Take Charge of Your Finances.
+        </h3>
+    </div>
     <div class = "container" style = "display:flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div class = "card-logo m-2" style = "width:900px; height: 250px;">
-            <img src = "images/logo.png" style = "width: 100%; height: 100%;"/>
-        </div>
+        
         <div class = "row row-cols-2">
             <div class = "col">
                 <div class = "card mb-2" style = "width:400px;">
@@ -73,7 +99,7 @@
                         <h5 class = "card-title">
                             What is AccountAid
                         </h5>
-                        <p class = "card-text" style="height: 175px;">
+                        <p class = "card-text" style="height: 175px; margin-top: 25px;">
                             Finding a way to balance your finances can be difficult in more ways than one!
                             AccountAid puts every tool you need at your fingertips. 
                             From banking and monetary transactions to budgeting, our application encompasses the basics for everyone!
@@ -83,7 +109,7 @@
             </div>
         </div>
         <div class = "row">
-            <div class = "card" style="margin-top: 20px;">
+            <div class = "card" style="margin-top: 20px; width: 1000px; ">
                 <div class = "card-body">
                     <h3 class = "card-title">
                         Key Features
@@ -127,8 +153,119 @@
                 </div>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4" style="max-width: 800px; margin-top:15px">
-            <div class = "col">
+        <div class="row row-cols-1 row-cols-md-2" style="max-width: 800px; margin-right: 225px;">
+            <div class="col">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-8">
+                        <div class="card" style="border-radius: 15px; width: 400px;">
+                          <div class="card-body p-4">
+                            <div class="d-flex text-black">
+                              <div class="flex-shrink-0">
+                                <img src="./images/profile-pic.png"
+                                  alt="Generic placeholder image" class="img-fluid"
+                                  style="width: 120px; border-radius: 10px;" />
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">Kaitlyn Reed</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                  Project Manager
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="container py-5 h-100" style="margin-left: 25px;">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-8">
+                        <div class="card" style="border-radius: 15px; width: 400px;">
+                          <div class="card-body p-4">
+                            <div class="d-flex text-black">
+                              <div class="flex-shrink-0">
+                                <img src="./images/profile-pic.png"
+                                  alt="Generic placeholder image" class="img-fluid"
+                                  style="width: 120px; border-radius: 10px;" />
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">Justin Mattix</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                  Primary Programmer
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-8">
+                        <div class="card" style="border-radius: 15px; width: 400px;">
+                          <div class="card-body p-4">
+                            <div class="d-flex text-black">
+                              <div class="flex-shrink-0">
+                                <img src="./images/profile-pic.png"
+                                  alt="Generic placeholder image" class="img-fluid"
+                                  style="width: 120px; border-radius: 10px;" />
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">Grant Pennington</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                  Primary Application Designer
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="container py-5 h-100" style="margin-left: 25px;">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-8">
+                        <div class="card" style="border-radius: 15px; width: 400px;">
+                          <div class="card-body p-4">
+                            <div class="d-flex text-black">
+                              <div class="flex-shrink-0">
+                                <img src="./images/profile-pic.png"
+                                  alt="Generic placeholder image" class="img-fluid"
+                                  style="width: 120px; border-radius: 10px;" />
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">David Jones</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                  Documentation/Testing Coordinator
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class = "card" style="width:800px; margin-top:15px; margin-bottom:30px">
+                <a href="https://www.youtube.com/watch?v=V5fE_ufXq6Y&ab_channel=SENTRY"> Link to video!</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--
+<div class = "col">
                 <div class="card" style = "width:380px; height: 200px;">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -204,12 +341,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class = "card" style="width:800px; margin-top:15px; margin-bottom:30px">
-                <a href="https://www.youtube.com/watch?v=V5fE_ufXq6Y&ab_channel=SENTRY"> Link to video!</a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+
+-->
