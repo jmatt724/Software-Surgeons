@@ -15,3 +15,6 @@ Potential Major Features:
   -The Digital Wallet is responsible for keeping the funds available and to be a way for users to pay friends and interacts with BudgetBuddy to reserve money for certain bills.
 3. Personal Dashboard
  -The personal dashboard is a space where everything comes together. This feature is intended to be a space where you can view your monthly expenses using a calendar, see a list of deposits and expenses ,and generate monthly statements.
+
+Product Vision Statement:
+For any money wielding individual who needs to organize their finances, AccountAid is a web-based service that provides an intuitive interface for budgeting and tracking spending habits. Unlike typical banking or budgeting apps, our product utilizes tools that are accessible to users who may not have any background in finances.
