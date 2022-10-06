@@ -1,5 +1,6 @@
-Navigate into ./src to find all of our project/code files.
-Navigate into ./public/images to find all of our images
+## Navigate into ./src to find all of our project/code files.
+
+## Navigate into ./public/images to find all of our images
 
 
 # Getting Started with Create React App
