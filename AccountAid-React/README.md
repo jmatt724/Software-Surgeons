@@ -1,3 +1,7 @@
+Navigate into ./src to find all of our project/code files.
+Navigate into ./public/images to find all of our images
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
