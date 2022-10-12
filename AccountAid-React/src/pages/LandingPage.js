@@ -3,10 +3,12 @@ import { Box, Divider, Flex, Heading, Stack, Text, Wrap, WrapItem } from "@chakr
 import NavBar from '../components/NavBar';
 import { FEATURE_DATA, PRODUCT_DESCRIPTION, PRODUCT_VISION, PRODUCT_CUSTOMERS, DEVELOPER_CARD_DATA } from '../data/constants';
 import DeveloperCard from '../components/DeveloperCard';
+import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
     const scrollRef = useRef(null)
     const executeScroll = () => scrollRef.current.scrollIntoView()
+    const navigate = useNavigate()
 
     const FeatureBox = ({id, label, details, index}) => {
         return (
@@ -115,6 +117,17 @@ function LandingPage() {
                     </WrapItem>
                 )}
             </Wrap>
+        </Flex>
+        <Flex>
+            <Text 
+                color='blue.400' 
+                onClick={() => navigate('/artifacts')} 
+                _hover={{ cursor: 'pointer' }}
+                fontSize={'1.25rem'}
+                m={8}
+            >
+                Artifacts
+            </Text>
         </Flex>
       </Stack>
     )
