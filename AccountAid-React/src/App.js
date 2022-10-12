@@ -6,17 +6,18 @@ import Interviews from './pages/Artifacts/Interviews';
 import Scenarios from './pages/Artifacts/Scenarios';
 import UserStories from './pages/Artifacts/UserStories';
 import Personas from './pages/Artifacts/Personas';
+import Artifacts from './pages/Artifacts';
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<LandingPage />}/>
-        <Route path="/interviews" element={<Interviews />}/>
-        <Route path="/personas" element={<Personas />}/>
-        <Route path="/user-stories" element={<UserStories />}/>
-        <Route path="/scenarios" element={<Scenarios />}/>
-
+        <Route path="/artifacts" element={<Artifacts />} />
+        <Route path="/interviews" element={<Interviews />} />
+        <Route path="/personas" element={<Personas />} />
+        <Route path="/user-stories" element={<UserStories />} />
+        <Route path="/scenarios" element={<Scenarios />} />
       </Routes>
     </div>
   );
