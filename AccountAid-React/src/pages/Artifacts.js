@@ -3,6 +3,7 @@ import React from 'react'
 import ArtifactAccordion from '../components/Artifacts/ArtifactAccordion'
 import ArtifactCard from '../components/Artifacts/ArtifactCard'
 import ArtifactCategory from '../components/Artifacts/ArtifactCategory'
+import ScenarioCategory from '../components/Artifacts/ScenarioCategory'
 import Sidebar from '../components/Artifacts/Sidebar'
 import { PERSONAS, SCENARIOS } from '../data/constants'
 import { INTERVIEWS } from './../data/constants';
@@ -10,17 +11,17 @@ import { INTERVIEWS } from './../data/constants';
 function Artifacts() {
 
   return (
-    <Flex bg={'primary.snow'} width={'100vw'} height={2000}>
-      <Sidebar />
+    <Flex bg={'primary.snow'} width={'98vw'} height={'100%'} pb={10} overflowX={'hidden'}>
+      {/*<Sidebar />*/}
       <Flex direction='column'>
       <Flex width={'100%'} height={200}>
-        <Heading m={6}>ARTIFACTS</Heading>
+        <Heading m={6} ml={10}>ARTIFACTS</Heading>
       </Flex>
       <Flex ml={10}>
         <ArtifactCategory category={'Persona'} data={PERSONAS}/>
       </Flex>
       <Flex ml={10} mt={6}>
-        <ArtifactCategory category={'Scenario'} data={SCENARIOS}/>
+        <ScenarioCategory category={'Scenario'} data={SCENARIOS}/>
       </Flex>
       <Flex ml={10} mt={6}>
         <ArtifactCategory category={'Interview'} data={INTERVIEWS}/>

@@ -10,6 +10,7 @@ function ArtifactCategory({ category, data }) {
             bg={'white'}
             borderRadius={'md'}
             boxShadow={'md'}
+            ml={6}
         >
             <Flex>
                 <Heading m={6}>{category}</Heading>

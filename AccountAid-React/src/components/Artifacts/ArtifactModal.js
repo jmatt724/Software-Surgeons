@@ -14,7 +14,7 @@ import {
   } from '@chakra-ui/react'
 import { useState } from 'react'
 
-function ArtifactModal({ category, artifact }) {
+function ArtifactModal({ category, artifact, persona }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
     const handleSizeClick = () => {
@@ -35,7 +35,7 @@ function ArtifactModal({ category, artifact }) {
           <ModalContent>
             <ModalHeader>
                 <Heading fontSize={'4rem'}>
-                    {`${category} ${artifact.id} - ${artifact.name}`}
+                    {(persona) ? `${category} ${artifact.id} - ${artifact.persona}` : `${category} ${artifact.id} - ${artifact.name}`}
                 </Heading>
             </ModalHeader>
             <ModalCloseButton />
@@ -51,7 +51,7 @@ function ArtifactModal({ category, artifact }) {
                     </Text>
                 </Flex>
                 <Flex width={700} height={600} ml={20}>
-                    <img src={process.env.PUBLIC_URL+`images/personas/${artifact.img}`} alt={artifact.name}></img>
+                    { (artifact.img) ? <img src={process.env.PUBLIC_URL+`images/personas/${artifact.img}`} alt={artifact.name}></img> : ''}
                 </Flex>
                 </Flex>
             </ModalBody>
