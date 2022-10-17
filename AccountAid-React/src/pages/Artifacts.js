@@ -1,12 +1,9 @@
-import { Button, Flex, Heading, HStack } from '@chakra-ui/react'
+import { Button, Flex, Heading } from '@chakra-ui/react'
 import React, { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ArtifactAccordion from '../components/Artifacts/ArtifactAccordion'
-import ArtifactCard from '../components/Artifacts/ArtifactCard'
-import ArtifactCategory from '../components/Artifacts/ArtifactCategory'
-import InterviewCategory from '../components/Artifacts/InterviewCategory'
-import ScenarioCategory from '../components/Artifacts/ScenarioCategory'
-import Sidebar from '../components/Artifacts/Sidebar'
+import InterviewCategory from '../components/Artifacts/interviews/InterviewCategory'
+import PersonaCategory from '../components/Artifacts/personas/PersonaCategory'
+import ScenarioCategory from '../components/Artifacts/scenarios/ScenarioCategory'
 import { PERSONAS, SCENARIOS } from '../data/constants'
 import { INTERVIEWS } from './../data/constants';
 
@@ -34,7 +31,7 @@ function Artifacts() {
         > Go Back </Button>
       </Flex>
       <Flex ml={10}>
-        <ArtifactCategory category={'Persona'} data={PERSONAS}/>
+        <PersonaCategory category={'Persona'} data={PERSONAS}/>
       </Flex>
       <Flex ml={10} mt={6}>
         <ScenarioCategory category={'Scenario'} data={SCENARIOS}/>
