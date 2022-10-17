@@ -12,7 +12,7 @@ import {
     Heading,
     Flex,
   } from '@chakra-ui/react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 function ArtifactModal({ category, artifact, persona }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
