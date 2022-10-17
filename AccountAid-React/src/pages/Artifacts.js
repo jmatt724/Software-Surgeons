@@ -1,21 +1,37 @@
-import { Flex, Heading, HStack } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Flex, Heading, HStack } from '@chakra-ui/react'
+import React, { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ArtifactAccordion from '../components/Artifacts/ArtifactAccordion'
 import ArtifactCard from '../components/Artifacts/ArtifactCard'
 import ArtifactCategory from '../components/Artifacts/ArtifactCategory'
+import InterviewCategory from '../components/Artifacts/InterviewCategory'
 import ScenarioCategory from '../components/Artifacts/ScenarioCategory'
 import Sidebar from '../components/Artifacts/Sidebar'
 import { PERSONAS, SCENARIOS } from '../data/constants'
 import { INTERVIEWS } from './../data/constants';
 
 function Artifacts() {
+  const scrollRef = useRef(null)
+  const executeScroll = () => scrollRef.current.scrollIntoView()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // when navigating to this page it would always start at the bottom of the page
+    // so this scrolls to the top on page load
+    executeScroll()
+  }, [])
 
   return (
     <Flex bg={'primary.snow'} width={'98vw'} height={'100%'} pb={10} overflowX={'hidden'}>
       {/*<Sidebar />*/}
       <Flex direction='column'>
-      <Flex width={'100%'} height={200}>
+      <Flex width={'100%'} height={200} ref={scrollRef} direction='column'>
         <Heading m={6} ml={10}>ARTIFACTS</Heading>
+        <Button width={150} height={50} ml={10}
+          onClick={() => navigate('/')}
+          bg={'primary.main'}
+          color={'primary.snow'}
+        > Go Back </Button>
       </Flex>
       <Flex ml={10}>
         <ArtifactCategory category={'Persona'} data={PERSONAS}/>
@@ -24,23 +40,11 @@ function Artifacts() {
         <ScenarioCategory category={'Scenario'} data={SCENARIOS}/>
       </Flex>
       <Flex ml={10} mt={6}>
-        <ArtifactCategory category={'Interview'} data={INTERVIEWS}/>
+        <InterviewCategory category={'Interview'} data={INTERVIEWS}/>
       </Flex>
-      
-      
       </Flex>
     </Flex>
   )
 }
-
-/*
-<BasicAccordion sections={[
-        {label: 'Personas', content: <ArtifactCategory category={'Personas'} data={PERSONAS}/>},
-        {label: 'Scenarios', content: <ArtifactCategory category={'Scenarios'} data={SCENARIOS}/>},
-        {label: 'Interviews', content: <ArtifactCategory category={'Interviews'} data={INTERVIEWS}/>}
-      ]}/>
-<ArtifactAccordion sections={sections}/>
-      
-*/
 
 export default Artifacts
