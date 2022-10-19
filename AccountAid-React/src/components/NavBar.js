@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, HStack, StackDivider } from '@chakra-ui/react'
 import React, { useRef } from 'react'
-import { NAVBAR_DATA } from '../data/constants'
+import { NAVBAR_DATA } from '../data/landingPageData'
 import { Divider } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
