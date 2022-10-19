@@ -1,34 +1,3 @@
-export const NAVBAR_DATA = [ { label: 'About Us', id: 'about-us'}, { label: 'Interviews', id: 'interviews' }, { label: 'User Stories', id: 'user-stories' }, {label: 'Personas', id: 'personas' }, {label: 'Scenarios', id: 'scenarios' }]
-
-export const FEATURE_DATA = [
-    {
-        id: 'budget-buddy-box',
-        label: 'Budget Buddy',
-        details: "This part of the product is responsible for recommending changes to a user's financial habits and to use graphics to show users a breakdown of their expenses in a pie chart format. If a user wishes BudgetBuddy can even limit a user's spending and reserve funds for certain bills."
-    },
-    { 
-        id: 'digital-wallet-box',
-        label: 'Digital Wallet',
-        details: 'The Digital Wallet is responsible for keeping the funds available and to be a way for users to pay friends and interacts with BudgetBuddy to reserve money for certain bills.',
-    },
-    { 
-        id: 'personal-dash-box',
-        label: 'Personalized Dashboard',
-        details: "The personal dashboard is a space where everything comes together. This feature is intended to be a space where you can view your monthly expenses using a calendar, see a list of deposits and expenses, and generate monthly statements.",
-    },
-]
-
-export const PRODUCT_DESCRIPTION = "AccountAid is a project designed to help anyone from an individual just looking to save a little more each month to a small business trying to manage expenses. AccountAid is here to help! Use Budget Buddy to monitor areas of your spending with a calendar view and graphics to show you where your money is going. The personal dashboard will allow you to see incoming monthly payments and manage your accounts and balances. Finally, your digital wallet will allow you to pay your friends and recieve direct depsosits. You can even link your wallet to Budget Buddy to even limit how much you can spend. Use these tools and more to... Take charge of your finances!"
-export const PRODUCT_VISION = "For any money wielding individual who needs to organize their finances, AccountAid is a web-based service that provides an intuitive interface for budgeting and tracking spending habits. Unlike typical banking or budgeting apps, our product utilizes tools that are accessible to users who may not have any background in finances."
-export const PRODUCT_CUSTOMERS = "Our potential users would include individuals looking to save more money each month or need a way to manage their expenses with an intitive interface where you can get recommendations from Budget Buddy to see where they can cut back. This product even extends to small businesses who are looking for a product that can show them which graphics, such as pie charts, show where their biggest bills are. We believe its an important part of our product to be easily accessible for those not really versed in money management but be able to still assist budgeting pros."
-
-export const DEVELOPER_CARD_DATA = [
-    { name: 'Kaitlyn Reed', title: 'Project Manager', description: 'Senior at Bellarmine University. Double majoring in Computer Science and Mathematics. Minecraft is the best game ever made.', img: process.env.PUBLIC_URL+"images/kaitlyn-profile.jpg" },
-    { name: 'Justin Mattix', title: 'Primary Programmer', description: 'Senior at Bellarmine University. Majoring in Computer Science. I love all things History!', img: process.env.PUBLIC_URL+"images/JLM-profile.jpg" },
-    { name: 'Grant Pennington', title: 'Primary Applications Designer', description: 'Senior at Bellarmine University. Majoring in Computer Science. I produce music, and also LOVE the React JS framework.', img: process.env.PUBLIC_URL+"images/grant-profile.jpg" },
-    { name: 'David Jones', title: 'Documentation/Test Coordinator', description: 'Senior at Bellarmine University. Majoring in Computer Engineering. I love anime.', img: process.env.PUBLIC_URL+"images/david-profile.jpg" },
-]
-
 export const PERSONAS = [
     {   
         id: 1, 
@@ -63,6 +32,7 @@ export const PERSONAS = [
         img: 'Jacob - Persona 4.png',
     },
 ]
+
 export const SCENARIOS = [
     {
         persona: 'Jim',
@@ -176,6 +146,80 @@ export const SCENARIOS = [
         },
     ]
     },
+]
+
+export const USER_STORY_DATA = [
+    { 
+        persona: 'Jim', 
+        label: 'User Stories',
+        stories: [
+            { id: 'jim-story-1', label: '1.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jim-story-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
+            { id: 'jim-story-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
+            { id: 'jim-story-4', label: '4.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jim-story-5', label: '5.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jim-story-6', label: '6.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jim-story-7', label: '7.', description: 'As an old man, I hate to use technology.' },
+        ] 
+    },
+    { 
+        persona: 'Kris', 
+        label: 'User Stories',
+        stories: [
+            { id: 'kris-story-1', label: '1.', description: 'As an old man, I hate to use technology.' },
+            { id: 'kris-story-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
+            { id: 'kris-story-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
+            { id: 'kris-story-4', label: '4.', description: 'As an old man, I hate to use technology.' },
+            { id: 'kris-story-5', label: '5.', description: 'As an old man, I hate to use technology.' },
+            { id: 'kris-story-6', label: '6.', description: 'As an old man, I hate to use technology.' },
+            { id: 'kris-story-7', label: '7.', description: 'As an old man, I hate to use technology.' },
+        ] 
+    },
+    { 
+        persona: 'Timmy', 
+        label: 'User Stories',
+        stories: [
+            { id: 'timmy-story-1', label: '1.', description: 'As an old man, I hate to use technology.' },
+            { id: 'timmy-story-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
+            { id: 'timmy-story-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
+            { id: 'timmy-story-4', label: '4.', description: 'As an old man, I hate to use technology.' },
+            { id: 'timmy-story-5', label: '5.', description: 'As an old man, I hate to use technology.' },
+            { id: 'timmy-story-6', label: '6.', description: 'As an old man, I hate to use technology.' },
+            { id: 'timmy-story-7', label: '7.', description: 'As an old man, I hate to use technology.' },
+        ] 
+    },
+    { 
+        persona: 'Jacob', 
+        label: 'User Stories',
+        stories: [
+            { id: 'jacob-story-1', label: '1.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jacob-story-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
+            { id: 'jacob-story-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
+            { id: 'jacob-story-4', label: '4.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jacob-story-5', label: '5.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jacob-story-6', label: '6.', description: 'As an old man, I hate to use technology.' },
+            { id: 'jacob-story-7', label: '7.', description: 'As an old man, I hate to use technology.' },
+        ] 
+    },
+]
+
+export const FEATURE_DATA = [
+    { 
+        category: 'Banking',
+        features: [
+            { id: 'feature-banking-1', label: 'Feature Name 1', description: 'This is a feature' },
+            { id: 'feature-banking-2', label: 'Feature Name 2', description: 'This is a feature' },
+            { id: 'feature-banking-3', label: 'Feature Name 3', description: 'This is a feature' },
+        ],
+    },
+    { 
+        category: 'Budgeting',
+        features: [
+            { id: 'feature-budget-1', label: 'Feature Name 1', description: 'This is a feature' },
+            { id: 'feature-budget-2', label: 'Feature Name 2', description: 'This is a feature' },
+            { id: 'feature-budget-3', label: 'Feature Name 3', description: 'This is a feature' },
+        ],
+    }
 ]
 
 export const INTERVIEW_QUESTIONS = [
