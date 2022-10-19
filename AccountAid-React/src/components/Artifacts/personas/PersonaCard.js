@@ -2,7 +2,7 @@ import { Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import PersonaModal from './PersonaModal'
 
-function PersonaCard({ category, artifact }) {
+function PersonaCard({ label, artifact }) {
 
   return (
     <Flex
@@ -21,7 +21,7 @@ function PersonaCard({ category, artifact }) {
           <Text fontSize={'1.25rem'}>{artifact.outline}</Text>
         </Flex>
         <Flex height={50} justify='flex-start' align='center'>
-          <PersonaModal category={category} artifact={artifact}/>
+          <PersonaModal label={label} artifact={artifact}/>
         </Flex>
     </Flex>
   )

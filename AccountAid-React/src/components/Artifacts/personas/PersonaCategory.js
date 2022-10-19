@@ -2,7 +2,7 @@ import { Flex, Heading, HStack } from '@chakra-ui/react'
 import React from 'react'
 import PersonaCard from './PersonaCard'
 
-function PersonaCategory({ category, data }) {
+function PersonaCategory({ category, label, data }) {
     return (
         <Flex
             width={1850}
@@ -17,7 +17,7 @@ function PersonaCategory({ category, data }) {
             </Flex>
             <HStack spacing={10}>
                 {data.map((item, index) =>
-                    <PersonaCard category={category} key={index} artifact={item} />
+                    <PersonaCard label={label} key={index} artifact={item} />
                 )}
           </HStack>
         </Flex>

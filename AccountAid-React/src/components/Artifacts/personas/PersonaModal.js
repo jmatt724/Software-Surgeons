@@ -14,7 +14,7 @@ import {
   } from '@chakra-ui/react'
 import React from 'react'
 
-function PersonaModal({ category, artifact, persona }) {
+function PersonaModal({ label, artifact, persona }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
     const handleSizeClick = () => {
@@ -35,7 +35,7 @@ function PersonaModal({ category, artifact, persona }) {
           <ModalContent>
             <ModalHeader>
                 <Heading fontSize={'4rem'}>
-                    {`${category} ${artifact.id} - ${artifact.name}`}
+                    {`${label} ${artifact.id} - ${artifact.name}`}
                 </Heading>
             </ModalHeader>
             <ModalCloseButton />

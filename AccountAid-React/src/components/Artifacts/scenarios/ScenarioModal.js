@@ -35,7 +35,7 @@ function ScenarioModal({ category, artifact, persona }) {
           <ModalContent>
             <ModalHeader>
                 <Heading fontSize={'4rem'}>
-                    {`${category} ${artifact.id} - ${artifact.persona}`}
+                    {`${artifact.label} - ${artifact.persona}`}
                 </Heading>
             </ModalHeader>
             <ModalCloseButton />

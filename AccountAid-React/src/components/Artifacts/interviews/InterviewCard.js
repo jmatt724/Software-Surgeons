@@ -3,7 +3,6 @@ import React from 'react'
 import InterviewModal from './InterviewModal'
 
 function InterviewCard({ artifact }) {
-  //const description = artifact.description.substring()
 
   return (
     <Flex
@@ -24,9 +23,5 @@ function InterviewCard({ artifact }) {
     </Flex>
   )
 }
-
-/*
-<Text mt={3} m={6} color='blue.400' fontSize={'1rem'} _hover={{ cursor: 'pointer' }}>{'Read more'}</Text> 
-*/
 
 export default InterviewCard

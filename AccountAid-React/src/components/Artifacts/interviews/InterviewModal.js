@@ -59,8 +59,8 @@ function InterviewModal({ artifact }) {
                                     {question}
                                 </Heading>
                                 {(index===3 || index===4)
-                                    ? formatAnswer(answers[index]).map((element) => 
-                                        <Heading fontSize={'1.75rem'} fontWeight={'normal'} mt={2}>
+                                    ? formatAnswer(answers[index]).map((element, ind) => 
+                                        <Heading key={ind} fontSize={'1.75rem'} fontWeight={'normal'} mt={2}>
                                             {element}
                                             <br />
                                         </Heading>
