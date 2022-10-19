@@ -1,10 +1,12 @@
 import { Button, Flex, Heading } from '@chakra-ui/react'
 import React, { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import FeatureCategory from '../components/Artifacts/features/FeatureCategory'
 import InterviewCategory from '../components/Artifacts/interviews/InterviewCategory'
 import PersonaCategory from '../components/Artifacts/personas/PersonaCategory'
 import ScenarioCategory from '../components/Artifacts/scenarios/ScenarioCategory'
-import { PERSONAS, SCENARIOS } from '../data/constants'
+import UserStoryCategory from '../components/Artifacts/user_stories/UserStoryCategory'
+import { FEATURE_DATA, PERSONAS, SCENARIOS, USER_STORY_DATA } from '../data/constants'
 import { INTERVIEWS } from './../data/constants';
 
 function Artifacts() {
@@ -31,13 +33,19 @@ function Artifacts() {
         > Go Back </Button>
       </Flex>
       <Flex ml={10}>
-        <PersonaCategory category={'Persona'} data={PERSONAS}/>
+        <PersonaCategory category={'Personas'} label={'Persona'} data={PERSONAS}/>
       </Flex>
       <Flex ml={10} mt={6}>
-        <ScenarioCategory category={'Scenario'} data={SCENARIOS}/>
+        <ScenarioCategory category={'Scenarios'} label={'Scenario'} data={SCENARIOS}/>
       </Flex>
       <Flex ml={10} mt={6}>
-        <InterviewCategory category={'Interview'} data={INTERVIEWS}/>
+        <UserStoryCategory category={'User Stories'} data={USER_STORY_DATA}/>
+      </Flex>
+      <Flex ml={10} mt={6}>
+        <FeatureCategory category={'Features'} data={FEATURE_DATA}/>
+      </Flex>
+      <Flex ml={10} mt={6}>
+        <InterviewCategory category={'Interviews'} label={'Interview'} data={INTERVIEWS}/>
       </Flex>
       </Flex>
     </Flex>

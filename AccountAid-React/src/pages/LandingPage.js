@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Box, Divider, Flex, Heading, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react"
 import NavBar from '../components/NavBar';
-import { FEATURE_DATA, PRODUCT_DESCRIPTION, PRODUCT_VISION, PRODUCT_CUSTOMERS, DEVELOPER_CARD_DATA } from '../data/constants';
+import { FEATURE_DATA, PRODUCT_DESCRIPTION, PRODUCT_VISION, PRODUCT_CUSTOMERS, DEVELOPER_CARD_DATA } from '../data/landingPageData';
 import DeveloperCard from '../components/DeveloperCard';
 import { useNavigate } from 'react-router-dom';
 
@@ -134,12 +134,3 @@ function LandingPage() {
 }
 
 export default LandingPage
-
-/*
-    cool logic to scroll to a certain part of page on click
-
-    const myRef = useRef(null)
-    const executeScroll = () => myRef.current.scrollIntoView()
-    ref={myRef}
-    <Button onClick={executeScroll}>Scroll Down</Button>
-*/
