@@ -11,13 +11,14 @@ import {
     Text,
     Heading,
     Flex,
+    SimpleGrid,
   } from '@chakra-ui/react'
 import React from 'react'
 
 function UserStoryModal({ category, artifact, persona }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const stories = artifact.stories
-  
+    const scenarios = artifact.scenarios
+    console.log('SCENARIOS', scenarios)
     const handleSizeClick = () => {
       onOpen()
     }
@@ -41,16 +42,18 @@ function UserStoryModal({ category, artifact, persona }) {
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <Flex direction={'row'}>
-                <Flex width={'60%'} lineHeight={'10'} direction='column'>
-                    {stories.map((story) => 
-                        <Text key={story.id} fontSize={'2rem'} mt={10}>
-                            {`${story.label} ${story.description}`}
-                        </Text>
-                    )}
-                    
-                </Flex>
-                </Flex>
+                <SimpleGrid columns={2} spacingX='20px' spacingY='20px' mt={8}>
+                  {scenarios.map((scenario) => 
+                    <Flex width={'90%'} lineHeight={'10'} direction='column'>
+                      <Heading>{`${scenario.label} - ${scenario.title}`}</Heading>
+                      {scenario.stories.map((story) => 
+                          <Text key={story.id} fontSize={'2rem'} mt={10}>
+                              {`${story.label} ${story.description}`}
+                          </Text>
+                      )}
+                    </Flex>
+                  )}
+                </SimpleGrid>
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose}>Close</Button>

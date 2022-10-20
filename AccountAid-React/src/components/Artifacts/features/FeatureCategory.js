@@ -16,7 +16,7 @@ function FeatureCategory({ category, data }) {
                 <Heading m={6}>{category}</Heading>
             </Flex>
             <HStack spacing={10}>
-                {data.map((item, index) =>
+                {data.map((item) =>
                     <Box key={item.id}>
                         <FeatureCard artifact={item} />
                     </Box>

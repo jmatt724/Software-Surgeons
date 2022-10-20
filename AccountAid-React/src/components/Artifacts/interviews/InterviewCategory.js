@@ -1,4 +1,4 @@
-import { Flex, Heading, HStack } from '@chakra-ui/react'
+import { Flex, Heading, HStack, SimpleGrid } from '@chakra-ui/react'
 import React from 'react'
 import InterviewCard from './InterviewCard'
 
@@ -15,11 +15,11 @@ function InterviewCategory({ category, data }) {
             <Flex>
                 <Heading m={6}>{category}</Heading>
             </Flex>
-            <HStack spacing={10}>
+            <SimpleGrid columns={3} spacingX='40px' spacingY='20px' mt={10}>
                 {data.map((item, index) =>
                     <InterviewCard key={item.id} artifact={item} />
                 )}
-          </HStack>
+          </SimpleGrid>
         </Flex>
       )
 }
