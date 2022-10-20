@@ -36,17 +36,7 @@ function NavBar({ update }) {
                     mb={2}
                 />
             </Flex>
-            <Flex height={185} width={600} p={0} ml={20} justify={'space-evenly'} align='center'>
-                <HStack spacing={8}>
-                    {NAVBAR_DATA.map((item, index) => 
-                        (item.label==='About Us' ? 
-                        <NavItem key={index} label={item.label} onClick={update}/>
-                        :
-                        <NavItem key={index} label={item.label} onClick={() => navigate(`/${item.id}`)}/>
-                        )
-                    )}
-                </HStack>
-            </Flex>
+            <Flex height={185} width={600} p={0} ml={20} justify={'space-evenly'} align='center'></Flex>
             <Flex height={185} width={300} p={2} justify='center' align='center' mr={6}>
                 <HStack spacing={4}>
                     <Button height={50}>
