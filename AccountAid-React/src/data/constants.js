@@ -29,11 +29,11 @@ export const SCENARIOS = [
     {   
         persona: 'Jim',
         scenarios: [
-            { 
+            {
                 id: 1, 
                 persona: 'Jim',
                 label: 'Scenario 1',
-                title: 'Budgeting For Retirement', 
+                title: 'Budgeting For Retirement',
                 description: `Jim is a 53-year-old farmer in Corydon, Indiana. His wife insists that they should start budgeting for retirement, and they should find out where their major expenses lie. Also, to find out how they could adjust so they could add more money to their retirement fund. 
                                 His son hears of their problem and offers to show them online banking and more specifically using their new phones he bought them last Christmas. He shows them various apps that they can use to mark down their expenses. However, Jim is increasingly nervous about his information either being stolen or compromised like the people he hears about in the morning news. When searching for a way to budget and keep track of their money, Jim is adamant that it be a safe transaction. He wants the peace of mind that he will not get scammed out of the money he has worked his whole life for. His son assures him that the newest app he has shown them, AccountAid, has features implemented that require authentication before any information is shown and any transactions are processed. These authentications being handled by a 3rd party such as firebase. 
                                 Jim uses the login and authentication feature and is pleased to know that a 3rd party is handling the authentication process and not the application itself. He is also appreciative that any transactions that he wishes to make are met with various identity checks for extra security. `  
@@ -65,31 +65,40 @@ export const SCENARIOS = [
     { 
         persona: 'Kris', 
         scenarios: [
-            { 
+            {
                 id: 1, 
                 label: 'Scenario 1',
-                title: 'Scenario 1', 
+                title: 'Payment method for Commissions.', 
                 persona: 'Kris',
-                description: `Jim is a 53-year-old farmer in Corydon, Indiana. His wife insists that they should start budgeting for retirement, and they should find out where their major expenses lie. Also, to find out how they could adjust so they could add more money to their retirement fund. 
-                                His son hears of their problem and offers to show them online banking and more specifically using their new phones he bought them last Christmas. He shows them various apps that they can use to mark down their expenses. However, Jim is increasingly nervous about his information either being stolen or compromised like the people he hears about in the morning news. When searching for a way to budget and keep track of their money, Jim is adamant that it be a safe transaction. He wants the peace of mind that he will not get scammed out of the money he has worked his whole life for. His son assures him that the newest app he has shown them, AccountAid, has features implemented that require authentication before any information is shown and any transactions are processed. These authentications being handled by a 3rd party such as firebase. 
-                                Jim uses the login and authentication feature and is pleased to know that a 3rd party is handling the authentication process and not the application itself. He is also appreciative that any transactions that he wishes to make are met with various identity checks for extra security. `  
+                description: `
+                    Kris is a free-lance artist dependent on commissions for work. They have had trouble in the past receiving payments from their clients. This is usually due to some miscommunication about payment methods. Kris wants to include a virtual payment method to stay on top of their business numbers.
+                    Kris has made a few friends in the area and otherwise that are also artists. Kris first asks around to see what types of applications her mutuals use to accept payments. They are 	worried that the popular applications will take a percentage of each transaction as many companies do. Kris’s friend, Taylor, suggested AccountAid to them a while ago to use the digital wallet feature. Taylor noted that AccountAid does not take a percentage of any transactions and it also allows you to transfer funds at any time. Kris also wants to be able to see their recent payments received to track their business.   
+                    Kris uses the digital wallet feature to accept payments from their customers. They have also found that the digital wallet comes in handy when they sell pieces at art shows. The quick and 	easy transactions allow them to accommodate customers who do not carry cash. Kris is also happy that they can transfer funds over to their personal account at any time. 
+                `
             },
             { 
                 id: 2, 
                 label: 'Scenario 2',
-                title: 'Scenario 2', 
+                title: 'Budgeting for Dry Payment Seasons', 
                 persona: 'Kris',
-                description: `Jim and more specifically his wife often have problems with reading especially on their phones. They need a different way of visualizing their money and expenses without just reading bank statements and lists of their various payments and deposits. Jim’s son wants to show him different applications that offer more 21st century ways of going about this. 
-                                Jim’s son began showing him the ways that they could create spreadsheets in things like excel that they could budget out their money and mark down expenses. Jim, however, was disappointed in this setup as he would much prefer to use a handwritten ledger and didn’t see any benefit in using technology to show their budgeting habits. However, upon discovering AccountAid, Jim was pleasantly surprised with the features that the app had to offer with visualizing their expenses. The BudgetBuddy part of the application showed various charts and graphs that would divide their expenses into categories like, utilities, monthly payments, entertainment, etc. Jim used the filters within the app to get a closer look at their entertainment expenses. Upon selecting the entertainment filter, the application then loads the various 
-                                payments that Jim and his wife have made and asks them if they even want them to be organized by where they made the payment to. For example, Jim and his wife regularly go the Cracker Barrel on Sunday morning and they want to see how much they are spending a week just at the restaurant. So, they use the filtering feature on their expenses page and get a list and graphs of the times they have visited Cracker Barrel. Finally, the application noticed that they spend upwards of $30 dollars and suggests cutting back on some weeks and put that extra money in savings. `  
+                description: `Kris has found that the number of commissioned pieces requested correlates with the time of year. For example, Kris sees an increase in requests in Q4 around the holiday season. They sometimes have a hard time budgeting for when their income is low. Kris needs a way to visualize their spending in order to budget more efficiently. 
+
+                Kris then uses their AccountAid profile to see a breakdown of their expenses in a pie chart format. They notice their largest expenses are rent, food, and entertainment. Kris’s biggest financial priorities are rent, food, and pet expenses. They begin to use the prioritization feature of AccountAid in order to keep better track of where their money is going. They use the priority feature to put caps on their spending so they can compare how much they are spending to how much they should be spending. Kris labels rent and food as red (high priority). Pet expenses get labeled as yellow (mid priority) and entertainment gets a green label (low priority).  
+                
+                Kris enjoys this feature because during dry season, sometimes they have to cut green categories to fund red or yellow categories. They have found great success in budgeting by being able to see how much money they are spending on different things. 
+                `  
             },
             { 
                 id: 3, 
                 label: 'Scenario 3',
-                title: 'Scenario 3', 
+                title: 'Preparing for a Move.', 
                 persona: 'Kris',
-                description: `Jim and his wife also go out with their son to lunch when he comes to visit them in Corydon. Their son appreciates Jim for his generosity but sometimes he feels guilty that even though he has a steady job as a lawyer in Indianapolis that they still pay for his dinner. 
-                    However, since Jim and his wife have a different bank then they do it sometimes is hard to transfer funds between the two. This is further complicated because their son doesn’t carry cash anymore and believes that plastic and using his phone for payments is the way of the future.`  
+                description: `Kris has been frustrated with having to travel to the city for work. They are planning to move into an apartment in Reno to be more accessible to customers and cut down on transportation costs. Kris wants to spend some time looking at their income and monthly expenses to see what their budget looks like for an apartment.  
+
+                Kris uses AccountAid to display graphics that represent their recurring expenses. They found that just using graphics for their current spending is not enough to develop a budget. Kris begins to use the spending trends feature of AccountAid to view their expenses over the last several months. The graph that is populated by AccountAid allows Kris to better survey their frequent spending throughout the year. This is especially helpful as Kris has an inconsistent income. They found that their spending can be optimized if they spend less monthly on eating out. Kris uses this information to adjust their spending caps to prioritize saving for moving.  
+                
+                Kris is satisfied using the graphical representation of their spending trends to budget effectively for their intended move. The visual gives Kris an easy-to-follow outline for saving for a down payment and rent. 
+                `  
             }
         ] 
     },
@@ -145,7 +154,7 @@ export const USER_STORY_DATA = [
         scenarios: [
             { 
                 label: 'Scenario 1', 
-                title: 'Budgeting For Retirement',
+                title: 'Budgeting For Retirement.',
                 stories: [
                     { id: 'jim-story-1-scene-1', label: '1.', description: 'As a consumer I want to have confidence my data is safe.' },
                     { id: 'jim-story-2-scene-1', label: '2.', description: 'As a consumer I want to have authentication when I send / transfer money.' },
@@ -159,7 +168,7 @@ export const USER_STORY_DATA = [
             },
             { 
                 label: 'Scenario 2', 
-                title: 'Bringing money management to the 21st century',
+                title: 'Bringing money management to the 21st century.',
                 stories: [
                     { id: 'jim-story-1-scene-2', label: '1.', description: 'As a user I want to be able to see the accounts that are hooked to AccountAid.'},
                     { id: 'jim-story-2-scene-2', label: '2.', description: 'As a user I want to see how much money I have left in my budget.' },
@@ -173,7 +182,7 @@ export const USER_STORY_DATA = [
             },
             {
                 label: 'Scenario 3', 
-                title: 'Paying back for lunch',
+                title: 'Paying back for lunch.',
                 stories: [
                     { id: 'jim-story-1-scene-3', label: '1.', description: 'As a consumer I want to be able to send money for payments to others.' },
                     { id: 'jim-story-2-scene-3', label: '2.', description: 'As a consumer I want to be able to receive money from my friends.' },
@@ -193,44 +202,44 @@ export const USER_STORY_DATA = [
         scenarios: [
             {
                 label: 'Scenario 1', 
-                title: 'Scenario 1',
+                title: 'Payment method for Commissions.',
                 stories: [
-                    { id: 'kris-story-1-scene-1', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-2-scene-1', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'kris-story-3-scene-1', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'kris-story-4-scene-1', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-5-scene-1', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-6-scene-1', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-7-scene-1', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-8-scene-1', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'kris-story-1-scene-1', label: '1.', description: 'As a business I want to accept payments from customers.' },
+                    { id: 'kris-story-2-scene-1', label: '2.', description: 'As a business I want to stay on top of trends.' },
+                    { id: 'kris-story-3-scene-1', label: '3.', description: 'As a business I want to make business transactions easy.' },
+                    { id: 'kris-story-4-scene-1', label: '4.', description: 'As a business I want to make my business accessible.' },
+                    { id: 'kris-story-5-scene-1', label: '5.', description: 'As a business I want to cater to customers who do not carry cash.' },
+                    { id: 'kris-story-6-scene-1', label: '6.', description: 'As a user I want to use application services without charge.' },
+                    { id: 'kris-story-7-scene-1', label: '7.', description: 'As a user I want to transfer funds when I need to.' },
+                    { id: 'kris-story-8-scene-1', label: '8.', description: 'As a user I want access to my recent transactions.' },
                 ] 
             },
             { 
                 label: 'Scenario 2', 
-                title: 'Scenario 2',
+                title: 'Budgeting for Dry Payment Seasons.',
                 stories: [
-                    { id: 'kris-story-1-scene-2', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-2-scene-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'kris-story-3-scene-2', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'kris-story-4-scene-2', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-5-scene-2', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-6-scene-2', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-7-scene-2', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-8-scene-2', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'kris-story-1-scene-2', label: '1.', description: 'As a user I want to see a comparison of monthly spendings.' },
+                    { id: 'kris-story-2-scene-2', label: '2.', description: 'As a user I want to track my financial priorities.' },
+                    { id: 'kris-story-3-scene-2', label: '3.', description: 'As a user I want to budget when income is low.' },
+                    { id: 'kris-story-4-scene-2', label: '4.', description: 'As a user I want to prioritize my money.' },
+                    { id: 'kris-story-5-scene-2', label: '5.', description: 'As a user I want to see visuals of my expenses.' },
+                    { id: 'kris-story-6-scene-2', label: '6.', description: 'As a user I want to reallocate my money to different expenses.' },
+                    { id: 'kris-story-7-scene-2', label: '7.', description: 'As a user I want to put spending caps on certain categories of my life.' },
+                    { id: 'kris-story-8-scene-2', label: '8.', description: 'As a consumer I want to use virtual banking to optimize my time.' },
                 ] 
             },
             { 
                 label: 'Scenario 3', 
-                title: 'Scenario 3',
+                title: 'Preparing for a Move.',
                 stories: [
-                    { id: 'kris-story-1-scene-3', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-2-scene-3', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'kris-story-3-scene-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'kris-story-4-scene-3', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-5-scene-3', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-6-scene-3', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-7-scene-3', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'kris-story-8-scene-3', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'kris-story-1-scene-3', label: '1.', description: 'As a user I want to see visuals of my spending.' },
+                    { id: 'kris-story-2-scene-3', label: '2.', description: 'As a user I want to easily understand visuals within AccountAid.' },
+                    { id: 'kris-story-3-scene-3', label: '3.', description: 'As a user I want to see my spending trends over time.' },
+                    { id: 'kris-story-4-scene-3', label: '4.', description: 'As a user I want to compare my spending trends.' },
+                    { id: 'kris-story-5-scene-3', label: '5.', description: 'As a user I want to plan for inconsistent income.' },
+                    { id: 'kris-story-6-scene-3', label: '6.', description: 'As a user I want to budget for upcoming expenses.' },
+                    { id: 'kris-story-7-scene-3', label: '7.', description: 'As a user I want to optimize my spending habits.' },
+                    { id: 'kris-story-8-scene-3', label: '8.', description: 'As a user I want to prioritize saving money.' }
                 ] 
             },
         ]
@@ -287,22 +296,41 @@ export const USER_STORY_DATA = [
 ]
 
 export const FEATURE_DATA = [
-    { 
-        category: 'Banking',
-        features: [
-            { id: 'feature-banking-1', label: 'Feature Name 1', description: 'This is a feature' },
-            { id: 'feature-banking-2', label: 'Feature Name 2', description: 'This is a feature' },
-            { id: 'feature-banking-3', label: 'Feature Name 3', description: 'This is a feature' },
-        ],
-    },
-    { 
+    {
         category: 'Budgeting',
         features: [
-            { id: 'feature-budget-1', label: 'Feature Name 1', description: 'This is a feature' },
-            { id: 'feature-budget-2', label: 'Feature Name 2', description: 'This is a feature' },
-            { id: 'feature-budget-3', label: 'Feature Name 3', description: 'This is a feature' },
+            { id: 'feature-budget-1', label: 'Create Categories/Buckets (Priority)', description: ['As a user, I want to see a pie chart of my expense categories.', 'As a user, I want to create / delete categories', 'As a user, I want to be able to see where I’m spending the most money ', 'As a user, I want to be able to understand my finances in simplified way.'], constraints: 'Some users may not prefer putting expenses in categories.', comments: 'Based on Jim’s and Timmy’s scenarios.' },
+            { id: 'feature-budget-2', label: 'Priority and Progress (Priority)', description: ['As a user, I want to be able to prioritize my expenses. Red for rent, green for entertainment.', 'As a user, I want to be able to see how close I am to reaching my budgeting goals.', 'As a user, I want to create buckets to “save up” for expenses.'], constraints: 'Will default to green if priority is not specified', comments: 'Based on Jim’s scenarios.' },
+            { id: 'feature-budget-3', label: 'Payment/Budget history (Priority)', description: ['As a user I want to view all my transactions.', 'As a user I want to see how much money I have left in my budget.', 'As a user I want my information such as my account balance to be displayed on the digital wallet.'], constraints: 'History may only be limited to a certain amount of time depending on storage space we can have.', comments: 'Based on Jim’s Scenarios.' },
+            { id: 'feature-budget-4', label: 'Graphics (Priority)', description: ['As a user I want to see a pie chart of my expense categories.', 'As a user I want to see my monthly payments on a calendar display', 'As a user I want my information such as my account balance to be displayed on the digital wallet.', 'As a user I want my information such as my account balance to be displayed on the digital wallet.', 'As a user I want to be able to add / remove debit / credit cards from my account. (Cards will be displayed with graphics).'], constraints: 'User must have enough payment entries to have graphics display.', comments: 'Based on Kris’ Scenarios.' },
+            { id: 'feature-budget-5', label: 'Calendar (Priority)', description: ['As a user I want to see my monthly payments on a calendar display.', 'As a user I want to be able to add/remove/edit monthly payments.', 'As a user I want to search transactions using a specific date.'], constraints: 'The number of items per day may be limited to a number.', comments: 'Based on Jim’s scenarios.' },
+            { id: 'feature-budget-6', label: 'Spending Trends', description: ['As a user, I want to see a comparison of my weekly, monthly, and yearly spending.', 'As a user, I want to create a “save bucket” that I can add money to.', 'As a user, upon creation of a “save bucket” I want my budget to adjust to help me reach this goal.'], constraints: 'Creation of “save bucket” does not guarantee that budget can adjust to meet goal in specified time frame.', comments: 'Based on Kris’ scenarios.' },
+            { id: 'feature-budget-7', label: 'Budget Buddy', description: ['As a user, I want my budget to adjust to meet goal in specified time frame if possible.', 'As a user, I want Budget Buddy to make suggestions on what I can do to help save money.'], constraints: 'Budget Buddy will need months to accurately adjust to user trends.', comments: 'Based on Kris’ scenarios.' },
         ],
-    }
+    },
+    {
+        category: 'Banking',
+        features: [
+            { id: 'feature-banking-1', label: 'Add/Remove Cards (Priority)', description: ['As a user, I want my banking information to be easy to add/remove.', 'As a user I want the digital wallet to keep track of my banking information.', 'As a user I want to be able to add / remove debit / credit cards from my account.'], constraints: 'All cards may not be accepted.', comments: 'Based on Jim and Timmy’s Scenarios.' },
+            { id: 'feature-banking-2', label: 'Balance Display (Priority)', description: ['As a user, I want to see how much money I have left in my budget.', 'As a user, I want my information such as my account balance to be displayed on the digital wallet.', 'As a user, I want to know my balance at a glance.'], constraints: 'Users will not be allowed to overdraft their accounts.', comments: 'Based on Jim’s Scenarios.' },
+            { id: 'feature-banking-3', label: 'Payment History (Priority)', description: ['As a user I want to be able to view all my transactions.', 'As a user I want to able to search transactions using a keyword or specific date.', 'As a user, I want to organize my payments, so I can feel more in control of my finances'], constraints: 'Payment history may only go back a limited time.', comments: 'Based on Jim and Timmy’s Scenarios.' },
+            { id: 'feature-banking-4', label: 'Make a Payment (Priority)', description: ['As a consumer I want to be able to send money for payments to others.', 'As a user, I want to be able to add money to events.','As a user, I want to easily be able to send money to others through the website.', 'As a user, I want to be able to easily transfer money in and out of my AccountAid balance.'], constraints: 'The person who is receiving the money must have an Account.', comments: 'Based on Jim and Timmy’s Scenarios.' },
+            { id: 'feature-banking-5', label: 'Search for Payment', description: ['As a user, I want to be able to search for specific purchases', 'As a user, I want access to my recent transactions.'], constraints: 'Search history will have limited range.', comments: 'Based on Kris’ and Timmy’s Scenario.' },
+            { id: 'feature-banking-6', label: 'Direct Deposit', description: ['As a business I want to accept payments from customers.', 'As a business I want to make business transactions easy.'], constraints: 'User must verify with their bank that Direct Deposit is allowed.', comments: 'Based on Kris’ Scenario.' },
+            { id: 'feature-banking-7', label: 'Check Deposit', description: ['As a business I want to accept payments from customers.', 'As a business I want to make business transactions easy.', 'As a business, I want to cater to customers who do not carry cash.'], constraints: 'This will most likely be handled by a 3rd party.', comments: 'Based on Kris’ Scenario.' },
+        ]
+    },
+    {
+        category: 'Profile',
+        features: [
+            { id: 'feature-profile-1', label: 'Sign up/Login (Priority)', description: ['As a registered user I want the system to verify my identification and bring me to my dashboard.', 'As a user I want the display whether my email and password match my identity.', 'As a registered user I want the system to reset my password if I have forgotten it.', 'As an unregistered user I want the system to register my information to the system.'], constraints: 'User Authentication will be handled by Firebase.', comments: 'Based on Jim’s Scenarios.' },
+            { id: 'feature-profile-2', label: 'Public/Private Profile (Priority)', description: ['As a user I want to be able to search for my friends on AccountAid.', 'As a user, I want to search for other accounts by username.'], constraints: 'People may not want to share their information with others.', comments: 'Based on Timmy’s Scenarios.' },
+            { id: 'feature-profile-3', label: 'User Settings (Priority)', description: ['As a user I want to have confidence my data is safe.','As a consumer I want to have authentication when I send / transfer money.', 'As a user I want to control where my information is stored and where it is transferred to ensure my personal information is not shared.', 'As a registered user I want the option of the system to notify me upon someone logging into my profile.'], constraints: 'Some of authentication is handled by 3rd party so security cannot be totally guaranteed by AccountAid.', comments: 'Based on Jim’s Scenarios.' },
+            { id: 'feature-profile-4', label: 'Profile Verification (Priority)', description: ['As a registered user I want the system to verify my email.', 'As a user I want the system to display whether my email and password match my identity.', 'As a registered user I want the system to allow me to reset my password.', 'As a user I want to see the accounts that are hooked to AccountAid under my name.'], constraints: 'Firebase must be online for authentication to work correctly.', comments: 'Based on Jim’s scenarios.' },
+            { id: 'feature-profile-5', label: 'Add/remove friends', description: ['As a consumer I want to be able to receive money from my friends.', 'As a user I want to be able to search for my friends on AccountAid.', 'As a user, I want to search for other accounts by username and add them to a list to send money to faster.'], constraints: 'To be added as a friend they must have an account.', comments: 'Based on Jim and Timmy’s Scenarios.' },
+            { id: 'feature-profile-6', label: 'Friend List', description: ['As a user I want to have a list of my friends for easy access.'], constraints: 'Friend list can only include accounts made through AccountAid’s website.', comments: 'Based on Jim’s Scenarios.' },
+        ],
+    },
 ]
 
 export const INTERVIEW_QUESTIONS = [
