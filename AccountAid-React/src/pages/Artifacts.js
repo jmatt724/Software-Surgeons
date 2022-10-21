@@ -21,7 +21,7 @@ function Artifacts() {
   }, [])
 
   return (
-    <Flex bg={'primary.snow'} width={'98vw'} height={'100%'} pb={10} overflowX={'hidden'}>
+    <Flex bg={'primary.snow'} width={'98vw'} height={'100%'} pb={10} overflowX={{ sm: 'auto', md: 'auto', lg: 'auto', xl: 'auto' }}>
       {/*<Sidebar />*/}
       <Flex direction='column'>
       <Flex width={'100%'} height={200} ref={scrollRef} direction='column'>
