@@ -120,7 +120,7 @@ function LandingPage() {
             </Wrap>
         </Flex>
         <Flex>
-            <Text 
+            <Text
                 color='blue.400' 
                 onClick={() => navigate('/artifacts')} 
                 _hover={{ cursor: 'pointer' }}
