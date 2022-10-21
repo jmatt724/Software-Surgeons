@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import { FEATURE_DATA, PRODUCT_DESCRIPTION, PRODUCT_VISION, PRODUCT_CUSTOMERS, DEVELOPER_CARD_DATA } from '../data/landingPageData';
 import DeveloperCard from '../components/DeveloperCard';
 import { useNavigate } from 'react-router-dom';
+import AdVideoModal from '../components/ad_video/AdVideoModal';
 
 
 function LandingPage() {
@@ -119,7 +120,7 @@ function LandingPage() {
                 )}
             </Wrap>
         </Flex>
-        <Flex>
+        <Flex direction={'column'}>
             <Text
                 color='blue.400' 
                 onClick={() => navigate('/artifacts')} 
@@ -129,6 +130,7 @@ function LandingPage() {
             >
                 Artifacts
             </Text>
+            <AdVideoModal />
         </Flex>
       </Stack>
     )
