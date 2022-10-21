@@ -23,14 +23,6 @@ export const PERSONAS = [
         outline: 'Timmy, Age 20, is a struggling college student in Business Administration at THE Ohio State. Originally from Columbus...',
         img: 'Timmy - Persona 3.png',
     },
-    {
-        id: 4, 
-        name: 'Jacob',
-        description: 'Jacob, Age 28, is an electrical engineer in Lexington, Kentucky. He moved to Lexington from Indianapolis in 2015 after graduating from college with a degree in Electrical Engineering. He lives in alone in an apartment in downtown Lexington. Jacob has stable income but has trouble managing his money effectively. ',
-        idea: 'Jacob grew up with the internet, so he is very proficient with web-based services like AccountAid. He heard about AccountAid through coworkers and would use its calendar feature to let him know when money will be leaving his account as he has multiple streaming services subscriptions to keep track of.  ',
-        outline: 'Jacob, Age 28, is an electrical engineer in Lexington, Kentucky. He moved to Lexington from Indianapolis in 2015 after...',
-        img: 'Jacob - Persona 4.png',
-    },
 ]
 
 export const SCENARIOS = [
@@ -107,61 +99,42 @@ export const SCENARIOS = [
             { 
                 id: 1, 
                 label: 'Scenario 1',
-                title: 'Scenario 1',
+                title: 'Weekly Food Cost',
                 persona: 'Timmy',
-                description: `Jim is a 53-year-old farmer in Corydon, Indiana. His wife insists that they should start budgeting for retirement, and they should find out where their major expenses lie. Also, to find out how they could adjust so they could add more money to their retirement fund. 
-                                His son hears of their problem and offers to show them online banking and more specifically using their new phones he bought them last Christmas. He shows them various apps that they can use to mark down their expenses. However, Jim is increasingly nervous about his information either being stolen or compromised like the people he hears about in the morning news. When searching for a way to budget and keep track of their money, Jim is adamant that it be a safe transaction. He wants the peace of mind that he will not get scammed out of the money he has worked his whole life for. His son assures him that the newest app he has shown them, AccountAid, has features implemented that require authentication before any information is shown and any transactions are processed. These authentications being handled by a 3rd party such as firebase. 
-                                Jim uses the login and authentication feature and is pleased to know that a 3rd party is handling the authentication process and not the application itself. He is also appreciative that any transactions that he wishes to make are met with various identity checks for extra security. `  
+                description:  
+                `
+                    Timmy is a 20-year-old college student who struggles with spending money in an effective way. He has decided that he wants to improve his budgeting habits by using AccountAid’s Budget Buddy. Timmy wants to make sure he can set weekly limits on purchases, so he doesn’t spend more money than he wants at his jobs.  
+                    Timmy’s parents suggest using a budgeting app to help him manage his spending since he has trouble doing so himself. Timmy researches several budgeting apps and determines that AccountAid meets his needs. Timmy is worried that AccountAid will be like the rest of the banking apps he has used and will use outdated technology. Timmy would like a way to limit his spending per week as he has problems resisting the urge to buy food after class even if he doesn’t know if he has the funds for it. Timmy also has problems keeping track of when paychecks come in since he has 2 different jobs that pay on different days.  
+                    Timmy uses AccountAid to help him manage his finances through the Budget Buddy tool by limiting his spending to the amount he sets aside for the week. AccountAid’s Personalized Dashboard would let Timmy know when money will be entering and leaving his account through a calendar feature. 
+                    Timmy would set a budget for himself by navigating to Budget Buddy from his personalized dashboard. This would open a new page that gives Timmy several options to choose from, one of which will allow him to set limits on his spending on a weekly/monthly basis. Timmy enters the amount he wants to limit himself to weekly and AccountAid will check his balance and set aside the specified amount for the time period set.  
+                `
+            
             },
             { 
                 id: 2, 
                 label: 'Scenario 2',
-                title: 'Scenario 2', 
+                title: 'Managing Student Loans.', 
                 persona: 'Timmy',
-                description: `Jim and more specifically his wife often have problems with reading especially on their phones. They need a different way of visualizing their money and expenses without just reading bank statements and lists of their various payments and deposits. Jim’s son wants to show him different applications that offer more 21st century ways of going about this. 
-                                Jim’s son began showing him the ways that they could create spreadsheets in things like excel that they could budget out their money and mark down expenses. Jim, however, was disappointed in this setup as he would much prefer to use a handwritten ledger and didn’t see any benefit in using technology to show their budgeting habits. However, upon discovering AccountAid, Jim was pleasantly surprised with the features that the app had to offer with visualizing their expenses. The BudgetBuddy part of the application showed various charts and graphs that would divide their expenses into categories like, utilities, monthly payments, entertainment, etc. Jim used the filters within the app to get a closer look at their entertainment expenses. Upon selecting the entertainment filter, the application then loads the various 
-                                payments that Jim and his wife have made and asks them if they even want them to be organized by where they made the payment to. For example, Jim and his wife regularly go the Cracker Barrel on Sunday morning and they want to see how much they are spending a week just at the restaurant. So, they use the filtering feature on their expenses page and get a list and graphs of the times they have visited Cracker Barrel. Finally, the application noticed that they spend upwards of $30 dollars and suggests cutting back on some weeks and put that extra money in savings. `  
+                description: `Timmy is a 20-year-old college student who has accumulated student loans throughout his time in college. Timmy has trouble managing his money, so he is worried he won’t be able to pay his debts on time and will end up owing more money than he already does. 
+
+                Timmy has a history of spending all his money without considering his financial situation so he needs an application that will let him know when he must have money in his account.  
+                
+                Timmy would use AccountAid to manage his loans through his Personalized Dashboard. It would display when his payments are due on a calendar. When Timmy is ready to pay his loans or set money aside for them, he will click the calendar and expand the payment event. This will open an input box for Timmy to add funds to the event.  
+                `
             },
             { 
                 id: 3, 
                 label: 'Scenario 3',
-                title: 'Scenario 3', 
+                title: 'Paying back parents for borrowed money.', 
                 persona: 'Timmy',
-                description: `Jim and his wife also go out with their son to lunch when he comes to visit them in Corydon. Their son appreciates Jim for his generosity but sometimes he feels guilty that even though he has a steady job as a lawyer in Indianapolis that they still pay for his dinner. 
-                    However, since Jim and his wife have a different bank then they do it sometimes is hard to transfer funds between the two. This is further complicated because their son doesn’t carry cash anymore and believes that plastic and using his phone for payments is the way of the future.`  
+                description: `Timmy wants to be able to pay his parents back for all the money he borrowed from them when he was struggling to manage his money well.  
+
+                Timmy feels bad about asking for money from his parents all the time and wants to pay them back once he becomes financially stable. Timmy and his parents use the same bank, but Timmy’s bank makes transferring money difficult, so Timmy wants to use AccountAid to send money to his parents as it is easier than giving them cash when he owes them money.  
+                
+                In order to pay his parents back the money he had borrowed from them he would invite them to create an account on AccountAid. He would then navigate to his digital wallet and search for their accounts to send the money to. He would click their accounts, select a button that prompts him to enter the amount of money he is sending them and click send to securely transfer funds from his account to his parent’s account. This money can then be kept in their account on the website or be transferred to their personal bank accounts.  
+                `
             },
         ] 
-    },
-    { 
-        persona: 'Jacob', 
-        scenarios: [
-            { 
-                id: 1, 
-                label: 'Scenario 1',
-                title: 'Scenario 1', 
-                persona: 'Jacob',
-                description: `Jim is a 53-year-old farmer in Corydon, Indiana. His wife insists that they should start budgeting for retirement, and they should find out where their major expenses lie. Also, to find out how they could adjust so they could add more money to their retirement fund. 
-                                His son hears of their problem and offers to show them online banking and more specifically using their new phones he bought them last Christmas. He shows them various apps that they can use to mark down their expenses. However, Jim is increasingly nervous about his information either being stolen or compromised like the people he hears about in the morning news. When searching for a way to budget and keep track of their money, Jim is adamant that it be a safe transaction. He wants the peace of mind that he will not get scammed out of the money he has worked his whole life for. His son assures him that the newest app he has shown them, AccountAid, has features implemented that require authentication before any information is shown and any transactions are processed. These authentications being handled by a 3rd party such as firebase. 
-                                Jim uses the login and authentication feature and is pleased to know that a 3rd party is handling the authentication process and not the application itself. He is also appreciative that any transactions that he wishes to make are met with various identity checks for extra security. `  
-            },
-            { 
-                id: 2, 
-                label: 'Scenario 2',
-                title: 'Scenario 2', 
-                persona: 'Jacob',
-                description: `Jim and more specifically his wife often have problems with reading especially on their phones. They need a different way of visualizing their money and expenses without just reading bank statements and lists of their various payments and deposits. Jim’s son wants to show him different applications that offer more 21st century ways of going about this. 
-                                Jim’s son began showing him the ways that they could create spreadsheets in things like excel that they could budget out their money and mark down expenses. Jim, however, was disappointed in this setup as he would much prefer to use a handwritten ledger and didn’t see any benefit in using technology to show their budgeting habits. However, upon discovering AccountAid, Jim was pleasantly surprised with the features that the app had to offer with visualizing their expenses. The BudgetBuddy part of the application showed various charts and graphs that would divide their expenses into categories like, utilities, monthly payments, entertainment, etc. Jim used the filters within the app to get a closer look at their entertainment expenses. Upon selecting the entertainment filter, the application then loads the various 
-                                payments that Jim and his wife have made and asks them if they even want them to be organized by where they made the payment to. For example, Jim and his wife regularly go the Cracker Barrel on Sunday morning and they want to see how much they are spending a week just at the restaurant. So, they use the filtering feature on their expenses page and get a list and graphs of the times they have visited Cracker Barrel. Finally, the application noticed that they spend upwards of $30 dollars and suggests cutting back on some weeks and put that extra money in savings. `  
-            },
-            { 
-                id: 3, 
-                label: 'Scenario 3',
-                title: 'Scenario 3', 
-                persona: 'Jacob',
-                description: `Jim and his wife also go out with their son to lunch when he comes to visit them in Corydon. Their son appreciates Jim for his generosity but sometimes he feels guilty that even though he has a steady job as a lawyer in Indianapolis that they still pay for his dinner. 
-                    However, since Jim and his wife have a different bank then they do it sometimes is hard to transfer funds between the two. This is further complicated because their son doesn’t carry cash anymore and believes that plastic and using his phone for payments is the way of the future.`  
-            },
-        ]
     },
 ]
 
@@ -268,78 +241,45 @@ export const USER_STORY_DATA = [
         scenarios: [
             { 
                 label: 'Scenario 1', 
-                title: 'Scenario 1',
+                title: 'Weekly Food Cost.',
                 stories: [
-                    { id: 'timmy-story-1-scene-1', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-2-scene-1', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'timmy-story-3-scene-1', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'timmy-story-4-scene-1', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-5-scene-1', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-6-scene-1', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-7-scene-1', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-8-scene-1', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'timmy-story-1-scene-1', label: '1.', description: 'As a user, I want to know when money comes into my account.' },
+                    { id: 'timmy-story-2-scene-1', label: '2.', description: 'As a user, I need AccountAid to be user-friendly.' },
+                    { id: 'timmy-story-3-scene-1', label: '3.', description: 'As a user, I want to see monthly payments on a calendar.' },
+                    { id: 'timmy-story-4-scene-1', label: '4.', description: 'As a user, I want a way to limit my spending.' },
+                    { id: 'timmy-story-5-scene-1', label: '5.', description: 'As a user, I want to know when money leaves my account.' },
+                    { id: 'timmy-story-6-scene-1', label: '6.', description: 'As a user, I want to be able to see where Im spending the most money.' },
+                    { id: 'timmy-story-7-scene-1', label: '7.', description: 'As a user, I want to be able to understand my finances in a simplified way.' },
+                    { id: 'timmy-story-8-scene-1', label: '8.', description: 'As a user, I want to organize my payments, so I can feel more in control of my finances.' },
                 ] 
             },
             { 
                 label: 'Scenario 2', 
-                title: 'Scenario 2',
+                title: 'Managing Student Loans.',
                 stories: [
-                    { id: 'timmy-story-1-scene-2', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-2-scene-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'timmy-story-3-scene-2', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'timmy-story-4-scene-2', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-5-scene-2', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-6-scene-2', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-7-scene-2', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-8-scene-2', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'timmy-story-1-scene-2', label: '1.', description: 'As a user, I want to know when money is taken out automatically.' },
+                    { id: 'timmy-story-2-scene-2', label: '2.', description: 'As a user, I want to know how much money I need to set aside for recurring payments.' },
+                    { id: 'timmy-story-3-scene-2', label: '3.', description: 'As a user, I want the ability to create payment events.' },
+                    { id: 'timmy-story-4-scene-2', label: '4.', description: 'As a user, I want to be able to add money to events.' },
+                    { id: 'timmy-story-5-scene-2', label: '5.', description: 'As a user, I want to be able to set aside money for events.' },
+                    { id: 'timmy-story-6-scene-2', label: '6.', description: 'As a user, I want to see monthly payments on a calendar.' },
+                    { id: 'timmy-story-7-scene-2', label: '7.', description: 'As a user, I want to see monthly payments at a glance.' },
+                    { id: 'timmy-story-8-scene-2', label: '8.', description: 'As a debt holder, I need to know when loan payments will be occurring, so I don’t fall behind on payments.' },
                 ] 
             },
             { 
                 label: 'Scenario 3', 
-                title: 'Scenario 3',
+                title: 'Paying back parents for borrowed money.',
                 stories: [
-                    { id: 'timmy-story-1-scene-3', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-2-scene-3', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'timmy-story-3-scene-3', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'timmy-story-4-scene-3', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-5-scene-3', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-6-scene-3', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-7-scene-3', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'timmy-story-8-scene-3', label: '8.', description: 'As an old man, I hate to use technology.' },
-                ] 
-            },
-        ]
-    },
-    { 
-        persona: 'Jacob', 
-        label: 'User Stories',
-        scenarios: [
-            { 
-                label: 'Scenario 1', 
-                title: 'Scenario 1',
-                stories: [
-                    { id: 'jim-story-1-scene-1', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-2-scene-1', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'jim-story-3-scene-1', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'jim-story-4-scene-1', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-5-scene-1', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-6-scene-1', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-7-scene-1', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-8-scene-1', label: '8.', description: 'As an old man, I hate to use technology.' },
-                ] 
-            },
-            { 
-                label: 'Scenario 2', 
-                title: 'Scenario 2',
-                stories: [
-                    { id: 'jim-story-1-scene-2', label: '1.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-2-scene-2', label: '2.', description: 'As a farmer, I want to view my expenses easily.' },
-                    { id: 'jim-story-3-scene-2', label: '3.', description: 'As a older man, I want to be able to have all my money digitally.' },
-                    { id: 'jim-story-4-scene-2', label: '4.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-5-scene-2', label: '5.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-6-scene-2', label: '6.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-7-scene-2', label: '7.', description: 'As an old man, I hate to use technology.' },
-                    { id: 'jim-story-8-scene-2', label: '8.', description: 'As an old man, I hate to use technology.' },
+                    { id: 'timmy-story-1-scene-3', label: '1.', description: 'As a user, I need banking transactions to be secure so that I can feel confident money will reach its intended destination.' },
+                    { id: 'timmy-story-2-scene-3', label: '2.', description: 'As a user, I want to easily be able to send money to others through the website.' },
+                    { id: 'timmy-story-3-scene-3', label: '3.', description: 'As a user, I want my banking information to be easy to add/remove.' },
+                    { id: 'timmy-story-4-scene-3', label: '4.', description: 'As a user, I want to know my balance at a glance.' },
+                    { id: 'timmy-story-5-scene-3', label: '5.', description: 'As a user, I want to know my information is secure and cant be easily taken.' },
+                    { id: 'timmy-story-6-scene-3', label: '6.', description: 'As a user, I want to be able to easily transfer money in and out of my AccountAid balance.' },
+                    { id: 'timmy-story-7-scene-3', label: '7.', description: 'As a user, I want a secure account with a username and password.' },
+                    { id: 'timmy-story-8-scene-3', label: '8.', description: 'As a user, I want a username and password to identify me.' },
+                    { id: 'timmy-story-9-scene-3', label: '9.', description: 'As a user, I want to search for other accounts by username and add them to a list to send money to faster.' }
                 ] 
             },
         ]
@@ -421,11 +361,11 @@ export const INTERVIEWS = [
     },
     { id: 'interview-6', label: 'Interview 6',
       answers: [
-        'Twice a week. I handle a church budget that includes managing the kitchen and cooking/food prep. I also budget for home (cooking, gasoline, clothes, children, etc.).',
+        'Twice a week. I handle a church budget that includes managing the kitchen and cooking/food prep. I also budget for home (cooking, gasoline, clothes, children, etc).',
         'don’t spend more than what you have -Mr. Reed',
         'Maybe, but I use a plan-ahead of everything method. Instead of adapting periodically, I try to plan everything ahead of time.',
         'Ease of use. Viewing monthly payments. Texts for upcoming expenses.',
-        'Comparisons in price trends (gas, bread, meat, etc.). Comparisons for different stores (walmart vs Kroger).'
+        'Comparisons in price trends (gas, bread, meat, etc). Comparisons for different stores (walmart vs Kroger).'
       ]
     },
 ]
