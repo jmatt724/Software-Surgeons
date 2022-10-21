@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './css/index.css';
 import App from './App';
-import ChakraTheme from './ChakraTheme';
+import ChakraTheme from './theme/ChakraTheme';
 
 import { BrowserRouter } from 'react-router-dom';
 
