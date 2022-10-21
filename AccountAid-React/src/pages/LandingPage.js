@@ -11,7 +11,7 @@ function LandingPage() {
     const executeScroll = () => scrollRef.current.scrollIntoView()
     const navigate = useNavigate()
 
-    const FeatureBox = ({id, label, details, index}) => {
+    const FeatureBox = ({ id, label, details, index }) => {
         return (
             <>
                 <Flex key={index} bg={'white'} width={'100%'} height={{ sm: 200, md: 275, lg: 400, xl: 400 }} justify={'space-between'} id={id}
@@ -57,7 +57,7 @@ function LandingPage() {
                 <Divider orientation={{ sm: 'horizontal', md: 'horizontal', lg: 'vertical' }} width={{ sm: 800, md: 800, lg: 1 }} height={{ sm: 1, md: 1, lg: 275 }} bg={'primary.secondary'} borderRadius={'md'} ml={2}/>
             </Flex>
             <Flex width={{ sm: '100%', md: '100%', lg: '80%' }} height={{ lg: 300 }} mt={6} ml={8} bg={'white'} align='center' textAlign={{ sm: 'center', md: 'center', lg: 'left' }} pr={10}>
-                <Text fontSize={{ sm: '1.25rem', md: '1.25rem', lg: '1.25rem' }} fontWeight={'semibold'}>{PRODUCT_DESCRIPTION}</Text>
+                <Text fontSize={{ sm: '1.25rem', md: '1.25rem', lg: '1.25rem', xl: '1.5rem' }} fontWeight={'semibold'}>{PRODUCT_DESCRIPTION}</Text>
             </Flex>
         </Flex>
         <Divider color={'black'} size={'md'}/>
@@ -106,7 +106,7 @@ function LandingPage() {
                     </WrapItem>
                 )}
             </Wrap>
-            <Wrap justify='center' align='center' mt={6} spacing={20} height={{ sm: 705, md: 705, lg: 685, xl: 305 }}>
+            <Wrap justify='center' align='center' mt={6} spacing={20} height={{ sm: 705, md: 705, lg: 705, xl: 305 }}>
                 {DEVELOPER_CARD_DATA.filter((__,index) => index >= 2).map((card, index) => 
                     <WrapItem key={index}>
                         <DeveloperCard
