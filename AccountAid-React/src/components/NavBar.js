@@ -39,7 +39,7 @@ function NavBar({ update }) {
             <Flex height={185} width={600} p={0} ml={20} justify={'space-evenly'} align='center'></Flex>
             <Flex height={185} width={300} p={2} justify='center' align='center' mr={6}>
                 <HStack spacing={4}>
-                    <Button height={50}>
+                    <Button height={50} onClick={() => navigate('/login')}>
                         Sign In
                     </Button>
                     <StackDivider bg={'primary.secondary'} width={1}/>
