@@ -1,6 +1,7 @@
 import { Button, Flex, Heading } from '@chakra-ui/react'
 import React, { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ArtifactVideoModal from '../components/Artifacts/artifact_video/ArtifactVideoModal'
 import FeatureCategory from '../components/Artifacts/features/FeatureCategory'
 import InterviewCategory from '../components/Artifacts/interviews/InterviewCategory'
 import PersonaCategory from '../components/Artifacts/personas/PersonaCategory'
@@ -22,10 +23,12 @@ function Artifacts() {
 
   return (
     <Flex bg={'primary.snow'} width={'98vw'} height={'100%'} pb={10} overflowX={{ sm: 'auto', md: 'auto', lg: 'auto', xl: 'auto' }}>
-      {/*<Sidebar />*/}
       <Flex direction='column'>
       <Flex width={'100%'} height={200} ref={scrollRef} direction='column'>
-        <Heading m={6} ml={10}>ARTIFACTS</Heading>
+        <Flex direction={'row'} m={6} ml={10}>
+          <Heading>ARTIFACTS</Heading>
+          <ArtifactVideoModal />
+        </Flex>
         <Button width={150} height={50} ml={10}
           onClick={() => navigate('/')}
           bg={'primary.main'}

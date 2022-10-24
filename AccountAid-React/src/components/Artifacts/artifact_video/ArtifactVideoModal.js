@@ -13,9 +13,9 @@ import {
     Flex,
   } from '@chakra-ui/react'
 import React from 'react'
-import AdVideo from './AdVideo'
+import ArtifactVideo from './ArtifactVideo'
 
-function AdVideoModal() {
+function ArtifactVideoModal() {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
     const handleSizeClick = () => {
@@ -25,10 +25,11 @@ function AdVideoModal() {
     return (
       <>
         <Text ml={8} color='blue.400' fontSize={'1.25rem'} 
-            _hover={{ cursor: 'pointer' }}
+            _hover={{ cursor: 'pointer' }} 
             onClick={() => handleSizeClick()}
+            mt={2}
         >
-            {'Ad Video'}
+            {'Artifacts Video'}
         </Text>
   
         <Modal onClose={onClose} size={'full'} isOpen={isOpen}>
@@ -36,13 +37,13 @@ function AdVideoModal() {
           <ModalContent>
             <ModalHeader>
                 <Heading fontSize={'4rem'}>
-                    {`Ad Video`}
+                    {`Artifacts Video`}
                 </Heading>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
                 <Flex justify={'center'} align={'center'}>
-                    <AdVideo />
+                    <ArtifactVideo />
                 </Flex>
             </ModalBody>
             <ModalFooter>
@@ -53,4 +54,4 @@ function AdVideoModal() {
       </>
     )
 }
-export default AdVideoModal
+export default ArtifactVideoModal
