@@ -1,6 +1,7 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import { Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useUser } from '../../../context/UserContext'
+import { calcBalance } from '../../../data/calculateBalance'
 import CreditCard from '../credit_cards/CreditCard'
 
 function YourCards() {
@@ -10,7 +11,7 @@ function YourCards() {
 
     return (
         <Flex height={'100%'} width={'100%'} p={2} direction={'column'}>
-            <Heading>{`Your Cards (${cardCount})`}</Heading>
+            <Heading>{`My Accounts (${cardCount})`}</Heading>    
             <Flex direction={'row'}>
                 {cards.length === 0 
                 ? <Button mt={8}>Add a Card</Button>
