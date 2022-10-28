@@ -5,19 +5,22 @@ import BalanceDisplay from '../components/feature_components/bank_balance/Balanc
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
 import CreditCard from '../components/feature_components/credit_cards/CreditCard'
 import Expenses from '../components/feature_components/dashboard/Expenses'
+import MakePaymentWidget from '../components/feature_components/dashboard/MakePaymentWidget'
 import MyTransactions from '../components/feature_components/dashboard/MyTransactions'
 import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
-import { calcBalance } from '../data/calculateBalance'
+import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
 
 function Dashboard() {
     const { user, updateBalance } = useUser()
 
     useEffect(() => {
         const getBalance = calcBalance(user.cards)
-        updateBalance(getBalance)
-    }, [])
+        const getDigitalAmount = calcDigitalWallet(user.cards)
+        updateBalance('balance', getBalance)
+        updateBalance('digitalWalletAmount', getDigitalAmount)
+    }, [user.cards])
 
     return (
         <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'} direction={'row'}>
@@ -37,8 +40,9 @@ function Dashboard() {
                         <YourCards />
                     </Flex>
                 </Flex>
-                <Flex height={'42%'} p={4}>
+                <Flex height={'42%'} p={4} direction={'row'}>
                     <MyTransactions />
+                    <MakePaymentWidget />
                 </Flex>
             </Flex>
         </Flex>
