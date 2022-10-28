@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import Artifacts from './pages/Artifacts';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import UserSettings from './pages/UserSettings';
+import MakePayment from './pages/MakePayment';
 
 function App() {
   return (
@@ -13,7 +15,8 @@ function App() {
         <Route path="/artifacts" element={<Artifacts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        
+        <Route path="/user-settings" element={<UserSettings />} />
+        <Route path="/make-payment" element={<MakePayment />} />
       </Routes>
     </div>
   );
