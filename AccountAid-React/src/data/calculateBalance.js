@@ -6,3 +6,13 @@ export const calcBalance = (list) => {
     );
     return sumAmounts.toFixed(2)
 }
+
+export const calcDigitalWallet = (cards) => {
+    let amount = '0.00'
+    cards.forEach((card) => {
+        if(card.digitalWallet){
+            amount = card.amount
+        }
+    })
+    return parseFloat(amount).toFixed(2)
+}
