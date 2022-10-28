@@ -13,11 +13,12 @@ import {
     MenuDivider,
 } from '@chakra-ui/react'
 import RemoveCardAlert from './RemoveCardAlert';
-
+import { useNavigate } from 'react-router-dom';
 
 function CreditCard({ cardID, cardName, cardNumber, amount, expiration }) {
     const { getCurrencySymbol } = useUser()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     return (
         <Flex
@@ -37,7 +38,7 @@ function CreditCard({ cardID, cardName, cardNumber, amount, expiration }) {
                     <Text fontSize={'1rem'} fontWeight={'medium'} color={'gray.600'}>{ cardNumber }</Text>
                 </Flex>
                 <Flex bg={'primary.snow'} borderRadius={'50%'} height={30} width={30} justify={'center'} align={'center'} _hover={{ bg: 'gray.200', cursor: 'pointer' }}>
-                    <RemoveCardAlert cardID={cardID}/>
+                    <RemoveCardAlert cardID={cardID} />
                 </Flex>
             </Flex>
             <Flex width={'100%'} height={85} justify={'flex-start'} align={'center'} p={2} direction={'row'}>
@@ -51,6 +52,7 @@ function CreditCard({ cardID, cardName, cardNumber, amount, expiration }) {
                 </Flex>
                 <Flex width={50} height={'75%'} bg={'gray.200'} borderTopLeftRadius={45} borderBottomRightRadius={25} justify='center' align='center' mt={4}
                     _hover={{ bg: 'gray.400', cursor: 'pointer' }}
+                    onClick={() => navigate('/user-settings')}
                 >
                     <Box mt={2}>
                         <BsArrowReturnRight bg={'gray.600'}/>
