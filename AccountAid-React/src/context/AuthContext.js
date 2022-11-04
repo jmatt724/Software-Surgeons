@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase/firebase'
-import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged, signOut, deleteUser } from 'firebase/auth'
+import { delUser } from '../firebase/api'
 
 const AuthContext = React.createContext()
 
@@ -20,8 +21,17 @@ export function AuthProvider({ children }) {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    function deleteUserAuth() {
+        deleteUser(currentUser).then(() => {
+            alert('Account Deleted!')
+            setCurrentUser()
+        }).catch((error) => {
+            alert('Error occurred!', error)
+        })
+    }
+
     function logout() {
-        return auth.signOut()
+        return signOut(auth)
     }
 
     function resetPassword(email) {
@@ -37,11 +47,10 @@ export function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user)
             setLoading(false)
         })
-
         return unsubscribe
     }, [])
     
@@ -54,6 +63,7 @@ export function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updatePassword,
+        deleteUserAuth,
     }
     
     return (

@@ -34,6 +34,11 @@ export function useUser() {
 
 export function UserProvider({ children }) {
     const [user, setUser] = useState({})
+    const [currentID, setCurrentID] = useState('')
+
+    const updateCurrentID = (uid) => {
+        setCurrentID(uid)
+    }
 
     const setCurrentUser = (user) => {
         setUser(user)
@@ -102,7 +107,9 @@ export function UserProvider({ children }) {
         updateSortState,
         setCurrentUser,
         addTransaction,
-        getUserID
+        getUserID,
+        currentID,
+        updateCurrentID,
     }
     return (
         <UserContext.Provider value={defaultUser}>
