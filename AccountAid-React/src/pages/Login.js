@@ -1,49 +1,46 @@
-import { Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, Heading, Link, Text, FormControl } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ControlledInput from '../components/feature_components/login/ControlledInput';
 import { useAuth } from '../context/AuthContext';
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/react'
 
 function Login() {
-  const navigate = useNavigate()
+  // STATE VARIABLES
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [disabled, setDisabled] = useState(false)
 
-
-  const { login } = useAuth()
+  // OTHER VARIABLES
+  const navigate = useNavigate() // navigation between pages
+  const { login } = useAuth() // login function from AuthContext
   
-
+  // STATE UPDATER FUNCTIONS
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
 
+  // handle login submit
   const handleSubmit = () => {
-    login(email, password)
+    login(email, password) // login the user through auth
       .then(() => {
-        //alert('User signed in');
+        // then navigate to dashboard
         navigate('/dashboard');
       })
       .catch((error) => {
+        // error handling
         alert(error);
         const errorCode = error.code;
         console.log(errorCode);
-        navigate('/login')
+        navigate('/login') // if there is an error, stay on login page
       });
   }
 
-  const updateDisabled = () => {
-    if(email==='' || password === '') { return true; }
-    if(password.length<=6) { return true; }
-    return false
-  }
-
   useEffect(() => {
-    setDisabled(updateDisabled())
+    // function to disable submit button if fields are not correctly filled out
+    const updateDisabled = () => {
+      if(email==='' || password === '') { return true; }
+      return false
+    }
+    setDisabled(updateDisabled()) // set state with new boolean value
   }, [email, password])
 
   return (

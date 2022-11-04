@@ -1,35 +1,38 @@
-import { Button, Flex, FormControl, FormErrorMessage, FormHelperText, Heading, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, FormControl, Heading, Link, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ControlledInput from '../components/feature_components/login/ControlledInput'
 import ShowLoading from '../components/ui_components/ShowLoading'
 import { useAuth } from '../context/AuthContext'
-import { useUser } from '../context/UserContext'
 import { addData } from '../firebase/api'
 import { useIsLoading } from './../hooks/useIsLoading';
 
 function CreateAccount() {
-    const navigate = useNavigate()
-
-  const { signup } = useAuth()
-  const { isLoading } = useIsLoading()
-
+  // STATE VARIABLES
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
   const [fName, setFName] = useState('')
   const [lName, setLName] = useState('')
   const [disabled, setDisabled] = useState(false)
+
+  // OTHER VARIABLES
+  const navigate = useNavigate() // navigation between pages
+  const { signup } = useAuth()
+  const { isLoading } = useIsLoading()
   
+  // STATE UPDATER FUNCTIONS
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
   const handlePasswordConfChange = (e) => setPasswordConf(e.target.value)
   const handleFNameChange = (e) => setFName(e.target.value)
   const handleLNameChange = (e) => setLName(e.target.value)
 
+  // handle create account submit
   const handleSubmit = () => {
-    signup(email, password)
+    signup(email, password) // signup the user through auth
       .then((userCredential) => {
+        // then POST to the database the new users information
         const uid = userCredential.user.uid
         addData({
             email: email,
@@ -39,35 +42,36 @@ function CreateAccount() {
         })
         alert('You successfully signed in!');
       }).finally(() => {
-        navigate('/dashboard')
+        navigate('/dashboard') // finally navigate to dashboard page
       })
-      .catch((error) => {
+      .catch((error) => { // error handling
         alert(error);
         const errorCode = error.code;
         console.log(errorCode);
+        navigate('/create-account') // if there is an error, stay on create account page
       });
   }
 
-  const updateDisabled = () => {
-    if(email==='' || password === '' || passwordConf === '') { return true; }
-    if(passwordConf !== password) { return true; }
-    if(fName==='' || lName === '') { return true; }
-    if(password.length<=6) { return true; }
-    return false
-  }
-
   useEffect(() => {
-    setDisabled(updateDisabled())
+    // function to disable submit button if fields are not correctly filled out
+    const updateDisabled = () => {
+      if(email==='' || password === '' || passwordConf === '') { return true; }
+      if(passwordConf !== password) { return true; }
+      if(fName==='' || lName === '') { return true; }
+      if(password.length<=6) { return true; }
+      return false
+    }
+    setDisabled(updateDisabled()) // set state with new boolean value
   }, [email, password, fName, lName, passwordConf])
 
   return (
     <>
-    { (isLoading)
+    { (isLoading) // if loading, show loading UI component
       ?   <Flex justify='center' align='center' width={'100%'}>
               <ShowLoading />
           </Flex>
-      :
-    <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.dark'} direction={'column'}>
+      : // else show dashboard UI components
+      <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.dark'} direction={'column'}>
           <Flex direction={'column'} width={700} height={600} justify={'flex-start'} align={'center'} bg={'primary.snow'} boxShadow={'2px 4px 10px #818181'}
             p={10}
           >
@@ -125,7 +129,7 @@ function CreateAccount() {
               Create Account
           </Button>
         </Flex>
-    </Flex>
+      </Flex>
     }</>
   )
 }

@@ -1,8 +1,6 @@
-import { Box, Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { BALANCE } from '../components/feature_components/bank_balance/balanceData'
-import BalanceDisplay from '../components/feature_components/bank_balance/BalanceDisplay'
+import { useNavigate } from 'react-router-dom'
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
 import CreditCard from '../components/feature_components/credit_cards/CreditCard'
 import Expenses from '../components/feature_components/dashboard/Expenses'
@@ -12,7 +10,7 @@ import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { deleteUser, delUser, getUser } from '../firebase/api'
+import { delUser, getUser } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
@@ -22,7 +20,6 @@ function Dashboard() {
     const { currentUser, logout, deleteUserAuth } = useAuth()
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
-
     const LOADING_TIME = 1000
     
     /*
@@ -37,25 +34,25 @@ function Dashboard() {
     useEffect(() => {
         // on page refresh GET the current user from database
         const curr = getUser(currentUser.uid)
-        setIsLoading(true)
+        setIsLoading(true) // set loading true while awaiting getUser
         curr.then((value) => {
-            setCurrentUser(value)
+            setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
         }).then(() => {
-            setTimeout(() => {
+            setTimeout(() => { // then give loading a little time so it doesn't flash on the screen
                 setIsLoading(false)
             }, LOADING_TIME)
         })
     }, [])
 
-    const handleLogout = () => {
+    const handleLogout = () => { // handle logging out a user
         logout()
         navigate('/login')
     }
 
-    const handleDelete = () => {
-        delUser(currentUser.uid)
-        deleteUserAuth(currentUser.uid)
-        navigate('/login')
+    const handleDelete = () => { // handle deleting a user
+        delUser(currentUser.uid) // delete from database
+        deleteUserAuth(currentUser.uid) // delete user auth
+        navigate('/login') // navigate to login
     }
 
     return (
