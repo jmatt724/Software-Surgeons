@@ -1,24 +1,25 @@
 import { Button, Flex, FormControl, FormErrorMessage, FormHelperText, Heading, Link, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ControlledInput from '../components/feature_components/login/ControlledInput'
+import ShowLoading from '../components/ui_components/ShowLoading'
 import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
 import { addData } from '../firebase/api'
-import { useReadDocument } from '../hooks/useReadDocument'
+import { useIsLoading } from './../hooks/useIsLoading';
 
 function CreateAccount() {
     const navigate = useNavigate()
 
-  const { updateCurrentID } = useUser()
-  const { isLoading, document, getData } = useReadDocument()
   const { signup } = useAuth()
+  const { isLoading } = useIsLoading()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
   const [fName, setFName] = useState('')
   const [lName, setLName] = useState('')
+  const [disabled, setDisabled] = useState(false)
   
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
@@ -29,15 +30,15 @@ function CreateAccount() {
   const handleSubmit = () => {
     signup(email, password)
       .then((userCredential) => {
-        alert('User signed in');
         const uid = userCredential.user.uid
-        addData({ 
+        addData({
             email: email,
             fName: fName,
             lName: lName,
             userID: uid,
         })
-        updateCurrentID(uid)
+        alert('You successfully signed in!');
+      }).finally(() => {
         navigate('/dashboard')
       })
       .catch((error) => {
@@ -46,28 +47,33 @@ function CreateAccount() {
         console.log(errorCode);
       });
   }
-  
 
-  const isError = () => {
-    if(email === ''){
-      return { message: 'Email is required', value: true }
-    }
-    else if(password === ''){
-      return { message: 'Password is required', value: true }
-    }
-    else if(passwordConf === ''){
-        return { message: 'Password Confirmation is required', value: true }
-      }
-    return { value: false, message: ''}
+  const updateDisabled = () => {
+    if(email==='' || password === '' || passwordConf === '') { return true; }
+    if(passwordConf !== password) { return true; }
+    if(fName==='' || lName === '') { return true; }
+    if(password.length<=6) { return true; }
+    return false
   }
+
+  useEffect(() => {
+    setDisabled(updateDisabled())
+  }, [email, password, fName, lName, passwordConf])
+
   return (
+    <>
+    { (isLoading)
+      ?   <Flex justify='center' align='center' width={'100%'}>
+              <ShowLoading />
+          </Flex>
+      :
     <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.dark'} direction={'column'}>
           <Flex direction={'column'} width={700} height={600} justify={'flex-start'} align={'center'} bg={'primary.snow'} boxShadow={'2px 4px 10px #818181'}
             p={10}
           >
           <Heading>Create Account</Heading>
           <Flex width={'100%'} height={325} mt={10} justify={'flex-end'} align={'center'}>
-          <FormControl isInvalid={isError()} onSubmit={handleSubmit}>
+          <FormControl onSubmit={handleSubmit}>
           <Flex direction={'row'} width={600} justify={'space-between'} align={'center'}>
             <ControlledInput
                 width={310}
@@ -100,18 +106,11 @@ function CreateAccount() {
               value={passwordConf}
               handleChange={handlePasswordConfChange}
               label={'Confirm Password'}
-              type={'passwordConfirm'}
+              type={'password'}
             />
-            {!isError().value ? (
-              <FormHelperText>
-                {`Enter your ${isError().value}`}
-              </FormHelperText>
-            ) : (
-              <FormErrorMessage>{isError().message}</FormErrorMessage>
-            )}
           </FormControl>
           </Flex>
-          <Text fontSize={'1rem'}>
+          <Text fontSize={'1rem'} mt={6}>
               Already have an account? <Link onClick={() => navigate('/login')} color={'primary.lightBlue'}>Log In</Link>
           </Text>
           <Button type={'submit'} bg={'primary.main'}
@@ -121,11 +120,13 @@ function CreateAccount() {
             height={45}
             _hover={{ bg: 'primary.lightBlue' }}
             onClick={handleSubmit}
+            isDisabled={disabled}
           >
               Create Account
           </Button>
         </Flex>
     </Flex>
+    }</>
   )
 }
 

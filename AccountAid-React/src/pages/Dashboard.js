@@ -13,12 +13,18 @@ import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
 import { deleteUser, delUser, getUser } from '../firebase/api'
+import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
+import ShowLoading from './../components/ui_components/ShowLoading';
 
 function Dashboard() {
     const { user, setCurrentUser } = useUser()
     const { currentUser, logout, deleteUserAuth } = useAuth()
+    const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
+
+    const LOADING_TIME = 1000
+    
     /*
     useEffect(() => {
         const getBalance = calcBalance(user.cards)
@@ -29,9 +35,15 @@ function Dashboard() {
     */
 
     useEffect(() => {
+        // on page refresh GET the current user from database
         const curr = getUser(currentUser.uid)
+        setIsLoading(true)
         curr.then((value) => {
             setCurrentUser(value)
+        }).then(() => {
+            setTimeout(() => {
+                setIsLoading(false)
+            }, LOADING_TIME)
         })
     }, [])
 
@@ -48,15 +60,21 @@ function Dashboard() {
 
     return (
         <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'} direction={'row'}>
+            { (isLoading)
+            ?   <Flex justify='center' align='center' width={'100%'}>
+                    <ShowLoading />
+                </Flex>
+            :
+            <>
             <SideBar />
             <Flex direction={'column'} width={'95%'}>
                 <Flex height={'20%'} mt={6}>
                     <Flex width={500} height={'100%'} direction={'column'} p={10}>
                         <Heading fontSize={'3rem'}>Dashboard</Heading>
-                        <Text fontSize={'1.5rem'}>{`Welcome Back, ${user.firstName}`}</Text>
+                        <Text fontSize={'1.5rem'}>{`Welcome Back, ${user?.firstName}`}</Text>
                     </Flex>
                     <Flex pt={4}>
-                        <BalanceStat />
+                        {/*<BalanceStat />*/}
                     </Flex>
                     <Flex pt={4}>
                         <Button bg={'primary.main'} onClick={handleLogout}>
@@ -77,6 +95,8 @@ function Dashboard() {
                     {/*<MakePaymentWidget />*/}
                 </Flex>
             </Flex>
+            </>
+            }
         </Flex>
     )
 }
