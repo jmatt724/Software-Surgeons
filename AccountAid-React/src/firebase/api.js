@@ -9,8 +9,7 @@ export const getUser = async (uid) => {
 }
 
 export const addData = async (user) => {
-    console.log('USER: ',user)
-    // Add a new document in collection "cities"
+    // Add a new document in collection "Users" with id => user.userID
     await setDoc(doc(db, "Users", user.userID), {
         balance: '0.00',
         currency: 'USD',
