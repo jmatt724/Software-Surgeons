@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { BALANCE } from '../components/feature_components/bank_balance/balanceData'
 import BalanceDisplay from '../components/feature_components/bank_balance/BalanceDisplay'
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
@@ -11,9 +12,13 @@ import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
+import { deleteUser, delUser, getUser } from '../firebase/api'
+import { useAuth } from './../context/AuthContext';
 
 function Dashboard() {
-    const { user, updateBalance } = useUser()
+    const { user, setCurrentUser } = useUser()
+    const { currentUser, logout, deleteUserAuth } = useAuth()
+    const navigate = useNavigate()
     /*
     useEffect(() => {
         const getBalance = calcBalance(user.cards)
@@ -22,6 +27,25 @@ function Dashboard() {
         updateBalance('digitalWalletAmount', getDigitalAmount)
     }, [user.cards])
     */
+
+    useEffect(() => {
+        const curr = getUser(currentUser.uid)
+        curr.then((value) => {
+            setCurrentUser(value)
+        })
+    }, [])
+
+    const handleLogout = () => {
+        logout()
+        navigate('/login')
+    }
+
+    const handleDelete = () => {
+        delUser(currentUser.uid)
+        deleteUserAuth(currentUser.uid)
+        navigate('/login')
+    }
+
     return (
         <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'} direction={'row'}>
             <SideBar />
@@ -32,7 +56,15 @@ function Dashboard() {
                         <Text fontSize={'1.5rem'}>{`Welcome Back, ${user.firstName}`}</Text>
                     </Flex>
                     <Flex pt={4}>
-                        {/*<BalanceStat />*/}
+                        <BalanceStat />
+                    </Flex>
+                    <Flex pt={4}>
+                        <Button bg={'primary.main'} onClick={handleLogout}>
+                            Log Out
+                        </Button>
+                        <Button bg={'primary.secondary'} onClick={handleDelete}>
+                            Delete Account
+                        </Button>
                     </Flex>
                 </Flex>
                 <Flex height={'35%'} p={4}>

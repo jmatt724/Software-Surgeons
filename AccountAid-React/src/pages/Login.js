@@ -48,7 +48,6 @@ function Login() {
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
   
-
   const isError = () => {
     if(email === ''){
       return { message: 'Email is required', value: true }
@@ -59,23 +58,10 @@ function Login() {
     return { value: false, message: ''}
   }
 
-  const handleChange = (user) => {
-    //getData()
-    //setCurrentUser(user)
-    navigate('/dashboard')
-  }
-
   const handleSubmit = () => {
-    // handle submitting login form
-    // after getting auth set up we can use auth functions
-    
-    // make a get request to read the user data then set current user
-    //setCurrentUser(user)
-    console.log(`Email: ${email} Password: ${password}`)
     login(email, password)
       .then((userCredential) => {
         alert('User signed in');
-        console.log(userCredential)
         navigate('/dashboard');
       })
       .catch((error) => {
@@ -84,11 +70,6 @@ function Login() {
         console.log(errorCode);
       });
   }
-
-  useEffect(() => {
-    const newUser = document
-    console.log('NEW USER: ',newUser)
-  }, [document])
 
   return (
       <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.dark'} direction={'column'}>

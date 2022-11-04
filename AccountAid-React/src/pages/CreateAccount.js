@@ -4,35 +4,41 @@ import { useNavigate } from 'react-router-dom'
 import ControlledInput from '../components/feature_components/login/ControlledInput'
 import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
+import { addData } from '../firebase/api'
 import { useReadDocument } from '../hooks/useReadDocument'
 
 function CreateAccount() {
     const navigate = useNavigate()
-  const { setCurrentUser } = useUser()
+
+  const { updateCurrentID } = useUser()
   const { isLoading, document, getData } = useReadDocument()
+  const { signup } = useAuth()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
-  const { signup } = useAuth()
-
-  // on account creation, show isLoading 
-  // then write to database with the users info
-  // we can do this somehow with auth()
-  // look it up >:)
+  const [fName, setFName] = useState('')
+  const [lName, setLName] = useState('')
   
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
   const handlePasswordConfChange = (e) => setPasswordConf(e.target.value)
+  const handleFNameChange = (e) => setFName(e.target.value)
+  const handleLNameChange = (e) => setLName(e.target.value)
 
   const handleSubmit = () => {
-    // handle form submit
-    // post request to db for new user
-    console.log(`Email: ${email} Password: ${password}`)
     signup(email, password)
       .then((userCredential) => {
         alert('User signed in');
-        console.log(userCredential)
-        navigate('/dashboard');
+        const uid = userCredential.user.uid
+        addData({ 
+            email: email,
+            fName: fName,
+            lName: lName,
+            userID: uid,
+        })
+        updateCurrentID(uid)
+        navigate('/dashboard')
       })
       .catch((error) => {
         alert(error);
@@ -62,7 +68,22 @@ function CreateAccount() {
           <Heading>Create Account</Heading>
           <Flex width={'100%'} height={325} mt={10} justify={'flex-end'} align={'center'}>
           <FormControl isInvalid={isError()} onSubmit={handleSubmit}>
-            
+          <Flex direction={'row'} width={600} justify={'space-between'} align={'center'}>
+            <ControlledInput
+                width={310}
+                value={fName}
+                handleChange={handleFNameChange}
+                label={'First Name'}
+                type={'fname'}
+            />
+            <ControlledInput 
+                width={310}
+                value={lName}
+                handleChange={handleLNameChange}
+                label={'Last Name'}
+                type={'lname'}
+            />
+          </Flex>
             <ControlledInput 
               value={email}
               handleChange={handleEmailChange}
