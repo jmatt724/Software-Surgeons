@@ -14,14 +14,14 @@ import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
 
 function Dashboard() {
     const { user, updateBalance } = useUser()
-
+    /*
     useEffect(() => {
         const getBalance = calcBalance(user.cards)
         const getDigitalAmount = calcDigitalWallet(user.cards)
         updateBalance('balance', getBalance)
         updateBalance('digitalWalletAmount', getDigitalAmount)
     }, [user.cards])
-
+    */
     return (
         <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'} direction={'row'}>
             <SideBar />
@@ -32,17 +32,17 @@ function Dashboard() {
                         <Text fontSize={'1.5rem'}>{`Welcome Back, ${user.firstName}`}</Text>
                     </Flex>
                     <Flex pt={4}>
-                        <BalanceStat />
+                        {/*<BalanceStat />*/}
                     </Flex>
                 </Flex>
                 <Flex height={'35%'} p={4}>
                     <Flex>
-                        <YourCards />
+                        {/*<YourCards />*/}
                     </Flex>
                 </Flex>
                 <Flex height={'42%'} p={4} direction={'row'}>
-                    <MyTransactions />
-                    <MakePaymentWidget />
+                    {/*<MyTransactions />*/}
+                    {/*<MakePaymentWidget />*/}
                 </Flex>
             </Flex>
         </Flex>

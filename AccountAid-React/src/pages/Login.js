@@ -13,6 +13,7 @@ import {
   FormHelperText,
 } from '@chakra-ui/react'
 import ControlledInput from '../components/feature_components/login/ControlledInput';
+import { useAuth } from '../context/AuthContext';
 
 /*
 THIS IS FOR CREATE ACCOUNT
@@ -41,6 +42,7 @@ function Login() {
   const { isLoading, document, getData } = useReadDocument()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { login } = useAuth()
   
 
   const handleEmailChange = (e) => setEmail(e.target.value)
@@ -59,7 +61,7 @@ function Login() {
 
   const handleChange = (user) => {
     //getData()
-    setCurrentUser(user)
+    //setCurrentUser(user)
     navigate('/dashboard')
   }
 
@@ -68,9 +70,19 @@ function Login() {
     // after getting auth set up we can use auth functions
     
     // make a get request to read the user data then set current user
-    
     //setCurrentUser(user)
-    navigate('/dashboard')
+    console.log(`Email: ${email} Password: ${password}`)
+    login(email, password)
+      .then((userCredential) => {
+        alert('User signed in');
+        console.log(userCredential)
+        navigate('/dashboard');
+      })
+      .catch((error) => {
+        alert(error);
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
   }
 
   useEffect(() => {
@@ -118,6 +130,7 @@ function Login() {
             width={'100%'}
             height={45}
             _hover={{ bg: 'primary.lightBlue' }}
+            onClick={handleSubmit}
           >
               Log In
           </Button>

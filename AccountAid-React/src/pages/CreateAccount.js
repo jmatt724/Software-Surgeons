@@ -2,6 +2,7 @@ import { Button, Flex, FormControl, FormErrorMessage, FormHelperText, Heading, L
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ControlledInput from '../components/feature_components/login/ControlledInput'
+import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
 import { useReadDocument } from '../hooks/useReadDocument'
 
@@ -12,6 +13,7 @@ function CreateAccount() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
+  const { signup } = useAuth()
 
   // on account creation, show isLoading 
   // then write to database with the users info
@@ -24,6 +26,19 @@ function CreateAccount() {
 
   const handleSubmit = () => {
     // handle form submit
+    // post request to db for new user
+    console.log(`Email: ${email} Password: ${password}`)
+    signup(email, password)
+      .then((userCredential) => {
+        alert('User signed in');
+        console.log(userCredential)
+        navigate('/dashboard');
+      })
+      .catch((error) => {
+        alert(error);
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
   }
   
 
@@ -84,6 +99,7 @@ function CreateAccount() {
             width={'100%'}
             height={45}
             _hover={{ bg: 'primary.lightBlue' }}
+            onClick={handleSubmit}
           >
               Create Account
           </Button>
