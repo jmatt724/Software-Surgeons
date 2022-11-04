@@ -1,11 +1,14 @@
-import { Box, Button, Flex, Heading, HStack, StackDivider } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, HStack, Show, StackDivider } from '@chakra-ui/react'
 import React, { useRef } from 'react'
 import { NAVBAR_DATA } from '../data/landingPageData'
 import { Divider } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { useReadDocument } from '../hooks/useReadDocument';
 
 function NavBar({ update }) {
     const navigate = useNavigate()
+
+    const { isLoading, document, getData } = useReadDocument() // This could be used for logging someone in who already has an account
     
     const NavItem = ({ label, onClick }) => {
         return (
@@ -19,6 +22,14 @@ function NavBar({ update }) {
         )
     }
 
+    const handleSignIn = () => {
+        navigate('/login')
+    }
+
+    const handleCreateAccount = () => {
+
+    }
+
     return (
         <Flex
             width={'100%'}
@@ -26,6 +37,7 @@ function NavBar({ update }) {
             bg={'white'}
             justify={'space-between'}
         >
+            
             <Flex height={185} width={400} p={0} m={0} justify='center' align='center' direction={'row'} _hover={{ cursor: 'pointer' }} onClick={() => navigate('/')} >
                 <Heading mb={2} ml={4} fontSize={'3rem'} fontWeight={'semibold'}>AccountAid</Heading>
                 <Box 
@@ -43,7 +55,7 @@ function NavBar({ update }) {
                         Sign In
                     </Button>
                     <StackDivider bg={'primary.secondary'} width={1}/>
-                    <Button height={50}>
+                    <Button height={50} onClick={() => navigate('/create-account')}>
                         Create Account
                     </Button>
                 </HStack>
