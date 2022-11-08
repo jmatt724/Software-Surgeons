@@ -32,8 +32,8 @@ function ShowPaymentDetails({ reciever }) {
         const recieverPayment = {
             paymentID: paymentID,
             userID: reciever.id,
-            recipiant: `${user.firstName} ${user.lastName}`,
-            sender: reciever.name,
+            recipiant: reciever.name,
+            sender: `${user.firstName} ${user.lastName}`,
             date: today,
             category: category,
             amount: amount

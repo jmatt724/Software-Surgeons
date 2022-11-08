@@ -12,9 +12,10 @@ function MyTransactions() {
 
     return (
         <Flex height={'102%'} width={1000} p={2} direction={'column'}>
-            <Heading fontSize={'2rem'}>{'My Transactions'}</Heading>
+            
             { ((!transactions || transactions.length===0)) ?
             <>
+            <Heading fontSize={'2rem'}>{'My Transactions'}</Heading>
             <Flex height={'100%'} bg={'primary.snow'} mt={2} borderRadius={'md'} p={4} direction={'column'}
                     boxShadow={'2px 4px 10px #818181'}
                 >
