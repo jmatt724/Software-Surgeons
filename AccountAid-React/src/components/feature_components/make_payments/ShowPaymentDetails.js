@@ -19,24 +19,36 @@ function ShowPaymentDetails({ reciever }) {
     const handleSubmit = () => {
         const { day, month, year } = getCurrentDate()
         const today = `${monthNames[month]} ${day}, ${year}`
-        const payment = {
-            paymentID: uuid(),
+        const paymentID = uuid()
+        const userPayment = {
+            paymentID: paymentID,
+            userID: user.userID,
+            recipiant: reciever.name,
+            sender: `${user.firstName} ${user.lastName}`,
+            date: today,
+            category: category,
+            amount: amount
+        }
+        const recieverPayment = {
+            paymentID: paymentID,
             userID: reciever.id,
-            recipiant: reciever,
-            sender: 'Me',
+            recipiant: `${user.firstName} ${user.lastName}`,
+            sender: reciever.name,
             date: today,
             category: category,
             amount: amount
         }
         const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
-        console.log(senderBalance)
         const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
-        
-        //payment(user, reciever, amount)
+        const userTransactions = user.transactions
+        const recieverTransactions = reciever.data.transactions
         updateField(user, 'balance', senderBalance).then(() => {
-            updateField(reciever.data, 'balance', recieverBalance).then(() => {
+            updateField(user, 'transactions', [ ...userTransactions, userPayment ])
+        })
+        updateField(reciever.data, 'balance', recieverBalance).then(() => {
+            updateField(reciever.data, 'transactions', [ ...recieverTransactions, recieverPayment ]).then(() => {
                 navigate("/dashboard")
-            }) 
+            })
         })
     }
 
@@ -90,7 +102,9 @@ function ShowPaymentDetails({ reciever }) {
             />
         </Box>
         </Stack>
-        <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit} color={'primary.snow'}>Make Payment</Button>
+        <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit} color={'primary.snow'}
+            isDisabled={category==='' || amount===''}
+        >Make Payment</Button>
     </Flex>
   )
 }

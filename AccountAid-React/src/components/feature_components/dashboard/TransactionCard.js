@@ -3,8 +3,8 @@ import React from 'react'
 import { useUser } from '../../../context/UserContext'
 
 function TransactionCard({ category, date, amount, recipiant, sender, isAll }) {
-    const { getCurrencySymbol } = useUser()
-    const isSender = (recipiant==='Me') ? true : false
+    const { user, getCurrencySymbol } = useUser()
+    const isSender = (recipiant===`${user.firstName} ${user.lastName}`) ? true : false
     return (
         <Flex width={'100%'} height={75} borderRadius={'md'} direction={'row'} justify={'space-between'} align='center' p={4} bg={'gray.100'} mb={1}>
             <Flex height={'100%'} width={250} justify='flex-start' align='center'>
