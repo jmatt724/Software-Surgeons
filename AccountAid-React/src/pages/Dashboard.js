@@ -10,7 +10,7 @@ import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { getUser } from '../firebase/api'
+import { getUser, updateField } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
@@ -22,6 +22,10 @@ function Dashboard() {
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
     const LOADING_TIME = 200
+
+    const handleAddFunds = () => {
+        updateField(currentUser, 'balance', '1000.00')
+    }
     
     /*
     useEffect(() => {
@@ -43,7 +47,7 @@ function Dashboard() {
                 setIsLoading(false)
             }, LOADING_TIME)
         })
-    }, [currentUser.uid])
+    }, [currentUser.uid, currentUser])
 
     const handleLogout = () => { // handle logging out a user
         logout()
@@ -78,6 +82,11 @@ function Dashboard() {
                     
                     <Flex pt={4}>
                         <BalanceStat />
+                        <Button bg={'primary.main'} onClick={handleAddFunds} width={'50%'} height={25} color={'white'}
+                            _hover={{ bg:'gray.400' }}
+                        >
+                            Add $1000
+                        </Button>
                     </Flex>
                 </Flex>
                 <Flex height={'35%'} p={4} width={'64%'} justify={'flex-start'}>

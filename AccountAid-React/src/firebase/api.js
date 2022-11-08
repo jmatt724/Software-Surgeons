@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
+import { doc, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"
 import { db } from "./firebase"
 
@@ -8,16 +8,18 @@ export const getUser = async (uid) => {
     return docSnap.data()
 }
 
-/*
+export const updateField = async (user, field, data) => {
+  // Create an initial document to update.
+  const docRef = doc(db, "Users", user.uid);
+  const value = {
+    [field]: data,
+  }
+  // To update age and favorite color:
+  await updateDoc(docRef, value)
+  .then(() => console.log('Field updated!'))
+  .catch((error) => console.log(error))
+}
 
-import { collection, getDocs } from "firebase/firestore";
-
-const querySnapshot = await getDocs(collection(db, "cities"));
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-*/
 export const getAllUserIDS = async () => {
     const querySnapshot = await getDocs(collection(db, "Users"));
     return querySnapshot
