@@ -46,18 +46,19 @@ function ViewAll() {
                     <Heading fontSize={'3rem'}>
                         My Transactions
                     </Heading>
+                    {(!transactions || transactions.length!==0) &&
                     <Flex mt={6} mr={6}>
                         <SortTransaction 
                           currentSort={currentSort}
                         />
                     </Flex>
+                    }
                 </Flex>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-            <Flex height={'100%'} bg={'primary.snow'} mt={2} borderRadius={'md'} p={4} direction={'column'}
-                boxShadow={'2px 4px 10px #818181'}
-            >
+            
+                <Flex height={'100%'} bg={'primary.snow'} mt={2} borderRadius={'md'} p={4} direction={'column'} boxShadow={'2px 4px 10px #818181'}>
                     {transactions.map((transaction, index) => 
                         <TransactionCard
                             category={transaction.category}
@@ -68,7 +69,9 @@ function ViewAll() {
                             isAll={true}
                         />
                     )}
-            </Flex>
+                  </Flex>
+                
+            
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose}>Close</Button>

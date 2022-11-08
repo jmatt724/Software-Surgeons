@@ -34,7 +34,7 @@ function ShowPaymentDetails({ reciever }) {
     const handleDescription = (e) => {setDescription(e.target.value)}
 
   return (
-    <Flex justify={'flex-start'} direction={'column'} width={900}>
+    <Flex justify={'flex-start'} direction={'column'} width={'100%'}>
         <Flex justify='flex-start' align='center'>
             <Text fontSize={'2rem'} mb={4}>Pay: {reciever.name}</Text>
         </Flex>
@@ -79,7 +79,7 @@ function ShowPaymentDetails({ reciever }) {
             />
         </Box>
         </Stack>
-        <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit}>Make Payment</Button>
+        <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit} color={'primary.snow'}>Make Payment</Button>
     </Flex>
   )
 }

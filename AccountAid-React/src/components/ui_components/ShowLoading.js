@@ -4,7 +4,7 @@ import React from 'react'
 function ShowLoading() {
 
   return (
-      <Flex direction={'column'} justify='center' align='center' width={'100vw'} height={'100vh'} bg={'primary.mint'}>
+      <Flex direction={'column'} justify='center' align='center' width={'100vw'} height={'100vh'} bg={'gray.100'}>
           <Spinner
               thickness='4px'
               speed='0.65s'

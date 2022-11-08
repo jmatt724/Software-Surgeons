@@ -19,7 +19,7 @@ function BalanceStat() {
               <StatLabel fontSize={'1.5rem'}>Current Balance</StatLabel>
             </Flex>
             <Flex width={'100%'} height={65} justify='center' align='center' >
-              <StatNumber fontSize={'3rem'}>{`$${parseFloat(user.balance)}`}</StatNumber>
+              <StatNumber fontSize={'3rem'}>{`$${parseFloat(user.balance).toFixed(2)}`}</StatNumber>
             </Flex>
           </Stat>
       </Flex>

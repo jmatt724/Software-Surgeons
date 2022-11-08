@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, collection, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"
 import { db } from "./firebase"
 
@@ -6,6 +6,21 @@ export const getUser = async (uid) => {
     const docRef = doc(db, 'Users', uid)
     const docSnap = await getDoc(docRef)
     return docSnap.data()
+}
+
+/*
+
+import { collection, getDocs } from "firebase/firestore";
+
+const querySnapshot = await getDocs(collection(db, "cities"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+*/
+export const getAllUserIDS = async () => {
+    const querySnapshot = await getDocs(collection(db, "Users"));
+    return querySnapshot
 }
 
 export const addData = async (user) => {

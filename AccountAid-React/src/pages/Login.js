@@ -44,7 +44,7 @@ function Login() {
   }, [email, password])
 
   return (
-      <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.dark'} direction={'column'}>
+      <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.orangeYellow'} direction={'column'}>
           <Flex direction={'column'} width={700} height={500} justify={'flex-start'} align={'center'} bg={'primary.snow'} boxShadow={'2px 4px 10px #818181'}
             p={10}
           >

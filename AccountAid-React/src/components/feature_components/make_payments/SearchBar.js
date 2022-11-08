@@ -3,34 +3,67 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from '../../../context/UserContext';
 import { USERS_LIST } from './../../../data/tempUsers';
 import DisplaySearchResults from './DisplaySearchResults';
+import { getAllUserIDS } from '../../../firebase/api'
 
 function SearchBar({ handle }) {
     const [input, setInput] = useState('')
     const [results, setResults] = useState([])
-    const users = USERS_LIST
+    const [allUsers, setAllUsers] = useState([]);
     const { user } = useUser()
+
+    useEffect(() => {
+      setAllUsers([])
+      const users = []
+      const GET_USERS = getAllUserIDS().then((value) => {
+        value.docs.forEach((doc) => {
+          users.push(doc)
+        })
+        setAllUsers((prev) => {
+          //console.log('PREV INCLUDES DOC: ',prev.includes(doc.data().uid))
+          //console.log(users)`
+          return users
+        })
+      })
+      console.log('GET USERS: ',allUsers)
+    }, [])
 
     const handleChange = (event) => setInput(event.target.value)
 
     const searchUsers = (input) => {
         let tempResult = []
-        users.map((users) => {
-            const fName = users.firstName
-            const lName = users.lastName
-            if(user.firstName!==fName && user.lastName!==lName){
-            const name = `${fName.toLowerCase()} ${lName.toLowerCase()}`
-            if(input!=='' && name.includes(input.toLowerCase())){
-                if(!tempResult.includes(`${fName} ${lName}`)){
-                    tempResult.push(`${fName} ${lName}`)
-                }
-            }}
-        })
+        allUsers.forEach(
+          (doc) => {
+            const data = doc.data()
+            const fName = data.firstName
+            const lName = data.lastName
+            const inputData = input.toLowerCase()
+            const fullName = `${fName.toLowerCase()} ${lName.toLowerCase()}`
+            if(inputData!=='' && (inputData.length<=fullName.length)){
+              if(inputData===fullName.substring(0,inputData.length)){
+                tempResult.push({ name: `${fName} ${lName}`, user: data })
+              }
+              
+            }
+            else if(inputData===''){
+              tempResult = []
+            }
+          }
+        )
         return tempResult
+        /**
+         else if(tempResult.includes({ name: `${fName} ${lName}` })){
+                tempResult.push({ name: `${fName} ${lName}`, user: data })
+              }
+         */
     }
 
     useEffect(() => {
+      if(input!=='') {
         const result = searchUsers(input)
         setResults(result)
+      } else {
+        setResults([])
+      }
     }, [input])
   
     return (

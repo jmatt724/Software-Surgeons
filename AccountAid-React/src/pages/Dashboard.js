@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
@@ -10,17 +10,18 @@ import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { delUser, getUser } from '../firebase/api'
+import { getUser } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
 
+
 function Dashboard() {
     const { user, setCurrentUser } = useUser()
-    const { currentUser, logout, deleteUserAuth } = useAuth()
+    const { currentUser, logout } = useAuth()
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
-    const LOADING_TIME = 1000
+    const LOADING_TIME = 200
     
     /*
     useEffect(() => {
@@ -42,17 +43,11 @@ function Dashboard() {
                 setIsLoading(false)
             }, LOADING_TIME)
         })
-    }, [])
+    }, [currentUser.uid])
 
     const handleLogout = () => { // handle logging out a user
         logout()
         navigate('/login')
-    }
-
-    const handleDelete = () => { // handle deleting a user
-        delUser(currentUser.uid) // delete from database
-        deleteUserAuth(currentUser.uid) // delete user auth
-        navigate('/login') // navigate to login
     }
 
     return (
@@ -65,31 +60,34 @@ function Dashboard() {
             <>
             <SideBar />
             <Flex direction={'column'} width={'95%'}>
-                <Flex height={'20%'} mt={6}>
-                    <Flex width={500} height={'100%'} direction={'column'} p={10}>
+                <Flex height={'20%'} mt={6} width={'80%'}>
+                    <Flex direction={'row'} width={'46%'} height={'100%'}>
+                    <Flex width={'65%'} direction={'column'} height={'100%'} p={10} bg={'gray.100'}>
                         <Heading fontSize={'3rem'}>Dashboard</Heading>
-                        <Text fontSize={'1.5rem'}>{`Welcome Back, ${user?.firstName}`}</Text>
-                    </Flex>
-                    <Flex pt={4}>
-                        {/*<BalanceStat />*/}
-                    </Flex>
-                    <Flex pt={4}>
-                        <Button bg={'primary.main'} onClick={handleLogout}>
+                        <Text fontSize={'1.5rem'} mt={2} ml={4} mb={4}>{`Welcome Back, ${user?.firstName}`}</Text>
+                        <Button bg={'primary.main'} onClick={handleLogout} width={'50%'} height={25} color={'white'}
+                            _hover={{ bg:'gray.400' }}
+                        >
                             Log Out
                         </Button>
-                        <Button bg={'primary.secondary'} onClick={handleDelete}>
-                            Delete Account
-                        </Button>
+                    </Flex>
+                        <Flex pt={4} bg={'gray.100'} height={'100%'} justify='center' pb={3}>
+                            <Avatar bg='teal.500' size='60px' src={(!user.avatarImage) ? '' : 'https://bit.ly/sage-adebayo' } />
+                        </Flex>
+                    </Flex>
+                    
+                    <Flex pt={4}>
+                        <BalanceStat />
                     </Flex>
                 </Flex>
-                <Flex height={'35%'} p={4}>
+                <Flex height={'35%'} p={4} width={'64%'} justify={'flex-start'}>
                     <Flex>
+                        <MakePaymentWidget />
                         {/*<YourCards />*/}
                     </Flex>
                 </Flex>
                 <Flex height={'42%'} p={4} direction={'row'}>
-                    {/*<MyTransactions />*/}
-                    {/*<MakePaymentWidget />*/}
+                    <MyTransactions />
                 </Flex>
             </Flex>
             </>
