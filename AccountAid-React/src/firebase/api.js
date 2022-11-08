@@ -11,6 +11,7 @@ export const getUser = async (uid) => {
 export const updateField = async (user, field, data) => {
   // Create an initial document to update.
   const docRef = doc(db, "Users", user.userID);
+  
   const value = {
     [field]: data,
   }

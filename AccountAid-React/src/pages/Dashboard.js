@@ -25,10 +25,10 @@ function Dashboard() {
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
-        updateField(currentUser, 'balance', newBalance).then(() => {
-            const curr = getUser(currentUser.uid)
+        updateField(user, 'balance', newBalance).then(() => {
+            const curr = getUser(user.userID)
             curr.then((value) => {
-                setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
+                setCurrentUser(value) // after promise resolves, we setCurrentUser to be the updated user
             })
         })
     }
