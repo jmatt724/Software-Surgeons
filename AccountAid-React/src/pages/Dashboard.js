@@ -24,7 +24,13 @@ function Dashboard() {
     const LOADING_TIME = 200
 
     const handleAddFunds = () => {
-        updateField(currentUser, 'balance', '1000.00')
+        const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
+        updateField(currentUser, 'balance', newBalance).then(() => {
+            const curr = getUser(currentUser.uid)
+            curr.then((value) => {
+                setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
+            })
+        })
     }
     
     /*
