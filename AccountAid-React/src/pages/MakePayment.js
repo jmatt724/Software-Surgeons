@@ -13,7 +13,7 @@ function MakePayment() {
     const handleSelected = (user) => {
         const fName = user.firstName
         const lName = user.lastName
-        setSelected({ id: user.userID, name: `${fName} ${lName}`})
+        setSelected({ id: user.userID, name: `${fName} ${lName}`, data: user})
     }
 
     return (

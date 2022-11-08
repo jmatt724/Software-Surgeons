@@ -4,18 +4,21 @@ import { useUser } from '../../../context/UserContext'
 import { v4 as uuid } from 'uuid'; // library that generates random ID numbers
 import getCurrentDate from '../calendar/getCurrentDate';
 import { monthNames } from '../../../data/calendarData';
+import { updateField, getUser } from '../../../firebase/api'
+import { useAuth } from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function ShowPaymentDetails({ reciever }) {
     const [category, setCategory] = useState('')
     const [amount, setAmount] = useState('0.00')
     const [description, setDescription] = useState('')
-
-    const { addTransaction } = useUser()
+    const { user, setCurrentUser } = useUser()
+    const { currentUser, logout } = useAuth()
+    const navigate = useNavigate()
 
     const handleSubmit = () => {
         const { day, month, year } = getCurrentDate()
         const today = `${monthNames[month]} ${day}, ${year}`
-
         const payment = {
             paymentID: uuid(),
             userID: reciever.id,
@@ -25,8 +28,16 @@ function ShowPaymentDetails({ reciever }) {
             category: category,
             amount: amount
         }
-        addTransaction(payment)
-        console.log('Payment', payment)
+        const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
+        console.log(senderBalance)
+        const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
+        
+        //payment(user, reciever, amount)
+        updateField(user, 'balance', senderBalance).then(() => {
+            updateField(reciever.data, 'balance', recieverBalance).then(() => {
+                navigate("/dashboard")
+            }) 
+        })
     }
 
     const handleCategory = (e) => {setCategory(e.target.value)}
