@@ -14,12 +14,12 @@ function BalanceStat() {
     const { user } = useUser()
     return (
       <Flex m={4}>
-          <Stat p={2} height={125} width={400} borderRadius={'md'} bg={'primary.mint'}>
+          <Stat p={2} height={100} width={300} borderRadius={'md'} bg={'primary.mint'}>
             <Flex width={'100%'} justify='center'>
               <StatLabel fontSize={'1.5rem'}>Current Balance</StatLabel>
             </Flex>
-            <Flex width={'100%'} height={65} justify='center' align='center' >
-              <StatNumber fontSize={'3rem'}>{`$${parseFloat(user.balance).toFixed(2)}`}</StatNumber>
+            <Flex width={'100%'} height={45} justify='center' align='center' >
+              <StatNumber fontSize={'2.5rem'}>{`$${parseFloat(user.balance).toFixed(2)}`}</StatNumber>
             </Flex>
           </Stat>
       </Flex>

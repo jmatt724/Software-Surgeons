@@ -27,7 +27,7 @@ function SideBar({ label }) {
   }
 
   return (
-    <Flex height={'100%'} width={425} bg={'primary.main'} mr={10} 
+    <Flex height={'100%'} width={300} bg={'primary.main'} mr={10} 
       border={'solid'} borderColor={'gray.600'} 
       borderLeftStyle={'hidden'}
       borderTopStyle={'hidden'}

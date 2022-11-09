@@ -68,12 +68,12 @@ function SearchBar({ handle }) {
   
     return (
       <>
-        <Text mb='8px' fontSize={'1.25rem'}>Search: {input}</Text>
+        <Text mb='8px' fontSize={'1rem'}>Search: {input}</Text>
         <Input
           value={input}
           onChange={handleChange}
           placeholder='Search people'
-          size='md'
+          size='sm'
         />
         <DisplaySearchResults results={results} handle={handle}/>
       </>

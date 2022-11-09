@@ -1,14 +1,10 @@
-import { Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import {
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
   } from '@chakra-ui/react'
 import { AiOutlineCaretDown } from 'react-icons/ai'
   
@@ -23,17 +19,15 @@ return (
         </MenuButton>
     <MenuList>
     {(!!results) ? results.map((user) => 
-        <MenuItem minH='48px' width={755} onClick={() => handle(user.user)} key={user.name}>
+        <MenuItem minH='10px' width={650} onClick={() => handle(user.user)} key={user.name} height={5} mt={2} mb={2}>
             <Image
-                boxSize='2rem'
+                boxSize='1.5rem'
                 borderRadius='full'
                 src='https://placekitten.com/100/100'
                 alt='Fluffybuns the destroyer'
                 mr='12px'
             />
-            <span>
-                <Text fontSize={'1.25rem'} fontWeight={'medium'}>{user.name}</Text>
-            </span>
+            <Text fontSize={'1rem'} fontWeight={'medium'}>{user.name}</Text>
         </MenuItem>
     )
     :

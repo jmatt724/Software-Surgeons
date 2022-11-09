@@ -8,6 +8,7 @@ import UserSettings from './pages/UserSettings';
 import MakePayment from './pages/MakePayment';
 import CreateAccount from './pages/CreateAccount';
 import PrivateRoute from './components/PrivateRoute';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -17,15 +18,30 @@ function App() {
         <Route path="/artifacts" element={<Artifacts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/dashboard" 
-          element={
+        <Route path="/dashboard" element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           } 
         />
-        <Route path="/user-settings" element={<UserSettings />} />
-        <Route path="/make-payment" element={<MakePayment />} />
+        <Route path="/make-payment" element={
+            <PrivateRoute>
+              <MakePayment />
+            </PrivateRoute>
+          } 
+        />
+        <Route path="/user-settings" element={
+            <PrivateRoute>
+              <UserSettings />
+            </PrivateRoute>
+          } 
+        />
+        <Route path="/user-profile" element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          } 
+        />
       </Routes>
     </div>
   );

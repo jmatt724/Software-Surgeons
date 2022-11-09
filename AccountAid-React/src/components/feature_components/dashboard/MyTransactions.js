@@ -8,10 +8,10 @@ import ViewAll from './ViewAll'
 function MyTransactions() {
     const { user, sortTransaction } = useUser()
     const transactions = user.transactions
-    sortTransaction(transactions, user.sortState)
+    //sortTransaction(transactions, user.sortState)
 
     return (
-        <Flex height={'102%'} width={1000} p={2} direction={'column'}>
+        <Flex height={275} width={1000} p={2} direction={'column'}>
             
             { ((!transactions || transactions.length===0)) ?
             <>
@@ -20,7 +20,7 @@ function MyTransactions() {
                     boxShadow={'2px 4px 10px #818181'}
                 >
                 <Flex justify='center' align='center' height={'100%'}>
-                    <Text fontSize={'2rem'} color={'primary.dark'}>
+                    <Text fontSize={'1.25rem'} color={'primary.dark'}>
                         You have no transaction history
                     </Text>
                 </Flex>
@@ -29,10 +29,10 @@ function MyTransactions() {
                 :
                 <>
                 <Flex direction={'row'} justify={'space-between'} align={'center'} p={2} height={100}>
-                    <Heading fontSize={'2rem'}>{'My Transactions'}</Heading>
+                    <Heading fontSize={'1.25rem'}>{'My Transactions'}</Heading>
                     <ViewAll />
                 </Flex>
-                <Flex height={'100%'} bg={'primary.snow'} mt={2} borderRadius={'md'} p={4} direction={'column'}
+                <Flex height={'100%'} bg={'primary.snow'} borderRadius={'md'} p={4} direction={'column'}
                     boxShadow={'2px 4px 10px #818181'}
                 >
                 

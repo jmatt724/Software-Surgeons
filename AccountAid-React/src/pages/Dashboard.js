@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
@@ -70,19 +70,26 @@ function Dashboard() {
             <>
             <SideBar />
             <Flex direction={'column'} width={'95%'}>
-                <Flex height={'20%'} mt={6} width={'80%'}>
+                <Flex height={'23%'} mt={6} width={'80%'}>
                     <Flex direction={'row'} width={'46%'} height={'100%'}>
                     <Flex width={'65%'} direction={'column'} height={'100%'} p={10} bg={'gray.100'}>
-                        <Heading fontSize={'3rem'}>Dashboard</Heading>
-                        <Text fontSize={'1.5rem'} mt={2} ml={4} mb={4}>{`Welcome Back, ${user?.firstName}`}</Text>
-                        <Button bg={'primary.main'} onClick={handleLogout} width={'50%'} height={25} color={'white'}
+                        <Heading fontSize={'2rem'}>Dashboard</Heading>
+                        <Text fontSize={'1rem'} mt={2} ml={4} mb={4}>{`Welcome Back, ${user?.firstName}`}</Text>
+                        <Box>
+                        <Button bg={'primary.main'} onClick={handleLogout} width={'50%'} height={'20px'} color={'white'}
                             _hover={{ bg:'gray.400' }}
                         >
                             Log Out
                         </Button>
+                        <Button bg={'primary.main'} onClick={() => navigate('/user-profile')} width={'50%'} height={'20px'} color={'white'}
+                            _hover={{ bg:'gray.400' }}
+                        >
+                            View Profile
+                        </Button>
+                        </Box>
                     </Flex>
                         <Flex pt={4} bg={'gray.100'} height={'100%'} justify='center' pb={3}>
-                            <Avatar bg='teal.500' size='60px' src={(!user.avatarImage) ? '' : 'https://bit.ly/sage-adebayo' } />
+                            <Avatar bg='teal.500' mr={6} width={'125px'} height={'125px'} src={(!user.avatarImage) ? '' : 'https://bit.ly/sage-adebayo' } />
                         </Flex>
                     </Flex>
                     
@@ -101,7 +108,7 @@ function Dashboard() {
                         {/*<YourCards />*/}
                     </Flex>
                 </Flex>
-                <Flex height={'42%'} p={4} direction={'row'}>
+                <Flex height={'55%'} p={4} direction={'row'} mb={2}>
                     <MyTransactions />
                 </Flex>
             </Flex>

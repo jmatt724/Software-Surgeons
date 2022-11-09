@@ -21,25 +21,26 @@ function MakePayment() {
             {/*<SideBar />*/}
             <Flex direction={'column'}>
                 <Flex width={500} p={8}>
-                    <Heading fontSize={'3rem'}>Make Payment</Heading>
-                </Flex>
-                <Flex width={500} pl={8} height={75}>
-                    <Button onClick={() => navigate('/dashboard')} bg={'primary.main'} width={100} color={'primary.snow'}>
+                    <Heading fontSize={'2rem'}>Make Payment</Heading>
+                    <Button onClick={() => navigate('/dashboard')} bg={'primary.main'} width={100} height={25} color={'primary.snow'} ml={4} mt={2}>
                             Go Back
                     </Button>
                 </Flex>
+                <Flex width={500} pl={8} height={30}>
+                    
+                </Flex>
                 <Flex direction={'row'}>
-                    <Flex height={800} width={800} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
+                    <Flex height={600} width={700} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
                         boxShadow={'2px 4px 10px #818181'}
                         justify='center'
                         align='center'
                     >
                         {selected === ''
-                        ?   <Text fontSize={'2rem'}>Select a user to pay</Text>
+                        ?   <Text fontSize={'1.25rem'}>Select a user to pay</Text>
                         :   <ShowPaymentDetails reciever={selected}/>
                         }
                     </Flex>
-                    <Flex height={800} width={800} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
+                    <Flex height={600} width={700} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
                         boxShadow={'2px 4px 10px #818181'}
                     >
                         <SearchBar handle={handleSelected}/>

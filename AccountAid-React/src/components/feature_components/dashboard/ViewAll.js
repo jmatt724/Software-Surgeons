@@ -35,7 +35,7 @@ function ViewAll() {
             mr={2}
             onClick={onOpen}
         >
-            <Text color={'gray.500'} fontSize={'1.25rem'} fontWeight={'medium'}>See All</Text>
+            <Text color={'gray.500'} fontSize={'1rem'} fontWeight={'medium'}>See All</Text>
         </Flex>
   
         <Modal onClose={onClose} size={'full'} isOpen={isOpen}>

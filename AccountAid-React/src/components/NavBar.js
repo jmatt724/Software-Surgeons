@@ -3,13 +3,10 @@ import React, { useRef } from 'react'
 import { NAVBAR_DATA } from '../data/landingPageData'
 import { Divider } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { useReadDocument } from '../hooks/useReadDocument';
 
 function NavBar({ update }) {
     const navigate = useNavigate()
 
-    const { isLoading, document, getData } = useReadDocument() // This could be used for logging someone in who already has an account
-    
     const NavItem = ({ label, onClick }) => {
         return (
             <Flex width={160} justify='center' align={'center'} _hover={{ color: 'primary.orangeYellow', cursor: 'pointer', fontStyle: 'oblique' }}

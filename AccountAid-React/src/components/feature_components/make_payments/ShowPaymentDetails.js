@@ -16,6 +16,8 @@ function ShowPaymentDetails({ reciever }) {
     const { currentUser, logout } = useAuth()
     const navigate = useNavigate()
 
+    const fontSize = '1rem'
+
     const handleSubmit = () => {
         const { day, month, year } = getCurrentDate()
         const today = `${monthNames[month]} ${day}, ${year}`
@@ -59,21 +61,21 @@ function ShowPaymentDetails({ reciever }) {
   return (
     <Flex justify={'flex-start'} direction={'column'} width={'100%'}>
         <Flex justify='flex-start' align='center'>
-            <Text fontSize={'2rem'} mb={4}>Pay: {reciever.name}</Text>
+            <Text fontSize={'1.25rem'} mb={4}>Pay: {reciever.name}</Text>
         </Flex>
         <Stack direction={["column"]} spacing={'24px'}>
         <Box>
-            <Text mb='8px' fontSize={'1.25rem'}>Enter Category:</Text>
+            <Text mb='8px' fontSize={fontSize}>Enter Category:</Text>
             <Input
                 value={category}
                 onChange={handleCategory}
                 placeholder='Category'
-                size='lg'
+                size='md'
                 isRequired
             />
         </Box>
         <Box>
-            <Text mb='8px' fontSize={'1.25rem'}>Enter Amount:</Text>
+            <Text mb='8px' fontSize={fontSize}>Enter Amount:</Text>
             <InputGroup>
                 <InputLeftElement
                     mt={1}
@@ -86,24 +88,24 @@ function ShowPaymentDetails({ reciever }) {
                     value={amount}
                     onChange={handleAmount}
                     placeholder='Amount'
-                    size='lg'
+                    size='md'
                     isRequired
                 />
             </InputGroup>
         </Box>
         <Box>
-            <Text mb='8px' fontSize={'1.25rem'}>Enter Description:</Text>
+            <Text mb='8px' fontSize={fontSize}>Enter Description:</Text>
             <Input
                 value={description}
                 onChange={handleDescription}
                 placeholder='Description'
-                size='lg'
+                size='md'
                 isRequired
             />
         </Box>
         </Stack>
         <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit} color={'primary.snow'}
-            isDisabled={category==='' || amount===''}
+            isDisabled={category==='' || amount==='' || amount==='0.00'}
         >Make Payment</Button>
     </Flex>
   )
