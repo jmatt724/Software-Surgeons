@@ -15,6 +15,7 @@ function CreateAccount() {
   const [fName, setFName] = useState('')
   const [lName, setLName] = useState('')
   const [disabled, setDisabled] = useState(false)
+  const [username, setUserName] = useState('')
 
   // OTHER VARIABLES
   const navigate = useNavigate() // navigation between pages
@@ -27,6 +28,7 @@ function CreateAccount() {
   const handlePasswordConfChange = (e) => setPasswordConf(e.target.value)
   const handleFNameChange = (e) => setFName(e.target.value)
   const handleLNameChange = (e) => setLName(e.target.value)
+  const handleUserNameChange = (e) => setUserName(e.target.value)
 
   // handle create account submit
   const handleSubmit = () => {
@@ -38,6 +40,7 @@ function CreateAccount() {
             email: email,
             fName: fName,
             lName: lName,
+            username: username,
             userID: uid,
         })
         alert('You successfully signed in!');
@@ -59,6 +62,7 @@ function CreateAccount() {
       if(passwordConf !== password) { return true; }
       if(fName==='' || lName === '') { return true; }
       if(password.length<=6) { return true; }
+      if(username===''){ return true; }
       return false
     }
     setDisabled(updateDisabled()) // set state with new boolean value
@@ -72,11 +76,11 @@ function CreateAccount() {
           </Flex>
       : // else show dashboard UI components
       <Flex justify='center' align='center' height={'100vh'} width={'100vw'} bg={'primary.lightBlue'} direction={'column'}>
-          <Flex direction={'column'} width={700} height={600} justify={'flex-start'} align={'center'} bg={'primary.snow'} boxShadow={'2px 4px 10px #818181'}
+          <Flex direction={'column'} width={700} height={750} justify={'flex-start'} align={'center'} bg={'primary.snow'} boxShadow={'2px 4px 10px #818181'}
             p={10}
           >
           <Heading>Create Account</Heading>
-          <Flex width={'100%'} height={325} mt={10} justify={'flex-end'} align={'center'}>
+          <Flex width={'100%'} height={450} mt={10} justify={'flex-end'} align={'center'}>
           <FormControl onSubmit={handleSubmit}>
           <Flex direction={'row'} width={600} justify={'space-between'} align={'center'}>
             <ControlledInput
@@ -94,6 +98,12 @@ function CreateAccount() {
                 type={'lname'}
             />
           </Flex>
+          <ControlledInput 
+              value={username}
+              handleChange={handleUserNameChange}
+              label={'Username'}
+              type={'username'}
+            />
             <ControlledInput 
               value={email}
               handleChange={handleEmailChange}

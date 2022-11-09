@@ -82,7 +82,7 @@ function Dashboard() {
                         </Button>
                     </Flex>
                         <Flex pt={4} bg={'gray.100'} height={'100%'} justify='center' pb={3}>
-                            <Avatar bg='teal.500' size='60px' src={(!user.avatarImage) ? '' : 'https://bit.ly/sage-adebayo' } />
+                            <Avatar bg='teal.500' size='60px' src={ 'https://bit.ly/sage-adebayo' } />
                         </Flex>
                     </Flex>
                     

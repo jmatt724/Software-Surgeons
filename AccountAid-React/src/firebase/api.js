@@ -31,6 +31,7 @@ export const addData = async (user) => {
         balance: '0.00',
         currency: 'USD',
         email: user.email,
+        username: user.username,
         firstName: user.fName,
         friendsList: [],
         lastName: user.lName,
