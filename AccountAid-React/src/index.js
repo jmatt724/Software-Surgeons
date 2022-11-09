@@ -5,13 +5,22 @@ import App from './App';
 import ChakraTheme from './theme/ChakraTheme';
 
 import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
+import { CalendarProvider } from './context/CalendarContext';
+import { AuthProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraTheme>
-        <App />
+        <AuthProvider>
+          <UserProvider>
+            <CalendarProvider>
+              <App />
+            </CalendarProvider>
+          </UserProvider>
+        </AuthProvider>
       </ChakraTheme>
     </BrowserRouter>
   </React.StrictMode>
