@@ -103,7 +103,8 @@ function Dashboard() {
                     </GridItem>
                     <GridItem colSpan={2} rowSpan={1} bg='papayawhip'></GridItem>
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
-                        <MakePaymentWidget />
+                        {/*<MakePaymentWidget />*/}
+                        <Box height={75}></Box>
                         <MyTransactions />
                     </GridItem>
                 </Grid> 
