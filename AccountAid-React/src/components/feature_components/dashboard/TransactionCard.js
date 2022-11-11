@@ -7,7 +7,7 @@ function TransactionCard({ category, date, amount, recipiant, sender, isAll }) {
     const isSender = (recipiant===`${user.firstName} ${user.lastName}`) ? true : false
     const fontSize='1rem'
     return (
-        <Flex width={'100%'} height={75} borderRadius={'md'} direction={'row'} justify={'space-between'} align='center' p={4} bg={'gray.100'} mb={1}>
+        <Flex width={'100%'} height={65} borderRadius={'md'} direction={'row'} justify={'space-between'} align='center' p={4} bg={'gray.100'} mb={1}>
             <Flex height={'100%'} width={250} justify='flex-start' align='center'>
                 <Heading fontSize={fontSize} fontWeight={'medium'}>{ category }</Heading>
             </Flex>

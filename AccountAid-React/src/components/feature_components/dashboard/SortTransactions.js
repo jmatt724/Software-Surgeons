@@ -39,9 +39,9 @@ function SortTransaction({ currentSort }) {
         <Menu>
             <MenuButton>
             <Flex height={25} _hover={{ bg: 'gray.200' }} justify='flex-end' direction={'row'}>
-                <Heading fontSize={'1.5rem'} fontWeight={'medium'}>Sort</Heading>
+                <Heading fontSize={'1rem'} fontWeight={'medium'}>Sort</Heading>
                 <Box mt={1} ml={1}>
-                    <BsSortDownAlt size={'25px'} />
+                    <BsSortDownAlt size={'15px'} />
                 </Box>
             </Flex>
             </MenuButton>

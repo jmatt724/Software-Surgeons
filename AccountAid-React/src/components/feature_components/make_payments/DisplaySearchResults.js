@@ -17,9 +17,9 @@ return (
             <Text>Users</Text>
         </Flex>
         </MenuButton>
-    <MenuList>
+    <MenuList height={'60vh'} width={'105%'}>
     {(!!results) ? results.map((user) => 
-        <MenuItem minH='10px' width={650} onClick={() => handle(user.user)} key={user.name} height={5} mt={2} mb={2}>
+        <MenuItem minH='45px' minW='350' onClick={() => handle(user.user)} key={user.name} height={5} mt={2} mb={2}>
             <Image
                 boxSize='1.5rem'
                 borderRadius='full'

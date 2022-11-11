@@ -9,6 +9,7 @@ import MakePayment from './pages/MakePayment';
 import CreateAccount from './pages/CreateAccount';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
+import BudgetBuddy from './pages/BudgetBuddy';
 
 function App() {
   return (
@@ -39,6 +40,12 @@ function App() {
         <Route path="/user-profile" element={
             <PrivateRoute>
               <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/budget-buddy" element={
+            <PrivateRoute>
+              <BudgetBuddy />
             </PrivateRoute>
           } 
         />

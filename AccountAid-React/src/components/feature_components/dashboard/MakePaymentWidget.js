@@ -15,18 +15,13 @@ function MakePaymentWidget() {
   }
 
   return (
-    <Flex direction={'column'} ml={'-12px'} mt={2}>
-      {/*<Flex justify={'flex-start'} align={'center'} p={2} height={79} mt={1}>
-                  <Heading fontSize={'2rem'} ml={4}>{'Digital Wallet'}</Heading>
-      </Flex>*/}
-        <Flex width={350} height={75} bg={'primary.snow'} borderRadius={'lg'} p={4} direction={'column'}
-          boxShadow={'2px 4px 10px #818181'} justify={'flex-end'}
+    <Flex direction={'column'} mt={2} ml={2}>
+        <Flex width={325} height={65} bg={'primary.snow'} borderRadius={'lg'} p={4} direction={'column'}
+          boxShadow={'2px 4px 10px #818181'} justify={'flex-end'} align='center'
         >
-          <Flex width={'100%'} height={65}>
-            <Button width={'100%'} height={'100%'} bg={'primary.lightBlue'} _hover={{ bg: 'primary.main' }} color={'primary.snow'}
+            <Button width={300} height={65} bg={'primary.lightBlue'} _hover={{ bg: 'primary.main' }} color={'primary.snow'}
               onClick={() => navigate('/make-payment')}
             >Make Payment</Button>
-          </Flex>
         </Flex>
     </Flex>
   )
