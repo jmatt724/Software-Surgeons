@@ -11,7 +11,7 @@ function MyTransactions() {
     //sortTransaction(transactions, user.sortState)
 
     return (
-        <Flex height={275} width={1000} p={2} direction={'column'}>
+        <Flex height={350} width={1000} p={2} direction={'column'}>
             
             { ((!transactions || transactions.length===0)) ?
             <>
@@ -29,7 +29,7 @@ function MyTransactions() {
                 :
                 <>
                 <Flex direction={'row'} justify={'space-between'} align={'center'} p={2} height={100}>
-                    <Heading fontSize={'1.25rem'}>{'My Transactions'}</Heading>
+                    <Heading fontSize={'1.25rem'}>{'Payment History'}</Heading>
                     <ViewAll />
                 </Flex>
                 <Flex height={'100%'} bg={'primary.snow'} borderRadius={'md'} p={4} direction={'column'}
@@ -37,7 +37,7 @@ function MyTransactions() {
                 >
                 
                     {transactions.map((transaction, index) => 
-                        (index<4) &&
+                        (index<5) &&
                         <TransactionCard
                             category={transaction.category}
                             date={transaction.date}

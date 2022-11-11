@@ -1,4 +1,4 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
@@ -32,12 +32,21 @@ function SideBar({ label }) {
       borderLeftStyle={'hidden'}
       borderTopStyle={'hidden'}
       borderBottomStyle={'hidden'}
+      direction='column'
     >
       <SidebarItem>
         <Flex pt={4}>
           <Button bg={'primary.secondary'} onClick={handleDelete}>
             Delete Account
           </Button>
+        </Flex>
+      </SidebarItem>
+      <SidebarItem>
+        <Flex p={2} justify='center' align='center' width={'100%'} 
+            onClick={() => navigate('/budget-buddy')} 
+            _hover={{ cursor: 'pointer', bg: 'gray.200' }}
+        >
+            <Text>Budget Buddy</Text>
         </Flex>
       </SidebarItem>
     </Flex>

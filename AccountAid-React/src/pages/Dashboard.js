@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Grid, GridItem, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
@@ -6,7 +6,6 @@ import CreditCard from '../components/feature_components/credit_cards/CreditCard
 import Expenses from '../components/feature_components/dashboard/Expenses'
 import MakePaymentWidget from '../components/feature_components/dashboard/MakePaymentWidget'
 import MyTransactions from '../components/feature_components/dashboard/MyTransactions'
-import SideBar from '../components/feature_components/dashboard/SideBar'
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
@@ -14,6 +13,8 @@ import { getUser, updateField } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
+import Sidebar from '../components/sidebar/Sidebar'
+import PageLayout from '../components/PageLayout'
 
 
 function Dashboard() {
@@ -32,15 +33,6 @@ function Dashboard() {
             })
         })
     }
-    
-    /*
-    useEffect(() => {
-        const getBalance = calcBalance(user.cards)
-        const getDigitalAmount = calcDigitalWallet(user.cards)
-        updateBalance('balance', getBalance)
-        updateBalance('digitalWalletAmount', getDigitalAmount)
-    }, [user.cards])
-    */
 
     useEffect(() => {
         // on page refresh GET the current user from database
@@ -61,60 +53,64 @@ function Dashboard() {
     }
 
     return (
-        <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'} direction={'row'}>
+        <PageLayout>
+        <Flex>
             { (isLoading)
             ?   <Flex justify='center' align='center' width={'100%'}>
                     <ShowLoading />
                 </Flex>
             :
             <>
-            <SideBar />
-            <Flex direction={'column'} width={'95%'}>
-                <Flex height={'23%'} mt={6} width={'80%'}>
-                    <Flex direction={'row'} width={'46%'} height={'100%'}>
-                    <Flex width={'65%'} direction={'column'} height={'100%'} p={10} bg={'gray.100'}>
-                        <Heading fontSize={'2rem'}>Dashboard</Heading>
-                        <Text fontSize={'1rem'} mt={2} ml={4} mb={4}>{`Welcome Back, ${user?.firstName}`}</Text>
-                        <Box>
-                        <Button bg={'primary.main'} onClick={handleLogout} width={'50%'} height={'20px'} color={'white'}
-                            _hover={{ bg:'gray.400' }}
-                        >
-                            Log Out
-                        </Button>
-                        <Button bg={'primary.main'} onClick={() => navigate('/user-profile')} width={'50%'} height={'20px'} color={'white'}
-                            _hover={{ bg:'gray.400' }}
-                        >
-                            View Profile
-                        </Button>
-                        </Box>
-                    </Flex>
-                        <Flex pt={4} bg={'gray.100'} height={'100%'} justify='center' pb={3}>
-                            <Avatar bg='teal.500' height={125} width={125} src={ 'https://bit.ly/sage-adebayo' } mr={6}/>
-                        </Flex>
-                    </Flex>
+                <Grid
+                    h='100vh'
+                    w='100vw'
+                    templateRows='repeat(3, 1fr)'
+                    templateColumns='repeat(5, 1fr)'
+                    gap={2}
+                    p={2}
+                >
                     
-                    <Flex pt={4}>
-                        <BalanceStat />
-                        <Button bg={'primary.main'} onClick={handleAddFunds} width={'50%'} height={25} color={'white'}
-                            _hover={{ bg:'gray.400' }}
-                        >
-                            Add $1000
-                        </Button>
-                    </Flex>
-                </Flex>
-                <Flex height={'35%'} p={4} width={'64%'} justify={'flex-start'}>
-                    <Flex>
+                    <GridItem rowSpan={4} colSpan={1}>
+                        <Sidebar />
+                    </GridItem>
+                    <GridItem colSpan={1} rowSpan={1} ml="-75px">
+                        <Flex direction={'column'} height={'100%'} p={10}>
+                            <Heading fontSize={'2rem'}>Dashboard</Heading>
+                            <Text fontSize={'1rem'} mt={2} ml={4} mb={4}>{`Welcome Back, ${user?.firstName}`}</Text>
+                            <HStack spacing={2}>
+                            <Button bg={'primary.main'} onClick={handleLogout} width={'50%'} height={'25px'} color={'white'}
+                                    _hover={{ bg:'gray.400' }} fontSize={'0.75rem'}
+                                >
+                                    Log Out
+                            </Button>
+                            <Button bg={'primary.main'} onClick={() => navigate('/user-profile')} width={'50%'} height={'25px'} color={'white'}
+                                _hover={{ bg:'gray.400' }} fontSize={'0.75rem'}
+                            >
+                                View Profile
+                            </Button>
+                            </HStack>
+                        </Flex>
+                    </GridItem>
+                    <GridItem colSpan={1}  rowSpan={1}>
+                        <Flex pt={4} direction='column' align='center' mt={6}>
+                            <BalanceStat />
+                            <Button bg={'primary.main'} onClick={handleAddFunds} width={'35%'} height={25} color={'white'}
+                                _hover={{ bg:'gray.400' }} ml={4} fontSize={'0.85rem'} mt={2}
+                            >
+                                Add $1000
+                            </Button>
+                        </Flex>
+                    </GridItem>
+                    <GridItem colSpan={2} rowSpan={1} bg='papayawhip'></GridItem>
+                    <GridItem colSpan={4} rowSpan={2} ml="-75px">
                         <MakePaymentWidget />
-                        {/*<YourCards />*/}
-                    </Flex>
-                </Flex>
-                <Flex height={'55%'} p={4} direction={'row'} mb={2}>
-                    <MyTransactions />
-                </Flex>
-            </Flex>
+                        <MyTransactions />
+                    </GridItem>
+                </Grid> 
             </>
             }
         </Flex>
+        </PageLayout>
     )
 }
 
