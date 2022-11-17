@@ -14,7 +14,7 @@ export const updateField = async (user, field, data) => {
   const value = {
     [field]: data,
   }
-  // To update age and favorite color:
+  // To update
   await updateDoc(docRef, value)
   .then(() => console.log('Field updated!'))
   .catch((error) => console.log(error))

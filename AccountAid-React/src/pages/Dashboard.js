@@ -15,6 +15,8 @@ import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
 import Sidebar from '../components/sidebar/Sidebar'
 import PageLayout from '../components/PageLayout'
+import SearchBarWindow from './../components/friend_list/SearchBar/SearchBarWindow';
+import FriendList from '../components/friend_list/FriendList'
 
 
 function Dashboard() {
@@ -101,7 +103,9 @@ function Dashboard() {
                             </Button>
                         </Flex>
                     </GridItem>
-                    <GridItem colSpan={2} rowSpan={1} bg='papayawhip'></GridItem>
+                    <GridItem colSpan={2} rowSpan={1}>
+                        <FriendList />
+                    </GridItem>
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
                         {/*<MakePaymentWidget />*/}
                         <Box height={75}></Box>

@@ -11,7 +11,7 @@ function MyTransactions() {
     //sortTransaction(transactions, user.sortState)
 
     return (
-        <Flex height={350} width={1000} p={2} direction={'column'}>
+        <Flex height={350} width={850} p={2} direction={'column'}>
             
             { ((!transactions || transactions.length===0)) ?
             <>

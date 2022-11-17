@@ -10,6 +10,8 @@ import CreateAccount from './pages/CreateAccount';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import BudgetBuddy from './pages/BudgetBuddy';
+import CalendarWindow from './components/Calendar/CalendarWindow'
+import Schedule from './pages/Schedule';
 
 function App() {
   return (
@@ -34,6 +36,12 @@ function App() {
         <Route path="/user-settings" element={
             <PrivateRoute>
               <UserSettings />
+            </PrivateRoute>
+          } 
+        />
+        <Route path="/schedule-payment" element={
+            <PrivateRoute>
+              <Schedule />
             </PrivateRoute>
           } 
         />
