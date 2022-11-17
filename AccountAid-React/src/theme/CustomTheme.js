@@ -10,6 +10,10 @@ const colors = {
     orangeYellow: '#ffce00',
     dark: '#3f3f3f',
     snow: '#f5fefd',
+    gray: '#9B9B9B',
+    valid: '#5be599',
+    error: '#e95555',
+    selected: '#c1c1c1'
   },
 }
 

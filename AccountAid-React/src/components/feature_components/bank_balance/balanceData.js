@@ -1,0 +1,1 @@
+export const BALANCE = '$1600.00';
