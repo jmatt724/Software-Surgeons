@@ -89,7 +89,7 @@ function SearchBarWindow({ handleClose }) {
   const handleCategoryChange = (category) => {
     setCategory(category)
   }
-  
+
   return (
     <Flex
       h="575px"
@@ -162,12 +162,12 @@ function SearchBarWindow({ handleClose }) {
           h='40px'
           justify='center'
           align='center'
-          bg={(category==='Pending') ? 'primary.main' : 'none'}
-          textDecor={(category==='Pending') ? 'underline' : 'none'}
+          bg={(category==='Add') ? 'primary.main' : 'none'}
+          textDecor={(category==='Add') ? 'underline' : 'none'}
           _hover={{ bg: 'purple.freezePurple', cursor: 'pointer', textDecor: 'underline' }}
-          onClick={() => handleCategoryChange('Pending')}
+          onClick={() => handleCategoryChange('Add')}
         >
-        <Text fontSize={'1rem'} fontWeight={'light'} color={'primary.dark'} > {`Pending (${pendingSize})`} </Text>
+        <Text fontSize={'1rem'} fontWeight={'light'} color={'primary.dark'} > {`Add Friends`} </Text>
         </Flex>
       </Flex>
 
@@ -195,7 +195,7 @@ function SearchBarWindow({ handleClose }) {
         {category==='Requests' && 
           <DisplayRequests requests={requests}/>
         }
-        {category==='Pending' && 
+        {category==='Add' && 
           <DisplayPending pending={results}/>
         }
       </Flex>
