@@ -5,21 +5,26 @@ import { v4 as uuid } from 'uuid';
 import Card from './Card';
 import CreateBucketPopover from './CreateBucketPopover';
 import { useUser } from '../../context/UserContext';
+import { getUser, updateField } from '../../firebase/api';
+import { useAuth } from '../../context/AuthContext';
 
 function BucketsLayout() {
   // maybe start with an initial bucket containing all of our budget balance
   // then we can distribute the balance between our buckets
-  const [buckets, setBuckets] = useState([
-    {id: `bucket-${uuid()}`, category: 'Balance', amount: '265.00', maximum: '1200.00'},
-    {id: `bucket-${uuid()}`, category: 'Bills', amount: '3000.00', maximum: '5500.00'},
-    {id: `bucket-${uuid()}`, category: 'Groceries', amount: '645.00', maximum: '1000.00'},
-    {id: `bucket-${uuid()}`, category: 'Entertainment', amount: '232.00', maximum: '600.00'},
-    {id: `bucket-${uuid()}`, category: 'Rent', amount: '527.00', maximum: '1100.00'},
-    {id: `bucket-${uuid()}`, category: 'Car Payment', amount: '0.00', maximum: '236.00'},
-  ])
-
+  const { user, setCurrentUser } = useUser()
+  const [buckets, setBuckets] = useState([])
+  const { currentUser } = useAuth()
   const [expanded, setExpanded] = useState(false)
   
+  const fuckyou = []
+
+  useEffect(() => {
+    // on page refresh GET the current user from database
+    const curr = getUser(currentUser.uid)
+    curr.then((value) => {
+        setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
+    })
+  }, [])
 
   const handleTitleChange = (index, newTitle) => {
     setBuckets((prev) => {
@@ -27,18 +32,30 @@ function BucketsLayout() {
       return prev
     })
   }
+  useEffect(() =>{
+    setBuckets(user.buckets)
+  }, [user.buckets])
 
   const handleRemoveBucket = (id) => {
-    setBuckets((prev) => 
-      prev.filter((bucket) => bucket.id!==id)
-    )
+    updateField(user, "buckets", user.buckets.filter((bucket) => bucket.id!==id)).then(() =>{
+      const curr = getUser(user.userID)
+      curr.then((value) => {
+        setCurrentUser(value)
+      })
+    })
   }
 
   const handleNewBucket = (newBucket) => {
     // handle adding a bucket
     // fields: category, amount, maximum | enter percentage from balance (and show the amount that would account to): default value => 2.5%
-    setBuckets((prev) => {
+    /*setBuckets((prev) => {
       return [ newBucket, ...prev ]
+    })*/
+    updateField(user, "buckets", [...user?.buckets, newBucket]).then(() => {
+        const curr = getUser(user.userID)
+        curr.then((value) => {
+          setCurrentUser(value)
+        })
     })
   }
 

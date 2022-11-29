@@ -96,7 +96,7 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
                         <Checkbox value={isPercentage} isChecked={isPercentage} onChange={() => setIsPercentage(!isPercentage)}>Percentage</Checkbox>
                       </Flex>
                       <ControlledInput
-                        isDisabled={!isPercentage}
+                        isDisabled={(user.balance === "0.00") && !isPercentage}
                         onBlur={() => { (percent==='') && setPercent('2.5') }}
                         width={'100%'}
                         value={percent}

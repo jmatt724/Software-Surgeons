@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
+import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"
 import { db } from "./firebase"
 
@@ -21,8 +21,13 @@ export const updateField = async (user, field, data) => {
 }
 
 export const getAllUserIDS = async () => {
-    const querySnapshot = await getDocs(collection(db, "Users"));
-    return querySnapshot
+    const users = []
+    const q = query(collection(db, "Users"), where("userID", "!=", " "))
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      users.push(doc.id)
+    });
+    return users
 }
 
 export const addData = async (user) => {
@@ -36,6 +41,7 @@ export const addData = async (user) => {
         friendsList: [],
         lastName: user.lName,
         transactions: [],
+        buckets: [],
         userID: user.userID
     });
 }
