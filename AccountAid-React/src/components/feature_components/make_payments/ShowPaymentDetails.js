@@ -15,6 +15,7 @@ function ShowPaymentDetails({ reciever }) {
     const { user, setCurrentUser } = useUser()
     const { currentUser, logout } = useAuth()
     const navigate = useNavigate()
+    console.log('RECIEVER: ',reciever.data)
 
     const fontSize = '1rem'
 
@@ -25,7 +26,7 @@ function ShowPaymentDetails({ reciever }) {
         const userPayment = {
             paymentID: paymentID,
             userID: user.userID,
-            recipiant: reciever.name,
+            recipiant: reciever.username,
             sender: `${user.firstName} ${user.lastName}`,
             date: today,
             category: category,
@@ -33,8 +34,8 @@ function ShowPaymentDetails({ reciever }) {
         }
         const recieverPayment = {
             paymentID: paymentID,
-            userID: reciever.id,
-            recipiant: reciever.name,
+            userID: reciever.uid,
+            recipiant: reciever.username,
             sender: `${user.firstName} ${user.lastName}`,
             date: today,
             category: category,
@@ -46,6 +47,8 @@ function ShowPaymentDetails({ reciever }) {
         const recieverTransactions = reciever.data.transactions
         updateField(user, 'balance', senderBalance).then(() => {
             updateField(user, 'transactions', [ ...userTransactions, userPayment ])
+        }).catch((error) => {
+            console.log(`ERROR: ${error}`)
         })
         updateField(reciever.data, 'balance', recieverBalance).then(() => {
             updateField(reciever.data, 'transactions', [ ...recieverTransactions, recieverPayment ]).then(() => {
@@ -61,7 +64,7 @@ function ShowPaymentDetails({ reciever }) {
   return (
     <Flex justify={'flex-start'} direction={'column'} width={'100%'}>
         <Flex justify='flex-start' align='center'>
-            <Text fontSize={'1.25rem'} mb={4}>Pay: {reciever.name}</Text>
+            <Text fontSize={'1.25rem'} mb={4}>Pay: {reciever.username}</Text>
         </Flex>
         <Stack direction={["column"]} spacing={'24px'}>
         <Box>

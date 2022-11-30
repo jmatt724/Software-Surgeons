@@ -25,6 +25,32 @@ export const updateField = async (user, field, data) => {
   } else {
   */
     const value = {
+      [field]: data,
+    }
+
+      // To update
+      await updateDoc(docRef, value)
+      .then(() => console.log('Field updated!'))
+      .catch((error) => console.log(error))
+}
+
+export const updateBucket = async (user, field, data) => {
+  // Create an initial document to update.
+  const docRef = doc(db, "Users", user.userID);
+  /*
+  if(!docRef.buckets){
+    const value = {
+      [field]: [ data ],
+    }
+    console.log('it does not exist')
+    await setDoc(doc(db, "Users", user.userID), {
+      ...docRef,
+      value
+    }).then(() => console.log('Field updated!'))
+    .catch((error) => console.log(error));
+  } else {
+  */
+    const value = {
       [field]: [ data, ...user.buckets ]
     }
 
@@ -83,7 +109,21 @@ export const addData = async (user) => {
         transactions: [],
         buckets: [],
         userID: user.userID
-    });
+    })
+}
+
+export const addUsername = async (user) => {
+  await setDoc(doc(db, "Usernames", user.username))
+}
+
+export const getUsernames = async () => {
+  const usernames = []
+  //const q = query(collection(db, "Users"))
+  const querySnapshot = await getDocs(collection(db, "Users"))
+  querySnapshot.forEach((doc) => {
+    usernames.push({ username: doc.data().username, uid: doc.data().userID })
+  });
+  return usernames
 }
 
 export const delUser = async (uid) => {

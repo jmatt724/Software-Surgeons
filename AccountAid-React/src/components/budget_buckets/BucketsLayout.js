@@ -8,7 +8,7 @@ import { useUser } from '../../context/UserContext';
 import { getUser, updateField } from '../../firebase/api';
 import { useAuth } from '../../context/AuthContext';
 import { arrayRemove, arrayUnion, FieldValue } from 'firebase/firestore';
-import { deleteBucket } from './../../firebase/api';
+import { deleteBucket, updateBucket } from './../../firebase/api';
 
 function BucketsLayout() {
   // maybe start with an initial bucket containing all of our budget balance
@@ -40,7 +40,7 @@ function BucketsLayout() {
   }
 
   const handleNewBucket = (newBucket) => {
-    updateField(user, "buckets", newBucket, 'add-bucket').then(() => {
+    updateBucket(user, "buckets", newBucket, 'add-bucket').then(() => {
         const curr = getUser(user.userID)
         curr.then((value) => {
           setCurrentUser(value)

@@ -43,8 +43,6 @@ function CreateAccount() {
             username: username,
             userID: uid,
         })
-        alert('You successfully signed in!');
-      }).finally(() => {
         navigate('/dashboard') // finally navigate to dashboard page
       })
       .catch((error) => { // error handling

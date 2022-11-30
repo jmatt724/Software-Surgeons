@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ControlledInput from '../components/feature_components/login/ControlledInput';
 import { useAuth } from '../context/AuthContext';
+import { addUsername } from '../firebase/api';
 
 function Login() {
   // STATE VARIABLES

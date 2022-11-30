@@ -17,9 +17,9 @@ return (
             <Text>Users</Text>
         </Flex>
         </MenuButton>
-    <MenuList height={'60vh'} width={'105%'}>
+    <MenuList height={'60vh'} width={'105%'} overflowX={'auto'}>
     {(!!results) ? results.map((user) => 
-        <MenuItem minH='45px' minW='350' onClick={() => handle(user.user)} key={user.name} height={5} mt={2} mb={2}>
+        <MenuItem minH='45px' minW='350' onClick={() => handle(user.uid)} key={user.username} height={5} mt={2} mb={2}>
             <Image
                 boxSize='1.5rem'
                 borderRadius='full'
@@ -27,16 +27,15 @@ return (
                 alt='Fluffybuns the destroyer'
                 mr='12px'
             />
-            <Text fontSize={'1rem'} fontWeight={'medium'}>{user.name}</Text>
+            <Text fontSize={'1rem'} fontWeight={'medium'}>{user.username}</Text>
         </MenuItem>
     )
     :
         <>
         </>
     }
-  </MenuList>
-</Menu>
-    
+    </MenuList>
+    </Menu>
   )
 }
 

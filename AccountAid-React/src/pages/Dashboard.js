@@ -9,7 +9,7 @@ import MyTransactions from '../components/feature_components/dashboard/MyTransac
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { getUser, updateField } from '../firebase/api'
+import { addUsername, getUser, getUsernames, updateField } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';

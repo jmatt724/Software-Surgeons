@@ -3,14 +3,34 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from '../../../context/UserContext';
 import { USERS_LIST } from './../../../data/tempUsers';
 import DisplaySearchResults from './DisplaySearchResults';
-import { getAllUserIDS } from '../../../firebase/api'
+import { getAllUserIDS, getUsernames } from '../../../firebase/api'
 
 function SearchBar({ handle }) {
     const [input, setInput] = useState('')
     const [results, setResults] = useState([])
     const [allUsers, setAllUsers] = useState([]);
+    const [usernames, setUsernames] = useState('')
     const { user } = useUser()
 
+    useEffect(() => {
+      getUsernames().then((value) => {
+          setUsernames(value)
+      })
+    }, [])
+
+    const handleChange = (event) => setInput(event.target.value)
+
+    const searchUsers = () => {
+      //console.log(usernames)
+      const searchResults = []
+      usernames.forEach((username, index) => {
+        if(username.username.toLowerCase().includes(input.toLowerCase())){
+          searchResults.push(username)
+        }
+      })
+      return searchResults
+    }
+  /*
     useEffect(() => {
       setAllUsers([])
       const users = []
@@ -54,12 +74,13 @@ function SearchBar({ handle }) {
          else if(tempResult.includes({ name: `${fName} ${lName}` })){
                 tempResult.push({ name: `${fName} ${lName}`, user: data })
               }
-         */
+         
     }
+    */
 
     useEffect(() => {
       if(input!=='') {
-        const result = searchUsers(input)
+        const result = searchUsers()
         setResults(result)
       } else {
         setResults([])

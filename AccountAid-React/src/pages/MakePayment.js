@@ -1,21 +1,27 @@
 import { Button, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SideBar from '../components/feature_components/dashboard/SideBar'
 import SearchBar from '../components/feature_components/make_payments/SearchBar'
 import ShowPaymentDetails from '../components/feature_components/make_payments/ShowPaymentDetails'
 import PageLayout from '../components/PageLayout'
 import Sidebar from '../components/sidebar/Sidebar'
+import { getUser, getUsernames } from '../firebase/api'
 import { USERS_LIST } from './../data/tempUsers';
 
 function MakePayment() {
     const [selected, setSelected] = useState('')
+
     const navigate = useNavigate()
 
     const handleSelected = (user) => {
-        const fName = user.firstName
-        const lName = user.lastName
-        setSelected({ id: user.userID, name: `${fName} ${lName}`, data: user})
+        //const fName = user.firstName
+        //const lName = user.lastName
+        //setSelected({ id: user.userID, name: `${fName} ${lName}`, data: user})
+        getUser(user).then((value) => {
+            setSelected({ username: value.username, data: value })
+        })
+        
     }
 
     return (
@@ -54,7 +60,7 @@ function MakePayment() {
                     <Flex height={'100%'} width={400} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
                         boxShadow={'2px 4px 10px #818181'}
                     >
-                        <SearchBar handle={handleSelected}/>
+                        <SearchBar handle={handleSelected} />
                     </Flex>
                     </GridItem>
             </Grid>
