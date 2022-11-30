@@ -1,4 +1,4 @@
-import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
+import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"
 import { db } from "./firebase"
 
@@ -11,13 +11,53 @@ export const getUser = async (uid) => {
 export const updateField = async (user, field, data) => {
   // Create an initial document to update.
   const docRef = doc(db, "Users", user.userID);
-  const value = {
-    [field]: data,
-  }
-  // To update
-  await updateDoc(docRef, value)
-  .then(() => console.log('Field updated!'))
-  .catch((error) => console.log(error))
+  /*
+  if(!docRef.buckets){
+    const value = {
+      [field]: [ data ],
+    }
+    console.log('it does not exist')
+    await setDoc(doc(db, "Users", user.userID), {
+      ...docRef,
+      value
+    }).then(() => console.log('Field updated!'))
+    .catch((error) => console.log(error));
+  } else {
+  */
+    const value = {
+      [field]: [ data, ...user.buckets ]
+    }
+
+      // To update
+      await updateDoc(docRef, value)
+      .then(() => console.log('Field updated!'))
+      .catch((error) => console.log(error))
+}
+
+export const deleteBucket = async (user, field, data) => {
+  // Create an initial document to update.
+  const docRef = doc(db, "Users", user.userID);
+  /*
+  if(!docRef.buckets){
+    const value = {
+      [field]: [ data ],
+    }
+    console.log('it does not exist')
+    await setDoc(doc(db, "Users", user.userID), {
+      ...docRef,
+      value
+    }).then(() => console.log('Field updated!'))
+    .catch((error) => console.log(error));
+  } else {
+  */
+    const value = {
+      [field]: data
+    }
+
+      // To update
+      await updateDoc(docRef, value)
+      .then(() => console.log('Field updated!'))
+      .catch((error) => console.log(error))
 }
 
 export const getAllUserIDS = async () => {
@@ -49,3 +89,4 @@ export const addData = async (user) => {
 export const delUser = async (uid) => {
   await deleteDoc(doc(db, 'Users', uid))
 }
+

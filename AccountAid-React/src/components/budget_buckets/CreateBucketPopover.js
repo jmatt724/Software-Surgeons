@@ -28,7 +28,7 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
     // submit
     const newBucket = {
       id: `bucket-${uuid()}`,
-      category: cat,
+      category: (cat!=='') ? cat : `Untitled Bucket`,
       amount: '0.00',
       maximum: maximum,
     }
@@ -42,10 +42,20 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
   }
 
   const handlePercentage = () => {
-    if(percent){
-      const total = parseFloat(user.balance)*(parseFloat(percent)/100)
+    if(isPercentage){
+      const total = parseFloat(user.balance*(percent))
+      console.log(`total -> ${total}`)
       setMaximum(`${parseFloat(total).toFixed(2)}`)
     }
+  }
+
+  const handlePercentInput = (e) => {
+    const value = e.target.value
+    console.log(`${value} => value`)
+    if(value > 100) { setPercent('100') }
+    else if(value < 0) { setPercent('0') }
+    else { setPercent(e.target.value) }
+
   }
 
   useEffect(() => {
@@ -93,14 +103,14 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
                   <GridItem colSpan={3} rowSpan={1}>
                     <Flex direction='column'>
                       <Flex>
-                        <Checkbox value={isPercentage} isChecked={isPercentage} onChange={() => setIsPercentage(!isPercentage)}>Percentage</Checkbox>
+                        <Checkbox value={isPercentage} isChecked={isPercentage} onChange={() => { setIsPercentage(!isPercentage); handlePercentage() } }>Percentage</Checkbox>
                       </Flex>
                       <ControlledInput
-                        isDisabled={(user.balance === "0.00") && !isPercentage}
+                        isDisabled={!isPercentage}
                         onBlur={() => { (percent==='') && setPercent('2.5') }}
                         width={'100%'}
                         value={percent}
-                        handleChange={(e) => setPercent(e.target.value)}
+                        handleChange={(e) => handlePercentInput(e)}
                         type={'percent'}
                       />
                     </Flex>
@@ -110,7 +120,7 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
                         isDisabled={isPercentage}
                         value={maximum}
                         handleChange={(e) => setMaximum(e.target.value)}
-                        onBlur={() => (maximum==='') && setMaximum('0.00')}
+                        onBlur={() => (maximum==='') ? setMaximum('0.00') : handlePercentage() }
                         label={'Maximum'}
                         type={'maximum'}
                       />

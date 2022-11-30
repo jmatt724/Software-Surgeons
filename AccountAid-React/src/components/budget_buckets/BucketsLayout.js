@@ -7,24 +7,16 @@ import CreateBucketPopover from './CreateBucketPopover';
 import { useUser } from '../../context/UserContext';
 import { getUser, updateField } from '../../firebase/api';
 import { useAuth } from '../../context/AuthContext';
+import { arrayRemove, arrayUnion, FieldValue } from 'firebase/firestore';
+import { deleteBucket } from './../../firebase/api';
 
 function BucketsLayout() {
   // maybe start with an initial bucket containing all of our budget balance
   // then we can distribute the balance between our buckets
-  const { user, setCurrentUser } = useUser()
+  const { user, setCurrentUser, addBuckets } = useUser()
   const [buckets, setBuckets] = useState([])
   const { currentUser } = useAuth()
   const [expanded, setExpanded] = useState(false)
-  
-  const fuckyou = []
-
-  useEffect(() => {
-    // on page refresh GET the current user from database
-    const curr = getUser(currentUser.uid)
-    curr.then((value) => {
-        setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
-    })
-  }, [])
 
   const handleTitleChange = (index, newTitle) => {
     setBuckets((prev) => {
@@ -32,12 +24,14 @@ function BucketsLayout() {
       return prev
     })
   }
-  useEffect(() =>{
-    setBuckets(user.buckets)
-  }, [user.buckets])
+  useEffect(() => {
+    if(user.buckets){
+      setBuckets(user.buckets)
+    }
+  }, [user])
 
   const handleRemoveBucket = (id) => {
-    updateField(user, "buckets", user.buckets.filter((bucket) => bucket.id!==id)).then(() =>{
+    deleteBucket(user, "buckets", user.buckets.filter((bucket) => { return bucket.id!==id })).then(() =>{
       const curr = getUser(user.userID)
       curr.then((value) => {
         setCurrentUser(value)
@@ -46,16 +40,13 @@ function BucketsLayout() {
   }
 
   const handleNewBucket = (newBucket) => {
-    // handle adding a bucket
-    // fields: category, amount, maximum | enter percentage from balance (and show the amount that would account to): default value => 2.5%
-    /*setBuckets((prev) => {
-      return [ newBucket, ...prev ]
-    })*/
-    updateField(user, "buckets", [...user?.buckets, newBucket]).then(() => {
+    updateField(user, "buckets", newBucket, 'add-bucket').then(() => {
         const curr = getUser(user.userID)
         curr.then((value) => {
           setCurrentUser(value)
         })
+    }).catch((error) => {
+      console.log('Error: ',error)
     })
   }
 

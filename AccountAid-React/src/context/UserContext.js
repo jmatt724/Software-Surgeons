@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const UserContext = createContext()
 
@@ -13,6 +13,10 @@ export function UserProvider({ children }) {
     const updateCurrentID = (uid) => {
         setCurrentID(uid)
     }
+
+    useEffect(() => {
+        setCurrentUser((prev) => prev)
+    }, [])
 
     const setCurrentUser = (user) => {
         setUser(user)
