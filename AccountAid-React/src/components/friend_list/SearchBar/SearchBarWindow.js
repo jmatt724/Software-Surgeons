@@ -11,47 +11,33 @@ import PendingCard from '../FriendCard/PendingCard'
 import RequestCard from '../FriendCard/RequestCard'
 import SearchBar from './SearchBar'
 import { useUser } from '../../../context/UserContext'
-import { getAllUserIDS } from '../../../firebase/api'
+import { getAllUserIDS, getUsernames } from '../../../firebase/api'
+import DisplaySearchResults from '../../feature_components/make_payments/DisplaySearchResults'
 
 function SearchBarWindow({ handleClose }) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('Friends')
   const [allUsers, setAllUsers] = useState()
   const [results, setResults] = useState([])
+  const [usernames, setUsernames] = useState('')
+
 
   useEffect(() => {
-    setAllUsers([])
-    const users = []
-    getAllUserIDS().then((value) => {
-      value.docs.forEach((doc) => {
-        users.push(doc)
-      })
-      setAllUsers((prev) => {
-        //console.log('PREV INCLUDES DOC: ',prev.includes(doc.data().uid))
-        //console.log(users)`
-        return users
-      })
+    getUsernames().then((value) => {
+      setUsernames(value)
     })
-    console.log('GET USERS: ',allUsers)
+    console.log('GET USERS: ',usernames)
   }, [])
-
+  const tempResult = []
   const searchUsers = (input) => {
-      let tempResult = []
-      allUsers.forEach(
-        (doc) => {
-          const data = doc.data() 
-          const username = data.username
-          const inputData = input.toLowerCase()
-          if(inputData!=='' && (inputData.length<=username.length)){
-            if(inputData===username.substring(0,inputData.length).toLowerCase()){
-              tempResult.push({ userID: data.userID, username: data.username, firstName: data.firstName, lastName: data.lastName })
+          usernames.forEach((username, index) => {
+            if(username.username.toLowerCase().startsWith(input.toLowerCase())){
+              tempResult.push(username)
             }
-          }
-          else if(inputData===''){
-            tempResult = []
-          }
-        }
-      )
+            else if(input===''){
+              tempResult = []
+            }
+          })
       return tempResult
     }
 

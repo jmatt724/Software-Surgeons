@@ -4,12 +4,12 @@ import { useUser } from '../../../context/UserContext'
 import { updateField } from '../../../firebase/api'
 import CardBase from './CardBase'
 
-function PendingCard({ firstName, lastName, username, data }, props) {
+function PendingCard({ username }, props) {
     const { user } = useUser()
     
     
     const handleAddFriend = () => {
-        updateField(user, 'friendsList', [ ...user.friendsList, data ])
+        updateField(user, 'friendsList', [ ...user.friendsList ])
     }
 
   return (
@@ -31,9 +31,7 @@ function PendingCard({ firstName, lastName, username, data }, props) {
                 direction='column'
                 p={2}
             >
-                <Heading fontSize={'1.45rem'} fontWeight={'normal'}>{(`${firstName} ${lastName}`)}</Heading>
-                <Text fontSize={'0.75rem'} fontWeight={'thin'}>{username || 'John-doe26'}</Text>
-
+                <Heading fontSize={'1.45rem'} fontWeight={'normal'}>{( username )}</Heading>
             </Flex>
             <Flex
                 height={'100%'}
