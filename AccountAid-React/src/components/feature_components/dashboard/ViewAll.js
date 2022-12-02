@@ -20,8 +20,8 @@ import { sortTransaction } from './sortingTransactions';
 
 function ViewAll() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { user } = useUser()
-    const transactions = user.transactions
+    const { user, getTransactionsArray } = useUser()
+    const transactions = getTransactionsArray()
     const currentSort = user.sortState
   
     return (

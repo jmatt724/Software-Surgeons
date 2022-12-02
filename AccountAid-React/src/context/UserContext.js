@@ -27,6 +27,18 @@ export function UserProvider({ children }) {
         return user.userID
     }
 
+    const getBucketCategories = () => {
+        const buckets = user.buckets
+        const categories = buckets.map((bucket) => bucket.category)
+        return categories
+    }
+
+    const getTransactionsArray = () => {
+        const keys = Object.keys(user.transactions)
+        const transactions = keys.map((id) => user.transactions[id])
+        return transactions
+    }
+
     const getCurrencySymbol = () => {
         if(user.currency === 'USD') {
             return '$'
@@ -196,6 +208,8 @@ export function UserProvider({ children }) {
         currentID,
         updateCurrentID,
         sortTransaction,
+        getBucketCategories,
+        getTransactionsArray,
     }
     return (
         <UserContext.Provider value={defaultUser}>

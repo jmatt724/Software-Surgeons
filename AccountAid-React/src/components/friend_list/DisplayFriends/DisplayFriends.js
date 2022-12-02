@@ -29,7 +29,7 @@ function DisplayFriends({ friends }) {
     }
 
     useEffect(() => {
-        getFriends()
+        //getFriends()
     }, [])
 
     

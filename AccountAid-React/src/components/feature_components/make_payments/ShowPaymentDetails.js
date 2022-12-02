@@ -1,23 +1,26 @@
-import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Stack, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, Button, Checkbox, Flex, Input, InputGroup, InputLeftElement, Stack, Text } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { useUser } from '../../../context/UserContext'
 import { v4 as uuid } from 'uuid'; // library that generates random ID numbers
 import getCurrentDate from '../calendar/getCurrentDate';
 import { monthNames } from '../../../data/calendarData';
-import { updateField, getUser } from '../../../firebase/api'
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useDb } from '../../../context/DbContext';
+import CategorySelect from './CategorySelect';
 
 function ShowPaymentDetails({ reciever }) {
     const [category, setCategory] = useState('')
     const [amount, setAmount] = useState('0.00')
     const [description, setDescription] = useState('')
-    const { user, setCurrentUser } = useUser()
+    const [useBucketCat, setUseBucketCat] = useState(false)
+    const { user, setCurrentUser, getBucketCategories } = useUser()
     const { currentUser, logout } = useAuth()
-    const { updateTransactions } = useDb()
+    const { updateTransactions, updateField } = useDb()
     const navigate = useNavigate()
-    console.log('RECIEVER: ',reciever.data)
+    //console.log('RECIEVER: ',reciever.data)
+    
+    const categories = getBucketCategories()
 
     const fontSize = '1rem'
 
@@ -38,33 +41,30 @@ function ShowPaymentDetails({ reciever }) {
             recipiant: reciever.username,
             sender: `${user.firstName} ${user.lastName}`,
             date: today,
-            category: category,
+            category: 'Web Payment',
             amount: amount
         }
         const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
         const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
         const userTransactions = user.transactions
         const recieverTransactions = reciever.data.transactions
+        updateField(user.userID, 'balance', senderBalance)
         updateTransactions(user, 'transactions', paymentID, userPayment)
+        updateField(reciever.data.userID, 'balance', recieverBalance)
         updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment)
-        //updateTransactions('transactions', paymentID, userPayment)
-        //updateField(user, 'balance', senderBalance).then(() => {
-        //    updateField(user, 'transactions', [ ...userTransactions, userPayment ])
-        //})
-        //updateField(reciever.data, 'balance', recieverBalance).then(() => {
-        //    updateTransactions(reciever.data, recieverPayment).then(() => {
-        //        navigate("/dashboard")
-        //    })
-        //})
-        
-        //updateField(reciever.data, 'transactions', [ ...recieverTransactions, recieverPayment ]).then(() => {
-        //    navigate("/dashboard")
-        //})
     }
 
     const handleCategory = (e) => {setCategory(e.target.value)}
     const handleAmount = (e) => {setAmount(e.target.value)}
     const handleDescription = (e) => {setDescription(e.target.value)}
+
+    useEffect(() => {
+        if(!useBucketCat){
+            setCategory('')
+        } else {
+            setCategory(categories[0])
+        }
+    }, [useBucketCat])
 
   return (
     <Flex justify={'flex-start'} direction={'column'} width={'100%'}>
@@ -72,8 +72,19 @@ function ShowPaymentDetails({ reciever }) {
             <Text fontSize={'1.25rem'} mb={4}>Pay: {reciever.username}</Text>
         </Flex>
         <Stack direction={["column"]} spacing={'24px'}>
+        <Flex>
+            <Checkbox value={useBucketCat} onChange={() => setUseBucketCat(!useBucketCat)}>Bucket Category</Checkbox>
+        </Flex>
         <Box>
-            <Text mb='8px' fontSize={fontSize}>Enter Category:</Text>
+            <Text mb='8px' fontSize={fontSize}>Category:</Text>
+            {useBucketCat
+            ?
+            <CategorySelect 
+                value={category}
+                options={categories}
+                onChange={setCategory}
+            />
+            :
             <Input
                 value={category}
                 onChange={handleCategory}
@@ -81,9 +92,10 @@ function ShowPaymentDetails({ reciever }) {
                 size='md'
                 isRequired
             />
+            }
         </Box>
         <Box>
-            <Text mb='8px' fontSize={fontSize}>Enter Amount:</Text>
+            <Text mb='8px' fontSize={fontSize}>Amount:</Text>
             <InputGroup>
                 <InputLeftElement
                     mt={1}
@@ -102,7 +114,7 @@ function ShowPaymentDetails({ reciever }) {
             </InputGroup>
         </Box>
         <Box>
-            <Text mb='8px' fontSize={fontSize}>Enter Description:</Text>
+            <Text mb='8px' fontSize={fontSize}>Description:</Text>
             <Input
                 value={description}
                 onChange={handleDescription}

@@ -6,9 +6,11 @@ import TransactionCard from './TransactionCard'
 import ViewAll from './ViewAll'
 
 function MyTransactions() {
-    const { user, sortTransaction } = useUser()
-    const transactions = user.transactions
+    const { user, sortTransaction, getTransactionsArray } = useUser()
+    //const transactions = user.transactions
+    //console.log(getTransactionsArray())
     //sortTransaction(transactions, user.sortState)
+    const transactions = getTransactionsArray()
 
     return (
         <Flex height={350} width={850} p={2} direction={'column'}>

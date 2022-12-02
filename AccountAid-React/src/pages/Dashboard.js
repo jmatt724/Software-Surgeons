@@ -25,11 +25,8 @@ function Dashboard() {
     const { currentUser, logout } = useAuth()
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
-    const LOADING_TIME = 200
 
-    const { setUserContext, updateTransactions } = useDb()
-    
-
+    const { setUserContext, updateTransactions, listener } = useDb()
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
@@ -48,6 +45,7 @@ function Dashboard() {
 
     useEffect(() => {
         //updateTransactions('transactions', '-id', { payment: '10.00', message: 'suck' })
+        //listener(user.userID)
     }, [])
 
     return (
@@ -105,7 +103,7 @@ function Dashboard() {
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
                         {/*<MakePaymentWidget />*/}
                         <Box height={75}></Box>
-                        {/*<MyTransactions />*/}
+                        <MyTransactions />
                     </GridItem>
                 </Grid> 
             </>

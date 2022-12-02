@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/firebase"
 import { useUser } from './UserContext';
 import { runTransaction } from "firebase/firestore";
+
 
 const DbContext = createContext()
 
@@ -17,6 +18,13 @@ export function DbProvider({ children }) {
         setUserContext(user)
     }, [])
 
+    
+    const listener = (userID) => {
+        const unsub = onSnapshot(doc(db, "Users", userID), (doc) => {
+            console.log("Current data: ", doc.data());
+        });
+    }
+
     const setUserContext = async () => {
         const docRef = doc(db, 'Users', user.userID)
         const docSnap = await getDoc(docRef)
@@ -29,11 +37,25 @@ export function DbProvider({ children }) {
         return docSnap.data()
     }
 
+    const updateField = async (userID, field, value) => {
+        const docRef = doc(db, "Users", userID);
+        console.log(docRef)
+        await updateDoc(docRef, { [field]: value }).then(() => {
+            setUserContext(user)
+            console.log('Field Updated!')
+        }).catch((error) => {
+            console.warn(error)
+        })
+    }
+
     const updateTransactions = async (otherUser, field, key, data) => {
         const docRef = doc(db, "Users", otherUser.userID);
         console.log(docRef)
-        await updateDoc(docRef, { [field]: { [key]: data } }).then(() => {
+        await updateDoc(docRef, { [field]: { [key]: data, ...user.transactions } }).then(() => {
+            setUserContext(user)
             console.log('Field Updated!')
+        }).catch((error) => {
+            console.warn(error)
         })
     }
 
@@ -42,6 +64,8 @@ export function DbProvider({ children }) {
         getUser,
         setUserContext,
         updateTransactions,
+        listener,
+        updateField,
     }
     return (
         <DbContext.Provider value={defaultDb}>
