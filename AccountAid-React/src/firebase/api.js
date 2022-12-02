@@ -106,7 +106,7 @@ export const addData = async (user) => {
         firstName: user.fName,
         friendsList: [],
         lastName: user.lName,
-        transactions: [],
+        transactions: {},
         buckets: [],
         userID: user.userID
     })
