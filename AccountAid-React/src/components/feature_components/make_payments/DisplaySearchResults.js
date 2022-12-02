@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Menu,
     MenuButton,
@@ -10,16 +10,24 @@ import { AiOutlineCaretDown } from 'react-icons/ai'
   
 
 function DisplaySearchResults({ results, handle }) {
-return (
-    <Menu isOpen={(!!results && results?.length>0)}>
+    const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        console.log('hi')
+        if(!!results && results?.length>0){
+            setOpen(true)
+        } else {
+            setOpen(false)
+        }
+    }, [results])
+    return (
+    <Menu isOpen={open} placement={'bottom-start'}>
         <MenuButton as={'button'} righticon={<AiOutlineCaretDown />}>
-        <Flex mt={4} direction={'column'}>
-            <Text>Users</Text>
-        </Flex>
+    
         </MenuButton>
-    <MenuList height={'60vh'} width={'105%'} overflowX={'auto'}>
+    <MenuList height={'60vh'} width={600} overflowX={'auto'}>
     {(!!results) ? results.map((user) => 
-        <MenuItem minH='45px' minW='350' onClick={() => handle(user.uid)} key={user.username} height={5} mt={2} mb={2}>
+        <MenuItem minH='45px' minW='350' onClick={() => { handle(user.uid); setOpen(false) }} key={user.username} height={5} mt={2} mb={2}>
             <Image
                 boxSize='1.5rem'
                 borderRadius='full'

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase/firebase'
 import { signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged, signOut, deleteUser, setPersistence, browserSessionPersistence } from 'firebase/auth'
+import useLocalStorage from './../hooks/useLocalStorage';
 
 const AuthContext = React.createContext()
 
@@ -9,7 +10,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useLocalStorage('auth-user', '')
     const [loading, setLoading] = useState(true)
 
     function signup(email, password) {

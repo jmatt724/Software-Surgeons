@@ -17,7 +17,7 @@ function Sidebar() {
 
     useEffect(() => {
         setCurrent(route.pathname)
-        setName(`${user.firstName} ${user.lastName}`)
+        //setName(`${user.firstName} ${user.lastName}`)
     }, [])
 
     const handleNav = (nav) => {
