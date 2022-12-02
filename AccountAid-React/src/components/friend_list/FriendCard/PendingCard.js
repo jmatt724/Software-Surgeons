@@ -1,15 +1,25 @@
 import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useUser } from '../../../context/UserContext'
-import { updateField } from '../../../firebase/api'
+import { getUserByUsername, updateField, getDocRef, getUser } from '../../../firebase/api'
+import { db } from '../../../firebase/firebase'
 import CardBase from './CardBase'
+import { runTransaction } from "firebase/firestore"
 
-function PendingCard({ username }, props) {
+function PendingCard({ username, data }, props) {
     const { user } = useUser()
+    console.log("USERNAME: ", data.uid)
     
-    
-    const handleAddFriend = () => {
-        updateField(user, 'friendsList', [ ...user.friendsList ])
+    const handleAddFriend = async () => {
+        const friendUser = await getUser(data.uid)
+        const friendID = friendUser.userID
+        let oldList = friendUser.friendsList
+        const friendUsername = username
+        const ffirst = friendUser.firstName
+        const flast = friendUser.lastName
+        const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
+
+        updateField(user, "friendsList", newList)
     }
 
   return (
@@ -45,7 +55,7 @@ function PendingCard({ username }, props) {
                     h={30}
                     w={85}
                     bg={'purple.iceCold'}
-                    onClick={handleAddFriend}
+                    onClick={() => handleAddFriend()}
                 >
                     <Text fontSize='xs' color={'primary.dark'}>Add Friend</Text>
                 </Button>

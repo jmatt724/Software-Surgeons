@@ -20,6 +20,7 @@ function SearchBarWindow({ handleClose }) {
   const [allUsers, setAllUsers] = useState()
   const [results, setResults] = useState([])
   const [usernames, setUsernames] = useState('')
+  const [Pendingrequests, setPendingResults] = useState('')
 
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function SearchBarWindow({ handleClose }) {
   const tempResult = []
   const searchUsers = (input) => {
           usernames.forEach((username, index) => {
-            if(username.username.toLowerCase().startsWith(input.toLowerCase())){
+           if(username.username.toLowerCase().startsWith(input.toLowerCase())){
               tempResult.push(username)
             }
             else if(input===''){
@@ -49,6 +50,17 @@ function SearchBarWindow({ handleClose }) {
               setResults([])
             }
           }, [search])
+    const searchPending = () => {
+      console.log(user)
+      const friendList = user.friendsList
+      console.log(friendList)
+      let keys = [...friendList.keys()]
+      console.log(keys)
+    }
+    useEffect(() => {
+      const pendingResults = searchPending()
+      setPendingResults(pendingResults)
+    })
    /*
   const [input, setInput] = useState('')
     const [results, setResults] = useState([])
