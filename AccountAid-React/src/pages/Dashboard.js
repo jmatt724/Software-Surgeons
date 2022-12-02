@@ -9,7 +9,7 @@ import MyTransactions from '../components/feature_components/dashboard/MyTransac
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { addUsername, getUser, getUsernames, updateField } from '../firebase/api'
+import { addUsername, getUser, getUsernames, updateField, updateTransactions } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
@@ -17,6 +17,7 @@ import Sidebar from '../components/sidebar/Sidebar'
 import PageLayout from '../components/PageLayout'
 import SearchBarWindow from './../components/friend_list/SearchBar/SearchBarWindow';
 import FriendList from '../components/friend_list/FriendList'
+import { useDb } from '../context/DbContext'
 
 
 function Dashboard() {
@@ -25,6 +26,10 @@ function Dashboard() {
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
     const LOADING_TIME = 200
+
+    const { setUserContext, updateTransactions } = useDb()
+    
+
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
@@ -36,23 +41,14 @@ function Dashboard() {
         })
     }
 
-    useEffect(() => {
-        // on page refresh GET the current user from database
-        const curr = getUser(currentUser.uid)
-        setIsLoading(true) // set loading true while awaiting getUser
-        curr.then((value) => {
-            setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
-        }).then(() => {
-            setTimeout(() => { // then give loading a little time so it doesn't flash on the screen
-                setIsLoading(false)
-            }, LOADING_TIME)
-        })
-    }, [currentUser.uid, currentUser])
-
     const handleLogout = () => { // handle logging out a user
         logout()
         navigate('/login')
     }
+
+    useEffect(() => {
+        //updateTransactions('transactions', '-id', { payment: '10.00', message: 'suck' })
+    }, [])
 
     return (
         <PageLayout>
@@ -109,7 +105,7 @@ function Dashboard() {
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
                         {/*<MakePaymentWidget />*/}
                         <Box height={75}></Box>
-                        <MyTransactions />
+                        {/*<MyTransactions />*/}
                     </GridItem>
                 </Grid> 
             </>

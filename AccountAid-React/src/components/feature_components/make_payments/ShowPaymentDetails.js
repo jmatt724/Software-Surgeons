@@ -7,6 +7,7 @@ import { monthNames } from '../../../data/calendarData';
 import { updateField, getUser } from '../../../firebase/api'
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useDb } from '../../../context/DbContext';
 
 function ShowPaymentDetails({ reciever }) {
     const [category, setCategory] = useState('')
@@ -14,6 +15,7 @@ function ShowPaymentDetails({ reciever }) {
     const [description, setDescription] = useState('')
     const { user, setCurrentUser } = useUser()
     const { currentUser, logout } = useAuth()
+    const { updateTransactions } = useDb()
     const navigate = useNavigate()
     console.log('RECIEVER: ',reciever.data)
 
@@ -25,7 +27,6 @@ function ShowPaymentDetails({ reciever }) {
         const paymentID = uuid()
         const userPayment = {
             paymentID: paymentID,
-            userID: user.userID,
             recipiant: reciever.username,
             sender: `${user.firstName} ${user.lastName}`,
             date: today,
@@ -34,7 +35,6 @@ function ShowPaymentDetails({ reciever }) {
         }
         const recieverPayment = {
             paymentID: paymentID,
-            userID: reciever.uid,
             recipiant: reciever.username,
             sender: `${user.firstName} ${user.lastName}`,
             date: today,
@@ -45,16 +45,21 @@ function ShowPaymentDetails({ reciever }) {
         const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
         const userTransactions = user.transactions
         const recieverTransactions = reciever.data.transactions
-        updateField(user, 'balance', senderBalance).then(() => {
-            updateField(user, 'transactions', [ ...userTransactions, userPayment ])
-        }).catch((error) => {
-            console.log(`ERROR: ${error}`)
-        })
-        updateField(reciever.data, 'balance', recieverBalance).then(() => {
-            updateField(reciever.data, 'transactions', [ ...recieverTransactions, recieverPayment ]).then(() => {
-                navigate("/dashboard")
-            })
-        })
+        updateTransactions(user, 'transactions', paymentID, userPayment)
+        updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment)
+        //updateTransactions('transactions', paymentID, userPayment)
+        //updateField(user, 'balance', senderBalance).then(() => {
+        //    updateField(user, 'transactions', [ ...userTransactions, userPayment ])
+        //})
+        //updateField(reciever.data, 'balance', recieverBalance).then(() => {
+        //    updateTransactions(reciever.data, recieverPayment).then(() => {
+        //        navigate("/dashboard")
+        //    })
+        //})
+        
+        //updateField(reciever.data, 'transactions', [ ...recieverTransactions, recieverPayment ]).then(() => {
+        //    navigate("/dashboard")
+        //})
     }
 
     const handleCategory = (e) => {setCategory(e.target.value)}

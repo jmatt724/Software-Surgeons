@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import useLocalStorage from './../hooks/useLocalStorage';
 
 const UserContext = createContext()
 
@@ -7,7 +8,7 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useLocalStorage('user-data', {})
     const [currentID, setCurrentID] = useState('')
 
     const updateCurrentID = (uid) => {
@@ -184,6 +185,7 @@ export function UserProvider({ children }) {
     
     const defaultUser = {
         user,
+        setUser,
         updateBalance,
         getCurrencySymbol,
         removeCard,

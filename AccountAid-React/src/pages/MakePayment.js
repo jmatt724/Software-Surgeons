@@ -6,6 +6,7 @@ import SearchBar from '../components/feature_components/make_payments/SearchBar'
 import ShowPaymentDetails from '../components/feature_components/make_payments/ShowPaymentDetails'
 import PageLayout from '../components/PageLayout'
 import Sidebar from '../components/sidebar/Sidebar'
+import { useDb } from '../context/DbContext'
 import { getUser, getUsernames } from '../firebase/api'
 import { USERS_LIST } from './../data/tempUsers';
 
@@ -13,6 +14,7 @@ function MakePayment() {
     const [selected, setSelected] = useState('')
 
     const navigate = useNavigate()
+    const { setUserContext } = useDb()
 
     const handleSelected = (user) => {
         //const fName = user.firstName
@@ -24,13 +26,18 @@ function MakePayment() {
         
     }
 
+    useEffect(() => {
+        setSelected('')
+        setUserContext()
+    }, [])
+
     return (
         <PageLayout>
         <Flex>
-            <Grid
+                <Grid
                     h='100vh'
                     w='100vw'
-                    templateRows='repeat(2, 1fr)'
+                    templateRows='repeat(5, 1fr)'
                     templateColumns='repeat(5, 1fr)'
                     gap={2}
                     p={2}
@@ -39,30 +46,29 @@ function MakePayment() {
                     <GridItem rowSpan={4} colSpan={1}>
                         <Sidebar />
                     </GridItem>
-                    <GridItem colSpan={4} rowSpan={1} ml="-75px">
+                    <GridItem colSpan={4} rowSpan={1}>
                         <Flex width={500} p={8}>
                             <Heading fontSize={'2rem'}>Make Payment</Heading>
                         </Flex>
+                        
                     </GridItem>
-                    <GridItem colSpan={3} rowSpan={1} ml="-75px">
-                        <Flex height={600} width={800} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
-                            boxShadow={'2px 4px 10px #818181'}
-                            justify='center'
-                            align='center'
-                        >
-                            {selected === ''
-                            ?   <Text fontSize={'1.25rem'}>Select a user to pay</Text>
-                            :   <ShowPaymentDetails reciever={selected}/>
-                            }
+                    <GridItem colSpan={4} rowSpan={1}>
+                        <Flex direction='column' justify='flex-start'>
+                            <SearchBar handle={handleSelected} />
                         </Flex>
                     </GridItem>
-                    <GridItem colSpan={1} rowSpan={1} ml="-75px" >
-                    <Flex height={'100%'} width={400} bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
-                        boxShadow={'2px 4px 10px #818181'}
-                    >
-                        <SearchBar handle={handleSelected} />
+                    <GridItem colSpan={3} rowSpan={1}>
+                    <Flex bg={'primary.snow'} borderRadius={'lg'} p={4} direction={'column'}>
+                            {selected !== '' &&
+                                <ShowPaymentDetails reciever={selected}/>
+                            }
                     </Flex>
                     </GridItem>
+                    <GridItem colSpan={1} rowSpan={1} ml="-75px" >
+
+                    </GridItem>
+                    
+                    
             </Grid>
             {/*<SideBar />
             <Flex direction={'column'}>
@@ -97,3 +103,19 @@ function MakePayment() {
 }
 
 export default MakePayment
+
+/*
+<GridItem colSpan={1} rowSpan={1} ml="-75px">
+                        <Flex bg={'primary.snow'} ml={6} borderRadius={'lg'} p={4} direction={'column'}
+                            boxShadow={'2px 4px 10px #818181'}
+                            justify='center'
+                            align='center'
+                        >
+                            {selected === ''
+                            ?   <Text fontSize={'1.25rem'}>Select a user to pay</Text>
+                            :   <ShowPaymentDetails reciever={selected}/>
+                        }
+                        </Flex>
+                    </GridItem>
+
+*/

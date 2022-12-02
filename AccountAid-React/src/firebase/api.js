@@ -37,21 +37,21 @@ export const updateField = async (user, field, data) => {
 export const updateBucket = async (user, field, data) => {
   // Create an initial document to update.
   const docRef = doc(db, "Users", user.userID);
-  /*
-  if(!docRef.buckets){
-    const value = {
-      [field]: [ data ],
-    }
-    console.log('it does not exist')
-    await setDoc(doc(db, "Users", user.userID), {
-      ...docRef,
-      value
-    }).then(() => console.log('Field updated!'))
-    .catch((error) => console.log(error));
-  } else {
-  */
     const value = {
       [field]: [ data, ...user.buckets ]
+    }
+
+      // To update
+      await updateDoc(docRef, value)
+      .then(() => console.log('Field updated!'))
+      .catch((error) => console.log(error))
+}
+
+export const updateTransactions = async (user, data) => {
+  // Create an initial document to update.
+  const docRef = doc(db, "Users", user.userID);
+    const value = {
+      "transactions": [ data, ...user.transactions ]
     }
 
       // To update
