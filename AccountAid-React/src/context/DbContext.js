@@ -42,7 +42,7 @@ export function DbProvider({ children }) {
 
     const updateField = async (userID, field, value) => {
         const docRef = doc(db, "Users", userID);
-        console.log(docRef)
+        //console.log(docRef)
         await updateDoc(docRef, { [field]: value }).then(() => {
             setUserContext(user)
             console.log('Field Updated!')

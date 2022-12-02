@@ -9,7 +9,7 @@ import MyTransactions from '../components/feature_components/dashboard/MyTransac
 import YourCards from '../components/feature_components/dashboard/YourCards'
 import { useUser } from '../context/UserContext'
 import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { addUsername, getUser, getUsernames, updateField, updateTransactions } from '../firebase/api'
+import { addUsername, getUser, getUsernames, updateTransactions } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
@@ -23,17 +23,14 @@ import { useDb } from '../context/DbContext'
 function Dashboard() {
     const { user, setCurrentUser } = useUser()
     const { currentUser, logout } = useAuth()
-    const { setUserContext } = useDb()
+    const { setUserContext, updateField } = useDb()
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
-        updateField(user, 'balance', newBalance).then(() => {
-            const curr = getUser(user.userID)
-            curr.then((value) => {
-                setCurrentUser(value) // after promise resolves, we setCurrentUser to be the updated user
-            })
+        updateField(user.userID, 'balance', newBalance).then(() => {
+            
         })
     }
 
