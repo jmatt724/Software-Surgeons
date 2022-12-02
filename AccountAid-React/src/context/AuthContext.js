@@ -10,7 +10,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useLocalStorage('auth-user', '')
+    const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
     function signup(email, password) {
@@ -18,11 +18,6 @@ export function AuthProvider({ children }) {
     }
 
     function login(email, password) {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -58,22 +53,6 @@ export function AuthProvider({ children }) {
         })
         return unsubscribe
     }, [])
-
-    /**
-     const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-});
-     */
-    
     
     const value = {
         currentUser,

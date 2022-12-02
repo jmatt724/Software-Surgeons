@@ -3,6 +3,7 @@ import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, upda
 import { db } from "../firebase/firebase"
 import { useUser } from './UserContext';
 import { runTransaction } from "firebase/firestore";
+import { useAuth } from './AuthContext';
 
 
 const DbContext = createContext()
@@ -13,9 +14,11 @@ export function useDb() {
 
 export function DbProvider({ children }) {
     const { user, setUser } = useUser()
+    const { currentUser } = useAuth()
 
     useEffect(() => {
-        setUserContext(user)
+        console.log('UPDATING USER CONTEXT')
+        setUserContext()
     }, [])
 
     
@@ -26,7 +29,7 @@ export function DbProvider({ children }) {
     }
 
     const setUserContext = async () => {
-        const docRef = doc(db, 'Users', user.userID)
+        const docRef = doc(db, 'Users', currentUser.uid)
         const docSnap = await getDoc(docRef)
         setUser(docSnap.data())
     }

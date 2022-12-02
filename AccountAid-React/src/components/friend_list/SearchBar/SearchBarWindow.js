@@ -51,11 +51,11 @@ function SearchBarWindow({ handleClose }) {
             }
           }, [search])
     const searchPending = () => {
-      console.log(user)
-      const friendList = user.friendsList
-      console.log(friendList)
-      let keys = [...friendList.keys()]
-      console.log(keys)
+      //console.log(user)
+      //const friendList = user.friendsList
+      //console.log(friendList)
+      //let keys = [...friendList.keys()]
+      //console.log(keys)
     }
     useEffect(() => {
       const pendingResults = searchPending()

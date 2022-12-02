@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { getUser } from '../firebase/api';
 import useLocalStorage from './../hooks/useLocalStorage';
+import { useAuth } from './AuthContext';
 
 const UserContext = createContext()
 
@@ -8,15 +10,19 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useLocalStorage('user-data', {})
+    const [user, setUser] = useState({})
     const [currentID, setCurrentID] = useState('')
+    const { currentUser } = useAuth()
 
     const updateCurrentID = (uid) => {
         setCurrentID(uid)
     }
 
     useEffect(() => {
-        setCurrentUser((prev) => prev)
+        // getUser(currentUser.uid).then((value) => {
+        //     console.log('User retrieved')
+        //     setCurrentUser(value)
+        // })
     }, [])
 
     const setCurrentUser = (user) => {
@@ -34,9 +40,16 @@ export function UserProvider({ children }) {
     }
 
     const getTransactionsArray = () => {
-        const keys = Object.keys(user.transactions)
-        const transactions = keys.map((id) => user.transactions[id])
-        return transactions
+        if(!user){ return ; }
+        //console.log(user?.transactions)
+        try{
+            const keys = Object.keys(user.transactions)
+            const transactions = keys.map((id) => user.transactions[id])
+            return transactions
+        } catch {
+            console.log('error')
+        }
+        
     }
 
     const getCurrencySymbol = () => {

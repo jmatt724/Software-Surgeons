@@ -23,10 +23,9 @@ import { useDb } from '../context/DbContext'
 function Dashboard() {
     const { user, setCurrentUser } = useUser()
     const { currentUser, logout } = useAuth()
+    const { setUserContext } = useDb()
     const { isLoading, setIsLoading } = useIsLoading()
     const navigate = useNavigate()
-
-    const { setUserContext, updateTransactions, listener } = useDb()
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
@@ -44,6 +43,7 @@ function Dashboard() {
     }
 
     useEffect(() => {
+        setUserContext()
         //updateTransactions('transactions', '-id', { payment: '10.00', message: 'suck' })
         //listener(user.userID)
     }, [])
