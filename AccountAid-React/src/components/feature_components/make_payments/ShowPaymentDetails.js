@@ -19,8 +19,8 @@ function ShowPaymentDetails({ reciever }) {
     const { updateTransactions, updateField } = useDb()
     const navigate = useNavigate()
     //console.log('RECIEVER: ',reciever.data)
-    
-    const categories = getBucketCategories()
+    const list = getBucketCategories()
+    const categories = ( list.length===0 ) ? [] : list
 
     const fontSize = '1rem'
 

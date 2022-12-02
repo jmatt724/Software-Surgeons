@@ -4,7 +4,7 @@ import { useUser } from '../../../context/UserContext'
 
 function TransactionCard({ category, date, amount, recipiant, sender, isAll }) {
     const { user, getCurrencySymbol } = useUser()
-    const isSender = (recipiant===`${user.firstName} ${user.lastName}`) ? true : false
+    const isSender = (recipiant===user.username) ? true : false
     const fontSize='1rem'
     return (
         <Flex width={'100%'} height={65} borderRadius={'md'} direction={'row'} justify={'space-between'} align='center' p={4} bg={'gray.100'} mb={1}>
