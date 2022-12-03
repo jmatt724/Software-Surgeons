@@ -4,6 +4,7 @@ import { db } from "../firebase/firebase"
 import { useUser } from './UserContext';
 import { runTransaction } from "firebase/firestore";
 import { useAuth } from './AuthContext';
+import { useIsLoading } from '../hooks/useIsLoading';
 
 
 const DbContext = createContext()
@@ -15,10 +16,11 @@ export function useDb() {
 export function DbProvider({ children }) {
     const { user, setUser } = useUser()
     const { currentUser } = useAuth()
+    const [isLoading, setIsLoading] = useIsLoading()
 
     useEffect(() => {
-        console.log('UPDATING USER CONTEXT')
-        setUserContext()
+        //console.log('UPDATING USER CONTEXT')
+        //setUserContext()
     }, [])
 
     
@@ -30,8 +32,14 @@ export function DbProvider({ children }) {
 
     const setUserContext = async () => {
         const docRef = doc(db, 'Users', currentUser.uid)
-        const docSnap = await getDoc(docRef)
-        setUser(docSnap.data())
+        await getDoc(docRef).then((value) => {
+            setIsLoading(true)
+            setUser(value.data())
+        }).finally(() => {
+            setIsLoading(false)
+        }).catch((error) => {
+            console.log('ERROR: ',error)
+        })
     }
 
     const getUser = async (uid) => {
@@ -59,6 +67,7 @@ export function DbProvider({ children }) {
     const acceptFriendRequest = async (userID, requestID) => {
         const docRef = doc(db, "Users", userID);
         await getUser(requestID).then((value) => {
+            const docRef2 = doc(db, "Users", value.userID);
             const friendID = value.userID
             const friendUsername = value.username
             const ffirst = value.firstName
@@ -66,6 +75,11 @@ export function DbProvider({ children }) {
             //const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
             deleteFriendRequest(userID, requestID)
             //updateField(value, "requestList", newList)
+            updateDoc(docRef2, { [`friendsList.${[user.userID]}`]: {ffirst: user.firstName, flast: user.lastName, friendUsername: user.username} }).then(() => {
+                console.log('Field Updated!')
+            }).catch((error) => {
+                console.warn(error)
+            })
             updateDoc(docRef, { [`friendsList.${[requestID]}`]: {ffirst,flast,friendUsername} }).then(() => {
                 //setUserContext()
                 console.log('Field Updated!')

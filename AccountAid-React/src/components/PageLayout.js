@@ -1,23 +1,37 @@
 import { Flex } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { useDb } from '../context/DbContext'
 import { useUser } from '../context/UserContext'
 import { getUser } from '../firebase/api'
+import { useIsLoading } from '../hooks/useIsLoading'
 import Sidebar from './sidebar/Sidebar'
+import ShowLoading from './ui_components/ShowLoading'
 
 function PageLayout({ children }) {
   const { currentUser } = useAuth()
-  const { setCurrentUser } = useUser()
+  const { setUserContext } = useDb()
+  const { setCurrentUser, user } = useUser()
+  const [isLoading, setIsLoading] = useIsLoading()
   useEffect(() => {
-    getUser(currentUser.uid).then((value) => {
-      console.log('User retrieved')
-      setCurrentUser(value)
-  })
+    //console.log('setting user context')
+    if(Object.keys(user).length===0) {
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1000)
+    }
   }, [])
 
   return (
     <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'}>
-        { children }
+      { (isLoading)
+            ?   <Flex justify='center' align='center' width={'100%'}>
+                    <ShowLoading />
+                </Flex>
+            :
+        children 
+      }
     </Flex>
   )
 }
