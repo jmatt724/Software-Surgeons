@@ -52,17 +52,6 @@ function SearchBarWindow({ handleClose }) {
               setResults([])
             }
           }, [search])
-    const searchPending = () => {
-      //console.log(user)
-      //const friendList = user.friendsList
-      //console.log(friendList)
-      //let keys = [...friendList.keys()]
-      //console.log(keys)
-    }
-    useEffect(() => {
-      const pendingResults = searchPending()
-      setPendingResults(pendingResults)
-    })
    /*
   const [input, setInput] = useState('')
     const [results, setResults] = useState([])
