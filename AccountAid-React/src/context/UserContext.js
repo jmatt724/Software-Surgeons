@@ -1,5 +1,7 @@
+import { doc, onSnapshot } from 'firebase/firestore';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { getUser } from '../firebase/api';
+import { db } from '../firebase/firebase';
 import useLocalStorage from './../hooks/useLocalStorage';
 import { useAuth } from './AuthContext';
 
@@ -19,11 +21,25 @@ export function UserProvider({ children }) {
     }
 
     useEffect(() => {
-        // getUser(currentUser.uid).then((value) => {
-        //     console.log('User retrieved')
-        //     setCurrentUser(value)
-        // })
-    }, [])
+        // const docRef = doc(db, 'Users', currentUser.uid)
+        // // getUser(currentUser.uid).then((value) => {
+        // //     console.log('User retrieved')
+        // //     setCurrentUser(value)
+        // // })
+        // const unsub = onSnapshot(docRef, (doc) => {
+        //     if(doc.size){
+        //         console.log('WE HAVE DATA')
+        //         console.log(doc.data())
+        //         // do
+        //     } else {
+        //         // empty
+        //     }
+        //     //console.log("Current data: ", doc.data());
+        // }, (error) => console.log(error));
+        // return () =>  { unsub() }
+        //getTransactionsArray()
+        // get the user.transactions object. Look at each trasaction category
+    }, [user])
 
     const setCurrentUser = (user) => {
         setUser(user)
@@ -33,10 +49,24 @@ export function UserProvider({ children }) {
         return user.userID
     }
 
+    const calculateBucketAmount = (bucket) => {
+        const initialValue = 0
+        const total = getBucketPayments(bucket)
+        const newTotal = total.reduce((prev, current) => prev+parseFloat(current.amount), initialValue)
+        return newTotal
+    }
+
     const getBucketCategories = () => {
         const buckets = user.buckets
         const categories = buckets.map((bucket) => bucket.category)
         return categories
+    }
+
+    const getBucketPayments = (category) => {
+        //const categories = getBucketCategories()
+        const bucketPayments = getTransactionsArray().filter((payment) => category===payment.category)
+        return bucketPayments
+        //console.log(bucketPayments)
     }
 
     const getTransactionsArray = () => {
@@ -223,6 +253,8 @@ export function UserProvider({ children }) {
         sortTransaction,
         getBucketCategories,
         getTransactionsArray,
+        getBucketPayments,
+        calculateBucketAmount,
     }
     return (
         <UserContext.Provider value={defaultUser}>

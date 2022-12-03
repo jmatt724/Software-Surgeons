@@ -14,20 +14,31 @@ export function useDb() {
 }
 
 export function DbProvider({ children }) {
-    const { user, setUser } = useUser()
+    const { user, setUser, calculateBucketAmount } = useUser()
     const { currentUser } = useAuth()
-    const [isLoading, setIsLoading] = useIsLoading()
+    const { isLoading, handleLoading } = useIsLoading()
 
     useEffect(() => {
-        //console.log('UPDATING USER CONTEXT')
-        //setUserContext()
+        handleLoading(true)
     }, [])
-
     
-    const listener = (userID) => {
-        const unsub = onSnapshot(doc(db, "Users", userID), (doc) => {
-            console.log("Current data: ", doc.data());
-        });
+    const listener = () => {
+        const docRef = doc(db, 'Users', user.userID)
+        // getUser(currentUser.uid).then((value) => {
+        //     console.log('User retrieved')
+        //     setCurrentUser(value)
+        // })
+        const unsub = onSnapshot(docRef, (doc) => {
+            if(doc.size){
+                console.log('WE HAVE DATA')
+                console.log(doc.data())
+                // do
+            } else {
+                // empty
+            }
+            //console.log("Current data: ", doc.data());
+        }, (error) => console.log(error));
+        return () =>  { unsub() }
     }
 
     const setUserContext = async () => {
@@ -89,12 +100,15 @@ export function DbProvider({ children }) {
 
     const removeFriend = async (userID) => {
         const docRef = doc(db, "Users", user.userID);
+        const docRefFriend = doc(db, "Users", userID);
         await updateDoc(docRef, { [`friendsList.${[userID]}`]: deleteField() }).then(() => {
-            console.log('Friend Removed!')
+            setUserContext()
         }).catch((error) => {
             console.warn(error)
-        }).finally(() => {
-            setUserContext()
+        })
+        await updateDoc(docRefFriend, { [`friendsList.${[user.userID]}`]: deleteField() }).then(() => {
+        }).catch((error) => {
+            console.warn(error)
         })
     }
 
@@ -102,12 +116,25 @@ export function DbProvider({ children }) {
         const docRef = doc(db, "Users", otherUser.userID);
         console.log(docRef)
         await updateDoc(docRef, { [field]: { [key]: data, ...user.transactions } }).then(() => {
-            setUserContext(user)
+            setUserContext()
             console.log('Field Updated!')
         }).catch((error) => {
             console.warn(error)
         })
     }
+
+    const updateBucketAmount = async (user, field, data) => {
+        // Create an initial document to update.
+        const docRef = doc(db, "Users", user.userID);
+          const value = {
+            [field]: [ data, ...user.buckets ]
+          }
+      
+            // To update
+            await updateDoc(docRef, value)
+            .then(() => console.log('Field updated!'))
+            .catch((error) => console.log(error))
+      }
 
 
     const defaultDb = {
@@ -119,6 +146,7 @@ export function DbProvider({ children }) {
         deleteFriendRequest,
         acceptFriendRequest,
         removeFriend,
+        updateBucketAmount,
     }
     return (
         <DbContext.Provider value={defaultDb}>

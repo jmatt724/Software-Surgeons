@@ -13,15 +13,15 @@ function PageLayout({ children }) {
   const { currentUser } = useAuth()
   const { setUserContext } = useDb()
   const { setCurrentUser, user } = useUser()
-  const [isLoading, setIsLoading] = useIsLoading()
+  const { isLoading, handleLoading } = useIsLoading()
 
   const location = useLocation()
 
   useEffect(() => {
     if(Object.keys(user).length===0) {
-      setIsLoading(true)
+      handleLoading(true)
       setTimeout(() => {
-        setIsLoading(false)
+        handleLoading(false)
       }, 1000)
     }
   }, [location])

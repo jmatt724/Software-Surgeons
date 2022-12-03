@@ -13,7 +13,7 @@ import { deleteBucket, updateBucket } from './../../firebase/api';
 function BucketsLayout() {
   // maybe start with an initial bucket containing all of our budget balance
   // then we can distribute the balance between our buckets
-  const { user, setCurrentUser, addBuckets } = useUser()
+  const { user, setCurrentUser, addBuckets, getBucketPayments, calculateBucketAmount } = useUser()
   const [buckets, setBuckets] = useState([])
   const { currentUser } = useAuth()
   const [expanded, setExpanded] = useState(false)
@@ -28,7 +28,12 @@ function BucketsLayout() {
     if(user.buckets){
       setBuckets(user.buckets)
     }
+    //getBucketPayments()
   }, [user])
+
+  useEffect(() => {
+    
+  }, [])
 
   const handleRemoveBucket = (id) => {
     deleteBucket(user, "buckets", user.buckets.filter((bucket) => { return bucket.id!==id })).then(() =>{
@@ -67,7 +72,16 @@ function BucketsLayout() {
     >
       {buckets.map((bucket, index) => 
         <GridItem key={bucket.id} mt={10}>
-          <BucketCard id={bucket.id} index={index} title={bucket.category} amount={bucket.amount} maximum={bucket.maximum} handleChange={handleTitleChange} handleDelete={handleRemoveBucket}/>
+          <BucketCard 
+            id={bucket.id} 
+            index={index} 
+            title={bucket.category} 
+            amount={bucket.amount}
+            maximum={bucket.maximum}
+            handleChange={handleTitleChange} 
+            handleDelete={handleRemoveBucket}
+            payments={getBucketPayments(bucket.category)}
+          />
         </GridItem>
       )}
     </Grid>
