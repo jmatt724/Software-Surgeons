@@ -10,16 +10,9 @@ function DisplayFriends({ friends }) {
     const { user } = useUser()
 
     const getFriends = () => {
-        //console.log(Object.keys(user.friendsList))
-        //const keys = Object.keys(user.friendsList)
         if(!!user.friendsList) {
-            //const FUCKYOU = [ user.friendsList ]
-            console.log((user.friendsList))
-            //const list = Object.keys(user.friendsList).map((friend) => { return { [friend]: user.friendsList[friend] }})
             const list = Object.keys(user.friendsList).map((friend) => user.friendsList[friend])
-            //console.log('LIST: ',list)
             setFriendList(list)
-            //setFriendList(user.friendsList)
         }
     }
 
@@ -33,6 +26,8 @@ function DisplayFriends({ friends }) {
         <Flex direction='column' gap={1}>
             {friendList.map((friend, index) => 
                     <FriendCard
+                        key={Object.keys(user.friendsList)[index]}
+                        userID={Object.keys(user.friendsList)[index]}
                         firstName={friend.ffirst}
                         lastName={friend.flast}
                         username={friend.friendUsername}

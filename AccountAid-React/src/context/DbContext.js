@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, onSnapshot } from "firebase/firestore";
+import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, onSnapshot, deleteField } from "firebase/firestore";
 import { db } from "../firebase/firebase"
 import { useUser } from './UserContext';
 import { runTransaction } from "firebase/firestore";
@@ -43,11 +43,36 @@ export function DbProvider({ children }) {
     const updateField = async (userID, field, value) => {
         const docRef = doc(db, "Users", userID);
         //console.log(docRef)
-        await updateDoc(docRef, { [field]: value }).then(() => {
-            setUserContext(user)
+        
+    }
+
+    const deleteFriendRequest = async (userID, requestID) => {
+        const docRef = doc(db, "Users", userID);
+        await updateDoc(docRef, { [`requestList.${[requestID]}`]: deleteField() }).then(() => {
             console.log('Field Updated!')
         }).catch((error) => {
             console.warn(error)
+        })
+        setUserContext()
+    }
+
+    const acceptFriendRequest = async (userID, requestID) => {
+        const docRef = doc(db, "Users", userID);
+        await getUser(requestID).then((value) => {
+            const friendID = value.userID
+            const friendUsername = value.username
+            const ffirst = value.firstName
+            const flast = value.lastName
+            //const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
+            deleteFriendRequest(userID, requestID)
+            //updateField(value, "requestList", newList)
+            updateDoc(docRef, { [`friendsList.${[requestID]}`]: {ffirst,flast,friendUsername} }).then(() => {
+                //setUserContext()
+                console.log('Field Updated!')
+            }).catch((error) => {
+                console.warn(error)
+            })
+            setUserContext()
         })
     }
 
@@ -69,6 +94,8 @@ export function DbProvider({ children }) {
         updateTransactions,
         listener,
         updateField,
+        deleteFriendRequest,
+        acceptFriendRequest,
     }
     return (
         <DbContext.Provider value={defaultDb}>

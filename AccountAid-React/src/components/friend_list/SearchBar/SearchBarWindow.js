@@ -46,34 +46,21 @@ function SearchBarWindow({ handleClose }) {
       return tempResult
     }
 
-          useEffect(() => {
+    useEffect(() => {
             if(search!=='') {
               const result = searchUsers(search)
               setResults(result)
             } else {
               setResults([])
             }
-          }, [search])
-   /*
-  const [input, setInput] = useState('')
-    const [results, setResults] = useState([])
-    const [allUsers, setAllUsers] = useState([]);
-    const { user } = useUser()
-
-  
-  
-  
-  */
+    }, [search])
 
   const { user } = useUser()
   //const [data, setData] = useState('')
 
   const friends = FRIENDS_LIST
-  const friendListSize = friends.size
   const requests = FRIEND_REQUESTS
-  const requestSize = requests.size
   const pending = PENDING_FRIENDS
-  const pendingSize = pending.size
 
   const handleSearchFriends = (event) => setSearch(event.target.value)
 
@@ -145,7 +132,7 @@ function SearchBarWindow({ handleClose }) {
           onClick={() => handleCategoryChange('Requests')}
         >
         <Text fontSize={'1rem'} fontWeight={'light'} color={'primary.dark'} _hover={{ bg: 'none', cursor: 'pointer', textDecor: 'underline' }}>
-          {`Requests (${requestSize})`}
+          {`Requests (${(!!user.requestList) && Object.keys(user.requestList).length})`}
         </Text>
         </Flex>
         <Flex 
