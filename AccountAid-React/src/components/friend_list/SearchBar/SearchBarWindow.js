@@ -33,11 +33,13 @@ function SearchBarWindow({ handleClose }) {
   const searchUsers = (input) => {
           usernames.forEach((username, index) => {
             if(username.username !== user.username){
-              if(username.username.toLowerCase().startsWith(input.toLowerCase())){
-                tempResult.push(username)
-              }  
-              else if(input===''){
-                tempResult = []
+              if(!Object.keys(user.friendsList).includes(username.uid)){
+                if(username.username.toLowerCase().startsWith(input.toLowerCase())){
+                  tempResult.push(username)
+                }  
+                else if(input===''){
+                  tempResult = []
+                }
               }
             }
           })
