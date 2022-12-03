@@ -13,7 +13,6 @@ function DisplaySearchResults({ results, handle }) {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        console.log('hi')
         if(!!results && results?.length>0){
             setOpen(true)
         } else {

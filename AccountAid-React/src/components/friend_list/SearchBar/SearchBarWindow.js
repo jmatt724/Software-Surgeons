@@ -32,11 +32,13 @@ function SearchBarWindow({ handleClose }) {
   const tempResult = []
   const searchUsers = (input) => {
           usernames.forEach((username, index) => {
-           if(username.username.toLowerCase().startsWith(input.toLowerCase())){
-              tempResult.push(username)
-            }
-            else if(input===''){
-              tempResult = []
+            if(username.username !== user.username){
+              if(username.username.toLowerCase().startsWith(input.toLowerCase())){
+                tempResult.push(username)
+              }  
+              else if(input===''){
+                tempResult = []
+              }
             }
           })
       return tempResult

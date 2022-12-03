@@ -24,8 +24,10 @@ function SearchBar({ handle }) {
       //console.log(usernames)
       const searchResults = []
       usernames.forEach((username, index) => {
-        if(username.username.toLowerCase().includes(input.toLowerCase())){
-          searchResults.push(username)
+        if(username.username !== user.username){
+          if(username.username.toLowerCase().includes(input.toLowerCase())){
+            searchResults.push(username)
+          }
         }
       })
       return searchResults
