@@ -1,6 +1,6 @@
 import { Button, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import SideBar from '../components/feature_components/dashboard/SideBar'
 import SearchBar from '../components/feature_components/make_payments/SearchBar'
 import ShowPaymentDetails from '../components/feature_components/make_payments/ShowPaymentDetails'
@@ -14,12 +14,11 @@ function MakePayment() {
     const [selected, setSelected] = useState('')
 
     const navigate = useNavigate()
+    
     const { setUserContext } = useDb()
+    const state = useLocation()
 
     const handleSelected = (user) => {
-        //const fName = user.firstName
-        //const lName = user.lastName
-        //setSelected({ id: user.userID, name: `${fName} ${lName}`, data: user})
         getUser(user).then((value) => {
             setSelected({ username: value.username, data: value })
         })
@@ -29,6 +28,13 @@ function MakePayment() {
     useEffect(() => {
         setSelected('')
         setUserContext()
+        if(state.state){
+            const { uname, id } = state.state;
+            if(uname!==undefined && id !== undefined){
+                handleSelected(id)
+            }
+        }
+        
     }, [])
 
     return (

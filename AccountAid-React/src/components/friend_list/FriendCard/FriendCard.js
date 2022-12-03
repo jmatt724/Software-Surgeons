@@ -1,9 +1,12 @@
 import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import CardBase from './CardBase'
+import { useNavigate } from 'react-router-dom';
+import { useDb } from '../../../context/DbContext';
 
 function FriendCard({ firstName, lastName, username, userID }, props) {
-    console.log(lastName, username)
+    const { removeFriend } = useDb()
+    const navigate = useNavigate()
   return (
     <>
         <CardBase key={props.key}>
@@ -38,14 +41,16 @@ function FriendCard({ firstName, lastName, username, userID }, props) {
                 <Button
                     h={25}
                     w={75}
+                    onClick={() => navigate('/make-payment', { state: { uname: username, id: userID }})}
                 >
                     <Text fontSize='2xs' color={'primary.dark'}>{`Pay`}</Text>
                 </Button>
                 <Button
                     h={25}
                     w={75}
+                    onClick={() => removeFriend(userID)}
                 >
-                    <Text fontSize='2xs' color={'primary.dark'}>{`Request`}</Text>
+                    <Text fontSize='2xs' color={'primary.dark'}>{`Remove`}</Text>
                 </Button>
             </Flex>
         </CardBase>

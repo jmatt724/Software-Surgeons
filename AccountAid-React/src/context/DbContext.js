@@ -90,6 +90,15 @@ export function DbProvider({ children }) {
         })
     }
 
+    const removeFriend = async (userID) => {
+        const docRef = doc(db, "Users", user.userID);
+        await updateDoc(docRef, { [`friendsList.${[userID]}`]: deleteField() }).then(() => {
+            console.log('Friend Removed!')
+        }).catch((error) => {
+            console.warn(error)
+        })
+    }
+
     const updateTransactions = async (otherUser, field, key, data) => {
         const docRef = doc(db, "Users", otherUser.userID);
         console.log(docRef)
@@ -110,6 +119,7 @@ export function DbProvider({ children }) {
         updateField,
         deleteFriendRequest,
         acceptFriendRequest,
+        removeFriend,
     }
     return (
         <DbContext.Provider value={defaultDb}>

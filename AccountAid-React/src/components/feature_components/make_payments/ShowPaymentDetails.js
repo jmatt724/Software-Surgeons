@@ -51,7 +51,9 @@ function ShowPaymentDetails({ reciever }) {
         updateField(user.userID, 'balance', senderBalance)
         updateTransactions(user, 'transactions', paymentID, userPayment)
         updateField(reciever.data.userID, 'balance', recieverBalance)
-        updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment)
+        updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment).then(() => {
+            navigate('/dashboard')
+        })
     }
 
     const handleCategory = (e) => {setCategory(e.target.value)}
