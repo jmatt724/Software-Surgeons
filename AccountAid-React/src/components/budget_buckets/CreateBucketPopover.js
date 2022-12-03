@@ -43,7 +43,7 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
 
   const handlePercentage = () => {
     if(isPercentage){
-      const total = parseFloat(user.balance*(percent))
+      const total = parseFloat(user.balance*(percent))/100.00
       console.log(`total -> ${total}`)
       setMaximum(`${parseFloat(total).toFixed(2)}`)
     }
