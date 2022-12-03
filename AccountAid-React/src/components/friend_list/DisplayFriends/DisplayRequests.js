@@ -7,21 +7,19 @@ import { useUser } from '../../../context/UserContext'
 function DisplayRequests() {
     const { user } = useUser()
     const reqs = user.requestList
-    const [requests, setReqesusts] = useState([])
+    const [requests, setRequests] = useState([])
 
     const getRequests = () => {
         if(!!reqs) {
             const list = Object.keys(reqs).map((request) => reqs[request])
             console.log('LIST: ',list)
-            setReqesusts(list)
+            setRequests(list)
         }
     }
 
-    //const {[reqs]: _, ...rest} = user.requestList;
-
     useEffect(() => {
         getRequests()
-    }, [])
+    }, [user, user.requestList])
 
     return (
         <Flex direction='column' gap={1}>

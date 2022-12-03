@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useDb } from '../context/DbContext'
 import { useUser } from '../context/UserContext'
@@ -13,15 +14,17 @@ function PageLayout({ children }) {
   const { setUserContext } = useDb()
   const { setCurrentUser, user } = useUser()
   const [isLoading, setIsLoading] = useIsLoading()
+
+  const location = useLocation()
+
   useEffect(() => {
-    //console.log('setting user context')
     if(Object.keys(user).length===0) {
       setIsLoading(true)
       setTimeout(() => {
         setIsLoading(false)
       }, 1000)
     }
-  }, [])
+  }, [location])
 
   return (
     <Flex width={'100vw'} height={'100vh'} bg={'primary.snow'}>

@@ -33,10 +33,7 @@ export function DbProvider({ children }) {
     const setUserContext = async () => {
         const docRef = doc(db, 'Users', currentUser.uid)
         await getDoc(docRef).then((value) => {
-            setIsLoading(true)
             setUser(value.data())
-        }).finally(() => {
-            setIsLoading(false)
         }).catch((error) => {
             console.log('ERROR: ',error)
         })
@@ -96,6 +93,8 @@ export function DbProvider({ children }) {
             console.log('Friend Removed!')
         }).catch((error) => {
             console.warn(error)
+        }).finally(() => {
+            setUserContext()
         })
     }
 

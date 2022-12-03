@@ -18,7 +18,7 @@ function DisplayFriends({ friends }) {
 
     useEffect(() => {
         getFriends()
-    }, [])
+    }, [user.friendsList, user])
 
     
     // { userID: 8aq3l3Aj15OHXszy1NRTtE41tFI2, firstName: 'John', lastName: 'church fathers' }
