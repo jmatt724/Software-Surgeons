@@ -22,8 +22,8 @@ function FriendCard({ firstName, lastName, username }, props) {
                 direction='column'
                 p={2}
             >
-                <Heading fontSize={'1.45rem'} fontWeight={'normal'}>{(`${firstName} ${lastName}`) || 'John'}</Heading>
-                <Text fontSize={'0.75rem'} fontWeight={'thin'}>{username || 'John-doe26'}</Text>
+                <Heading fontSize={'1.45rem'} fontWeight={'normal'}>{username || 'John-doe26'}</Heading>
+                <Text fontSize={'0.75rem'} fontWeight={'thin'}>{(`${firstName} ${lastName}`) || 'John'}</Text>
 
             </Flex>
             <Flex

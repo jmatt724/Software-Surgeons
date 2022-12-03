@@ -5,21 +5,25 @@ import { getUserByUsername, updateField, getDocRef, getUser } from '../../../fir
 import { db } from '../../../firebase/firebase'
 import CardBase from './CardBase'
 import { runTransaction } from "firebase/firestore"
+import { useDb } from '../../../context/DbContext'
 
 function PendingCard({ username, data }, props) {
     const { user } = useUser()
+    const { setUserContext } = useDb()
     console.log("USERNAME: ", data.uid)
     
     const handleAddFriend = async () => {
-        const friendUser = await getUser(data.uid)
-        const friendID = friendUser.userID
-        let oldList = friendUser.friendsList
-        const friendUsername = username
-        const ffirst = friendUser.firstName
-        const flast = friendUser.lastName
-        const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
-
-        updateField(user, "friendsList", newList)
+        await getUser(data.uid).then((value) => {
+            const friendID = value.userID
+            let oldList = user.friendsList
+            const friendUsername = username
+            const ffirst = value.firstName
+            const flast = value.lastName
+            const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
+            updateField(user, "friendsList", newList)
+            setUserContext()
+        })
+       
     }
 
   return (

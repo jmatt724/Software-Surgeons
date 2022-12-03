@@ -14,7 +14,12 @@ function DisplayFriends({ friends }) {
         //const keys = Object.keys(user.friendsList)
         if(!!user.friendsList) {
             //const FUCKYOU = [ user.friendsList ]
-            setFriendList(user.friendsList)
+            console.log((user.friendsList))
+            //const list = Object.keys(user.friendsList).map((friend) => { return { [friend]: user.friendsList[friend] }})
+            const list = Object.keys(user.friendsList).map((friend) => user.friendsList[friend])
+            console.log('LIST: ',list)
+            setFriendList(list)
+            //setFriendList(user.friendsList)
         }
 
         //const friendslist = []
@@ -29,19 +34,18 @@ function DisplayFriends({ friends }) {
     }
 
     useEffect(() => {
-        //getFriends()
+        getFriends()
     }, [])
 
     
     // { userID: 8aq3l3Aj15OHXszy1NRTtE41tFI2, firstName: 'John', lastName: 'church fathers' }
     return (
         <Flex direction='column' gap={1}>
-            {friendList.map((friend) => 
+            {friendList.map((friend, index) => 
                     <FriendCard
-                        key={friend.id}
-                        firstName={friend.firstName}
-                        lastName={friend.lastName}
-                        username={friend.username}
+                        firstName={friend.ffirst}
+                        lastName={friend.flast}
+                        username={friend.friendUsername}
                     />
             )}
         </Flex>

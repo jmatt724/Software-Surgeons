@@ -130,7 +130,7 @@ function SearchBarWindow({ handleClose }) {
         >
           <Text fontSize={'1rem'} fontWeight={'light'}
             color={(category==='Friends') ? 'primary.dark' : 'primary.dark'}
-          > {`Friends (${(!!user.friendsList) && user.friendsList.length})`} </Text>
+          > {`Friends (${(!!user.friendsList) && Object.keys(user.friendsList).length})`} </Text>
         </Flex>
         <Flex
           w='33.33%'
