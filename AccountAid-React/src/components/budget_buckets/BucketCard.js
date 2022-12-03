@@ -126,14 +126,26 @@ function BucketCard({ id, index, title, amount, maximum, handleChange, handleDel
                 <Divider />
             </GridItem>
             <GridItem colSpan={2} rowSpan={1}>
-                <Flex justify='flex-start' align='center' p={1}>
-                    <Heading fontSize={'1.5rem'}>{`$${amount}`}</Heading>
-                    <Text fontSize={'1rem'} ml={2}>{`${percentSpent}%`}</Text>
+                <Flex justify='flex-start' align='center' p={1} mt={1}>
+                    <Flex direction={'row'} align='center' justify='center'>
+                        <Text fontSize={'12px'} >{`Spent`}</Text>
+                        <Heading fontSize={'1.5rem'} ml={2}>{`$${amount}`}</Heading> 
+                    </Flex>
+                    <Flex direction={'column'}>
+                        <Text fontSize={'1rem'} ml={6}>{`${percentSpent}%`}</Text>
+                    </Flex>
+                    
+                    
                 </Flex>
             </GridItem>
             <GridItem colSpan={1} rowSpan={1}>
                 <Flex justify='flex-start' align='center' p={1}>
-                    <Heading fontSize={'1.25rem'} fontWeight={'normal'} color='black.400'>{`$${maximum}`}</Heading>
+                
+                <Flex direction={'column'} align='center'>
+                        <Heading fontSize={'1.25rem'} fontWeight={'normal'} color='black.400'>{`$${maximum}`}</Heading>
+                        <Text fontSize={'10px'}>{`Total`}</Text>
+                </Flex>
+                    
                 </Flex>
             </GridItem>
             <GridItem colSpan={3} rowSpan={1} p={1}>

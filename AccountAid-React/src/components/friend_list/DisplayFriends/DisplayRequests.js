@@ -17,6 +17,8 @@ function DisplayRequests() {
         }
     }
 
+    //const {[reqs]: _, ...rest} = user.requestList;
+
     useEffect(() => {
         getRequests()
     }, [])

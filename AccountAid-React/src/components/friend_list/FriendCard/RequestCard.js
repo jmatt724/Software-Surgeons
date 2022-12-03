@@ -2,8 +2,20 @@ import { Avatar, Button, Flex, Heading, IconButton, Text } from '@chakra-ui/reac
 import React from 'react'
 import CardBase from './CardBase'
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'
+import { useDb } from '../../../context/DbContext'
+import { useUser } from '../../../context/UserContext'
 
 function RequestCard({ firstName, lastName, username, userID }, props) {
+    const { deleteFriendRequest, acceptFriendRequest } = useDb()
+    const { user } = useUser()
+
+    const handleDelete = () => {
+        deleteFriendRequest(user.userID, userID)
+    }
+
+    const handleAccept = () => {
+        acceptFriendRequest(user.userID, userID)
+    }
   return (
     <>
         <CardBase key={props.key}>
@@ -39,6 +51,7 @@ function RequestCard({ firstName, lastName, username, userID }, props) {
                     color='purple.iceCold'
                     _hover={{ bg: 'none' }}
                     icon={<AiOutlineCheck />}
+                    onClick={handleAccept}
                 >
                 </IconButton>
                 <IconButton
@@ -46,6 +59,7 @@ function RequestCard({ firstName, lastName, username, userID }, props) {
                     color='primary.error'
                     _hover={{ bg: 'none' }}
                     icon={<AiOutlineClose />}
+                    onClick={handleDelete}
                 >
                 </IconButton>
             </Flex>

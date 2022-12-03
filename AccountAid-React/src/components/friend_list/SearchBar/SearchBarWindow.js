@@ -130,7 +130,7 @@ function SearchBarWindow({ handleClose }) {
           onClick={() => handleCategoryChange('Requests')}
         >
         <Text fontSize={'1rem'} fontWeight={'light'} color={'primary.dark'} _hover={{ bg: 'none', cursor: 'pointer', textDecor: 'underline' }}>
-          {`Requests (${Object.keys(user.requestList).length})`}
+          {`Requests (${(!!user.requestList) && Object.keys(user.requestList).length})`}
         </Text>
         </Flex>
         <Flex 
