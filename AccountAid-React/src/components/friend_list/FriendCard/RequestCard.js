@@ -3,10 +3,10 @@ import React from 'react'
 import CardBase from './CardBase'
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'
 
-function RequestCard({ firstName, lastName, username, key }, props) {
+function RequestCard({ firstName, lastName, username, userID }, props) {
   return (
     <>
-        <CardBase key={key}>
+        <CardBase key={props.key}>
             <Flex
                 height={'100%'}
                 width={100}

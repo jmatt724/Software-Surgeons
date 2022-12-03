@@ -26,6 +26,7 @@ function DisplayRequests() {
             {requests.map((friendReq, index) => 
                     <RequestCard
                         key={Object.keys(reqs)[index]}
+                        userID={Object.keys(reqs)[index]}
                         firstName={friendReq.ffirst}
                         lastName={friendReq.flast}
                         username={friendReq.friendUsername}

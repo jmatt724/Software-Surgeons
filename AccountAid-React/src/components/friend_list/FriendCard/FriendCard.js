@@ -2,7 +2,7 @@ import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import CardBase from './CardBase'
 
-function FriendCard({ firstName, lastName, username }, props) {
+function FriendCard({ firstName, lastName, username, userID }, props) {
   return (
     <>
         <CardBase key={props.key}>
