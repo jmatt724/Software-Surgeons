@@ -17,20 +17,10 @@ function DisplayFriends({ friends }) {
             console.log((user.friendsList))
             //const list = Object.keys(user.friendsList).map((friend) => { return { [friend]: user.friendsList[friend] }})
             const list = Object.keys(user.friendsList).map((friend) => user.friendsList[friend])
-            console.log('LIST: ',list)
+            //console.log('LIST: ',list)
             setFriendList(list)
             //setFriendList(user.friendsList)
         }
-
-        //const friendslist = []
-        //for ( const friend of userList ) {
-        //    friendslist.push(friend)
-        //}
-        //setFriendList(friendslist)
-        //getUser('8aq3l3Aj15OHXszy1NRTtE41tFI2').then((value) => {
-        //    setFriendList((prev) => [ value ])
-            //setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
-        //})
     }
 
     useEffect(() => {

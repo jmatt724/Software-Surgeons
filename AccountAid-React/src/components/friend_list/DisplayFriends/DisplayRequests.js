@@ -1,26 +1,34 @@
 import { Flex } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FRIEND_REQUESTS } from '../friendsData'
 import RequestCard from '../FriendCard/RequestCard'
+import { useUser } from '../../../context/UserContext'
 
-function DisplayRequests({ requests }) {
+function DisplayRequests() {
+    const { user } = useUser()
+    const reqs = user.requestList
+    const [requests, setReqesusts] = useState([])
 
     const getRequests = () => {
-        const requestList = []
-        for ( const request of requests ) {
-            requestList.push(request[1])
+        if(!!reqs) {
+            const list = Object.keys(reqs).map((request) => reqs[request])
+            console.log('LIST: ',list)
+            setReqesusts(list)
         }
-        return requestList
     }
+
+    useEffect(() => {
+        getRequests()
+    }, [])
 
     return (
         <Flex direction='column' gap={1}>
-            {getRequests().map((friendReq) => 
+            {requests.map((friendReq, index) => 
                     <RequestCard
-                        key={friendReq.username}
-                        firstName={friendReq.firstName}
-                        lastName={friendReq.lastName}
-                        username={friendReq.username}
+                        key={Object.keys(reqs)[index]}
+                        firstName={friendReq.ffirst}
+                        lastName={friendReq.flast}
+                        username={friendReq.friendUsername}
                     />
             )}
         </Flex>

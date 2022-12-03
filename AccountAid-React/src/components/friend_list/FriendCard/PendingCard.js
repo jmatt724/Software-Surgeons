@@ -14,13 +14,13 @@ function PendingCard({ username, data }, props) {
     
     const handleAddFriend = async () => {
         await getUser(data.uid).then((value) => {
-            const friendID = value.userID
-            let oldList = user.friendsList
-            const friendUsername = username
-            const ffirst = value.firstName
-            const flast = value.lastName
+            const friendID = user.userID
+            let oldList = value.requestList
+            const friendUsername = user.username
+            const ffirst = user.firstName
+            const flast = user.lastName
             const newList = {...oldList, [friendID] : {ffirst,flast,friendUsername}}
-            updateField(user, "friendsList", newList)
+            updateField(value, "requestList", newList)
             setUserContext()
         })
        

@@ -182,7 +182,7 @@ function SearchBarWindow({ handleClose }) {
           <DisplayFriends friends={friends}/>
         }
         {category==='Requests' && 
-          <DisplayRequests requests={requests}/>
+          <DisplayRequests />
         }
         {category==='Add' && 
           <DisplayPending pending={results}/>
