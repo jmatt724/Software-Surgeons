@@ -33,6 +33,7 @@ function SelectMonth({ children, isExpanded, setIsExpanded, months, currentMonth
                             onClick={() => {
                                 setIsExpanded(months.indexOf(month))
                             }}
+                            key={month}
                         >
                             <Flex height={'100%'} justify='center' align='center'>
                                 <Text color={'primary.snow'}>{month.substring(0,3)}</Text>

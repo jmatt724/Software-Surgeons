@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ControlledInput from '../components/feature_components/login/ControlledInput';
 import { useAuth } from '../context/AuthContext';
-import { useDb } from '../context/DbContext';
-import { useUser } from '../context/UserContext';
-import { addUsername } from '../firebase/api';
 
 function Login() {
   // STATE VARIABLES
@@ -16,8 +13,6 @@ function Login() {
   // OTHER VARIABLES
   const navigate = useNavigate() // navigation between pages
   const { login } = useAuth() // login function from AuthContext
-  const { setUserContext } = useDb() // login function from AuthContext
-  const { user } = useUser()
   
   // STATE UPDATER FUNCTIONS
   const handleEmailChange = (e) => setEmail(e.target.value)
@@ -27,9 +22,6 @@ function Login() {
   const handleSubmit = () => {
     login(email, password) // login the user through auth
       .then(() => {
-        // then navigate to dashboard
-        console.log(user)
-        //setUserContext()
         navigate('/dashboard');
       })
       .catch((error) => {

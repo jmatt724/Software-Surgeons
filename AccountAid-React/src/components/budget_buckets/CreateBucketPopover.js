@@ -17,7 +17,7 @@ import ControlledInput from './ControlledInput'
 import { v4 as uuid } from 'uuid';
 import { useUser } from '../../context/UserContext';
 
-function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, currentYear, handleChange }) {
+function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, currentYear, handleNewBucket }) {
   const [cat, setCat] = useState('New Bucket')
   const [maximum, setMaximum] = useState('0.00')
   const [percent, setPercent] = useState('2.5')
@@ -32,7 +32,7 @@ function CreateBucketPopover({ children, isExpanded, setIsExpanded, category, cu
       amount: '0.00',
       maximum: maximum,
     }
-    handleChange(newBucket)
+    handleNewBucket(newBucket)
     setIsExpanded(false)
   }
 

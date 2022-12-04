@@ -41,6 +41,7 @@ function MyTransactions() {
                     {transactions.map((transaction, index) => 
                         (index<5) &&
                         <TransactionCard
+                            key={transaction.paymentID}
                             category={transaction.category}
                             date={transaction.date}
                             amount={transaction.amount}

@@ -41,8 +41,6 @@ function Dashboard() {
 
     useEffect(() => {
         setUserContext()
-        //updateTransactions('transactions', '-id', { payment: '10.00', message: 'suck' })
-        //listener(user.userID)
     }, [])
 
     return (

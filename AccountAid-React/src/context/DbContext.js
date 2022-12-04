@@ -16,7 +16,7 @@ export function useDb() {
 export function DbProvider({ children }) {
     const { user, setUser, calculateBucketAmount } = useUser()
     const { currentUser } = useAuth()
-    const { isLoading, handleLoading } = useIsLoading()
+    const { handleLoading } = useIsLoading()
 
     useEffect(() => {
         handleLoading(true)

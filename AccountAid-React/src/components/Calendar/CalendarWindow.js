@@ -147,7 +147,7 @@ function CalendarWindow() {
                 gap={14}
             >
                 {dayLabels.map((day) => 
-                    <Flex width={'5%'}>
+                    <Flex width={'5%'} key={day}>
                         <Text key={day}>{day.substring(0, 3)}</Text>
                     </Flex>
                 )}
@@ -221,8 +221,9 @@ function CalendarWindow() {
                     gap={1}
                 >
                     {row.map((__, index) => 
-                            <GridItem colSpan={1} rowSpan={1} bg={'primary.snow'} borderRadius='6px'>
+                            <GridItem colSpan={1} rowSpan={1} bg={'primary.snow'} borderRadius='6px' key={index}>
                                 <DaySquare
+                                    key={index}
                                     handleClick={handleDaySelect}
                                     day={getDayNumber(index)}
                                     month={month}

@@ -37,6 +37,7 @@ function SelectYear({ children, isExpanded, setIsExpanded, years, currentYear, s
                             onClick={() => {
                                 setIsExpanded(year)
                             }}
+                            key={year}
                         >
                             <Flex height={'100%'} justify='center' align='center'>
                                 <Text color={'primary.snow'}>{year}</Text>

@@ -61,6 +61,7 @@ function ViewAll() {
                 <Flex height={'100%'} bg={'primary.snow'} borderRadius={'md'} p={4} direction={'column'} boxShadow={'2px 4px 10px #818181'}>
                     {transactions.map((transaction, index) => 
                         <TransactionCard
+                            key={transaction.paymentID}
                             category={transaction.category}
                             date={transaction.date}
                             amount={transaction.amount}

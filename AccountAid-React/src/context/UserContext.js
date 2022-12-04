@@ -70,14 +70,13 @@ export function UserProvider({ children }) {
     }
 
     const getTransactionsArray = () => {
-        if(!user){ return ; }
+        if(!user || user===undefined){ return []; }
         //console.log(user?.transactions)
         try{
             const keys = Object.keys(user.transactions)
             const transactions = keys.map((id) => user.transactions[id])
             return transactions
         } catch {
-            console.log('error')
         }
         
     }

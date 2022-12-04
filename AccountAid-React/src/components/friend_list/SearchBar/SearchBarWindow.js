@@ -27,8 +27,8 @@ function SearchBarWindow({ handleClose }) {
     getUsernames().then((value) => {
       setUsernames(value)
     })
-    console.log('GET USERS: ',usernames)
   }, [])
+  
   const tempResult = []
   const searchUsers = (input) => {
           usernames.forEach((username, index) => {

@@ -13,6 +13,7 @@ function DaySquare({ day, month, year, current, today, handleClick }, props) {
 
     return (
         <Flex
+            key={props.key}
             h='100%'
             w={'100%'}
             bg={ (current) ? 'gray.400' : 'none' && ( (isCurrentDay()) && 'primary.secondary' )}

@@ -74,11 +74,11 @@ function BucketsLayout() {
         <GridItem key={bucket.id} mt={10}>
           <BucketCard 
             id={bucket.id} 
-            index={index} 
+            index={index}
             title={bucket.category} 
             amount={bucket.amount}
             maximum={bucket.maximum}
-            handleChange={handleTitleChange} 
+            handleTitle={handleTitleChange} 
             handleDelete={handleRemoveBucket}
             payments={getBucketPayments(bucket.category)}
           />
@@ -87,7 +87,7 @@ function BucketsLayout() {
     </Grid>
     <Divider orientation='vertical'/>
     <Flex width={225} height={'100%'} justify='center' align={'flex-start'}>
-        <CreateBucketPopover handleChange={handleNewBucket} isExpanded={expanded} setIsExpanded={setExpanded}>
+        <CreateBucketPopover handleNewBucket={handleNewBucket} isExpanded={expanded} setIsExpanded={setExpanded}>
           <Button mt={10} onClick={() => setExpanded(!expanded)}>
             New Bucket
           </Button>

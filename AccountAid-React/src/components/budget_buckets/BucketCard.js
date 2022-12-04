@@ -4,12 +4,10 @@ import Card from './Card'
 import {FaRegEdit} from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
-function BucketCard({ id, index, title, amount, maximum, handleChange, handleDelete, payments }) {
+function BucketCard({ id, index, title, amount, maximum, handleTitle, handleDelete, payments }) {
     const { onOpen, onClose, isOpen } = useDisclosure()
     const firstFieldRef = React.useRef(null)
     const [titleState, setTitleState] = useState('')
-    console.log(payments)
-    //console.log(`Payments for ${title}: ${}`)
 
     useEffect(() => {
         setTitleState(title)
@@ -22,7 +20,7 @@ function BucketCard({ id, index, title, amount, maximum, handleChange, handleDel
     }
 
     const handleSave = () => {
-        handleChange(index, firstFieldRef.current.value)
+        handleTitle(index, firstFieldRef.current.value)
         setTitleState(firstFieldRef.current.value)
         onClose()
     }
