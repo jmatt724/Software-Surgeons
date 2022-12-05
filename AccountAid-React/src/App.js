@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import BudgetBuddy from './pages/BudgetBuddy';
 import Schedule from './pages/Schedule';
+import Architecture from "./pages/Architecture";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/artifacts" element={<Artifacts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/architecture" element={<Architecture />} />
         <Route path="/dashboard" element={
             <PrivateRoute>
               <Dashboard />
@@ -54,7 +56,13 @@ function App() {
             <PrivateRoute>
               <BudgetBuddy />
             </PrivateRoute>
-          } 
+          }
+        />
+        <Route path = "/architecture" element ={
+          <PrivateRoute>
+            <Architecture />
+          </PrivateRoute>
+        }
         />
       </Routes>
     </div>

@@ -132,6 +132,17 @@ function LandingPage() {
             </Text>
             <AdVideoModal />
         </Flex>
+        <Flex direction = {'column'}>
+            <Text
+                color = 'blue.400'
+                onClick={() => navigate('/architecture')}
+                _hover={{ cursor: 'pointer'}}
+                fontSize = {'1.25rem'}
+                m={8}
+            >
+                Architecture
+            </Text>
+        </Flex>
       </Stack>
     )
 }
