@@ -1,26 +1,19 @@
-import { Divider, Flex, Heading, IconButton, Text } from '@chakra-ui/react'
+import { Divider, Flex, IconButton, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { FRIENDS_LIST, FRIEND_REQUESTS, PENDING_FRIENDS } from '../friendsData'
 import DisplayFriends from '../DisplayFriends/DisplayFriends'
 import DisplayPending from '../DisplayFriends/DisplayPending'
 import DisplayRequests from '../DisplayFriends/DisplayRequests'
-import CardBase from '../FriendCard/CardBase'
-import FriendCard from '../FriendCard/FriendCard'
-import PendingCard from '../FriendCard/PendingCard'
-import RequestCard from '../FriendCard/RequestCard'
 import SearchBar from './SearchBar'
 import { useUser } from '../../../context/UserContext'
-import { getAllUserIDS, getUsernames } from '../../../firebase/api'
-import DisplaySearchResults from '../../feature_components/make_payments/DisplaySearchResults'
+import { getUsernames } from '../../../firebase/api'
 
 function SearchBarWindow({ handleClose }) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('Friends')
-  const [allUsers, setAllUsers] = useState()
   const [results, setResults] = useState([])
   const [usernames, setUsernames] = useState('')
-  const [Pendingrequests, setPendingResults] = useState('')
 
 
   useEffect(() => {

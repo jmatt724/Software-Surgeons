@@ -1,5 +1,4 @@
-import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
-import { v4 as uuidv4 } from "uuid"
+import { doc, where, query, setDoc, getDoc, collection, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "./firebase"
 
 export const getUser = async (uid) => {
@@ -11,26 +10,12 @@ export const getUser = async (uid) => {
 export const updateField = async (user, field, data) => {
   // Create an initial document to update.
   const docRef = doc(db, "Users", user.userID);
-  /*
-  if(!docRef.buckets){
-    const value = {
-      [field]: [ data ],
-    }
-    console.log('it does not exist')
-    await setDoc(doc(db, "Users", user.userID), {
-      ...docRef,
-      value
-    }).then(() => console.log('Field updated!'))
-    .catch((error) => console.log(error));
-  } else {
-  */
     const value = {
       [field]: data,
     }
 
       // To update
       await updateDoc(docRef, value)
-      .then(() => console.log('Field updated!'))
       .catch((error) => console.log(error))
 }
 
@@ -63,27 +48,15 @@ export const updateTransactions = async (user, data) => {
 export const deleteBucket = async (user, field, data) => {
   // Create an initial document to update.
   const docRef = doc(db, "Users", user.userID);
-  /*
-  if(!docRef.buckets){
-    const value = {
-      [field]: [ data ],
-    }
-    console.log('it does not exist')
-    await setDoc(doc(db, "Users", user.userID), {
-      ...docRef,
-      value
-    }).then(() => console.log('Field updated!'))
-    .catch((error) => console.log(error));
-  } else {
-  */
-    const value = {
-      [field]: data
-    }
+
+  const value = {
+    [field]: data
+  }
 
       // To update
-      await updateDoc(docRef, value)
-      .then(() => console.log('Field updated!'))
-      .catch((error) => console.log(error))
+  await updateDoc(docRef, value)
+    .then(() => console.log('Field updated!'))
+    .catch((error) => console.log(error))
 }
 
 export const getAllUserIDS = async () => {
@@ -104,10 +77,10 @@ export const addData = async (user) => {
         email: user.email,
         username: user.username,
         firstName: user.fName,
-        friendsList: [],
+        friendsList: {},
         lastName: user.lName,
         transactions: {},
-        buckets: [],
+        buckets: {},
         userID: user.userID
     })
 }
@@ -118,7 +91,6 @@ export const addUsername = async (user) => {
 
 export const getUsernames = async () => {
   const usernames = []
-  //const q = query(collection(db, "Users"))
   const querySnapshot = await getDocs(collection(db, "Users"))
   querySnapshot.forEach((doc) => {
     usernames.push({ username: doc.data().username, uid: doc.data().userID })

@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import { Box, Divider, Flex, Heading, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react"
-import NavBar from '../components/NavBar';
+import NavBar from '../components/LandingPage/NavBar';
 import { FEATURE_DATA, PRODUCT_DESCRIPTION, PRODUCT_VISION, PRODUCT_CUSTOMERS, DEVELOPER_CARD_DATA } from '../data/landingPageData';
-import DeveloperCard from '../components/DeveloperCard';
 import { useNavigate } from 'react-router-dom';
 import AdVideoModal from '../components/ad_video/AdVideoModal';
+import DeveloperCard from '../components/LandingPage/DeveloperCard';
 
 
 function LandingPage() {

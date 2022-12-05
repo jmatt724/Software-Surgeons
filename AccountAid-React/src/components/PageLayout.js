@@ -4,15 +4,11 @@ import { useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useDb } from '../context/DbContext'
 import { useUser } from '../context/UserContext'
-import { getUser } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
-import Sidebar from './sidebar/Sidebar'
 import ShowLoading from './ui_components/ShowLoading'
 
 function PageLayout({ children }) {
-  const { currentUser } = useAuth()
-  const { setUserContext } = useDb()
-  const { setCurrentUser, user } = useUser()
+  const { user } = useUser()
   const { isLoading, handleLoading } = useIsLoading()
 
   const location = useLocation()

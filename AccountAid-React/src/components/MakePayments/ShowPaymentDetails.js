@@ -1,24 +1,23 @@
 import { Box, Button, Checkbox, Flex, Input, InputGroup, InputLeftElement, Stack, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useUser } from '../../../context/UserContext'
+import { useUser } from '../../context/UserContext';
 import { v4 as uuid } from 'uuid'; // library that generates random ID numbers
-import getCurrentDate from '../calendar/getCurrentDate';
-import { monthNames } from '../../../data/calendarData';
-import { useAuth } from '../../../context/AuthContext';
+import getCurrentDate from './getCurrentDate';
+import { monthNames } from '../../data/calendarData';
 import { useNavigate } from 'react-router-dom';
-import { useDb } from '../../../context/DbContext';
+import { useDb } from '../../context/DbContext';
 import CategorySelect from './CategorySelect';
+import { updateField } from '../../firebase/api';
+
 
 function ShowPaymentDetails({ reciever }) {
     const [category, setCategory] = useState('')
     const [amount, setAmount] = useState('0.00')
     const [description, setDescription] = useState('')
     const [useBucketCat, setUseBucketCat] = useState(false)
-    const { user, setCurrentUser, getBucketCategories } = useUser()
-    const { currentUser, logout } = useAuth()
-    const { updateTransactions, updateField } = useDb()
+    const { user, getBucketCategories } = useUser()
+    const { updateTransactions } = useDb()
     const navigate = useNavigate()
-    //console.log('RECIEVER: ',reciever.data)
     const list = getBucketCategories()
     const categories = ( list.length===0 ) ? [] : list
 
@@ -46,11 +45,9 @@ function ShowPaymentDetails({ reciever }) {
         }
         const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
         const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
-        const userTransactions = user.transactions
-        const recieverTransactions = reciever.data.transactions
-        updateField(user.userID, 'balance', senderBalance)
+        updateField(user, 'balance', senderBalance)
         updateTransactions(user, 'transactions', paymentID, userPayment)
-        updateField(reciever.data.userID, 'balance', recieverBalance)
+        updateField(reciever.data, 'balance', recieverBalance)
         updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment).then(() => {
             navigate('/dashboard')
         })

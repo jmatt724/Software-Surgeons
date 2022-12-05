@@ -7,13 +7,14 @@ import CreateBucketPopover from './CreateBucketPopover';
 import { useUser } from '../../context/UserContext';
 import { getUser, updateField } from '../../firebase/api';
 import { useAuth } from '../../context/AuthContext';
-import { arrayRemove, arrayUnion, FieldValue } from 'firebase/firestore';
-import { deleteBucket, updateBucket } from './../../firebase/api';
+import { deleteBucket } from './../../firebase/api';
+import { useDb } from '../../context/DbContext';
 
 function BucketsLayout() {
   // maybe start with an initial bucket containing all of our budget balance
   // then we can distribute the balance between our buckets
-  const { user, setCurrentUser, addBuckets, getBucketPayments, calculateBucketAmount } = useUser()
+  const { user, setCurrentUser, getBucketPayments, calculateBucketAmount, getBucketsArray } = useUser()
+  const { updateBucket } = useDb()
   const [buckets, setBuckets] = useState([])
   const { currentUser } = useAuth()
   const [expanded, setExpanded] = useState(false)
@@ -26,7 +27,7 @@ function BucketsLayout() {
   }
   useEffect(() => {
     if(user.buckets){
-      setBuckets(user.buckets)
+      setBuckets(getBucketsArray())
     }
     //getBucketPayments()
   }, [user])
@@ -36,7 +37,7 @@ function BucketsLayout() {
   }, [])
 
   const handleRemoveBucket = (id) => {
-    deleteBucket(user, "buckets", user.buckets.filter((bucket) => { return bucket.id!==id })).then(() =>{
+    deleteBucket(user, "buckets", getBucketsArray().filter((bucket) => { return bucket.id!==id })).then(() =>{
       const curr = getUser(user.userID)
       curr.then((value) => {
         setCurrentUser(value)
@@ -45,7 +46,7 @@ function BucketsLayout() {
   }
 
   const handleNewBucket = (newBucket) => {
-    updateBucket(user, "buckets", newBucket, 'add-bucket').then(() => {
+    updateBucket(user.userID, "buckets", newBucket.id, newBucket).then(() => {
         const curr = getUser(user.userID)
         curr.then((value) => {
           setCurrentUser(value)

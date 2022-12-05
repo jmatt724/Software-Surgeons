@@ -10,7 +10,6 @@ import CreateAccount from './pages/CreateAccount';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import BudgetBuddy from './pages/BudgetBuddy';
-import CalendarWindow from './components/Calendar/CalendarWindow'
 import Schedule from './pages/Schedule';
 
 function App() {

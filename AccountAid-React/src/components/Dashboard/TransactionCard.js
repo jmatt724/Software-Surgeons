@@ -1,6 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import React from 'react'
-import { useUser } from '../../../context/UserContext'
+import { useUser } from '../../context/UserContext';
 
 function TransactionCard({ category, date, amount, recipiant, sender, isAll }, props) {
     const { user, getCurrencySymbol } = useUser()

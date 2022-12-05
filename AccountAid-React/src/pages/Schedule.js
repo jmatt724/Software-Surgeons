@@ -2,7 +2,7 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
 import CalendarWindow from '../components/Calendar/CalendarWindow'
 import PageLayout from '../components/PageLayout'
-import Sidebar from '../components/sidebar/Sidebar'
+import Sidebar from '../components/Sidebar/Sidebar'
 
 function Schedule() {
   return (
@@ -10,11 +10,11 @@ function Schedule() {
         <Grid
             h='100vh'
             w='100vw'
-                    templateRows='repeat(4, 1fr)'
-                    templateColumns='repeat(6, 1fr)'
-                    gap={2}
-                    p={2}
-                >
+            templateRows='repeat(4, 1fr)'
+            templateColumns='repeat(6, 1fr)'
+            gap={2}
+            p={2}
+        >
                 <GridItem rowSpan={4} colSpan={1}>
                     <Sidebar />
                 </GridItem>

@@ -1,7 +1,7 @@
 import { Button, Flex, Heading, Link, Text, FormControl } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import ControlledInput from '../components/feature_components/login/ControlledInput';
+import ControlledInput from '../components/Login/ControlledInput'
 import { useAuth } from '../context/AuthContext';
 
 function Login() {

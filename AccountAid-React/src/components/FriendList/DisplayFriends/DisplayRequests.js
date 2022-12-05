@@ -12,7 +12,6 @@ function DisplayRequests() {
     const getRequests = () => {
         if(!!reqs) {
             const list = Object.keys(reqs).map((request) => reqs[request])
-            console.log('LIST: ',list)
             setRequests(list)
         }
     }

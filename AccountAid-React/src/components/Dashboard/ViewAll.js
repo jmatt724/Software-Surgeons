@@ -12,17 +12,14 @@ import {
     Heading,
     Flex,
   } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import { useUser } from '../../../context/UserContext'
-import SortTransaction from './SortTransactions'
+import React from 'react'
+import { useUser } from '../../context/UserContext';
 import TransactionCard from './TransactionCard'
-import { sortTransaction } from './sortingTransactions';
 
 function ViewAll() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { user, getTransactionsArray } = useUser()
+    const { getTransactionsArray } = useUser()
     const transactions = getTransactionsArray()
-    const currentSort = user.sortState
   
     return (
       <>
@@ -46,19 +43,12 @@ function ViewAll() {
                     <Heading fontSize={'2rem'}>
                         My Transactions
                     </Heading>
-                    {(!transactions || transactions.length!==0) &&
-                    <Flex mt={6} mr={6}>
-                        <SortTransaction 
-                          currentSort={currentSort}
-                        />
-                    </Flex>
-                    }
                 </Flex>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
             
-                <Flex height={'100%'} bg={'primary.snow'} borderRadius={'md'} p={4} direction={'column'} boxShadow={'2px 4px 10px #818181'}>
+                <Flex height={'100%'} bg={'primary.snow'} borderRadius={'md'} p={4} direction={'column'} boxShadow={'2px 4px 10px #818181'} overflowX={'auto'}>
                     {transactions.map((transaction, index) => 
                         <TransactionCard
                             key={transaction.paymentID}

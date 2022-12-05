@@ -1,36 +1,30 @@
-import { Avatar, Box, Button, Flex, Grid, GridItem, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, GridItem, Heading, HStack, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
-import CreditCard from '../components/feature_components/credit_cards/CreditCard'
-import Expenses from '../components/feature_components/dashboard/Expenses'
-import MakePaymentWidget from '../components/feature_components/dashboard/MakePaymentWidget'
-import MyTransactions from '../components/feature_components/dashboard/MyTransactions'
-import YourCards from '../components/feature_components/dashboard/YourCards'
+import { updateField } from '../firebase/api'
+import BalanceStat from '../components/Dashboard/BalanceStat'
+import MyTransactions from '../components/Dashboard/MyTransactions'
 import { useUser } from '../context/UserContext'
-import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { addUsername, getUser, getUsernames, updateTransactions } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
-import Sidebar from '../components/sidebar/Sidebar'
+import Sidebar from '../components/Sidebar/Sidebar'
 import PageLayout from '../components/PageLayout'
-import SearchBarWindow from './../components/friend_list/SearchBar/SearchBarWindow';
-import FriendList from '../components/friend_list/FriendList'
+import FriendList from '../components/FriendList/FriendList'
 import { useDb } from '../context/DbContext'
 
 
 function Dashboard() {
-    const { user, setCurrentUser } = useUser()
-    const { currentUser, logout } = useAuth()
-    const { setUserContext, updateField } = useDb()
-    const { isLoading, setIsLoading } = useIsLoading()
+    const { user } = useUser()
+    const { logout } = useAuth()
+    const { setUserContext } = useDb()
+    const { isLoading } = useIsLoading()
     const navigate = useNavigate()
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
-        updateField(user.userID, 'balance', newBalance).then(() => {
-            
+        updateField(user, 'balance', newBalance).then(() => {
+            setUserContext()
         })
     }
 
@@ -96,7 +90,6 @@ function Dashboard() {
                         <FriendList />
                     </GridItem>
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
-                        {/*<MakePaymentWidget />*/}
                         <Box height={75}></Box>
                         <MyTransactions />
                     </GridItem>

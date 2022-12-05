@@ -1,31 +1,11 @@
 import { Box, Button, Flex, Heading, HStack, Show, StackDivider } from '@chakra-ui/react'
 import React, { useRef } from 'react'
-import { NAVBAR_DATA } from '../data/landingPageData'
+import { NAVBAR_DATA } from '../../data/landingPageData'
 import { Divider } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 function NavBar({ update }) {
     const navigate = useNavigate()
-
-    const NavItem = ({ label, onClick }) => {
-        return (
-            <Flex width={160} justify='center' align={'center'} _hover={{ color: 'primary.orangeYellow', cursor: 'pointer', fontStyle: 'oblique' }}
-                onClick={onClick}
-            >
-                <Heading fontSize={'1.75rem'} fontWeight={'semibold'}>
-                    {label}
-                </Heading>
-            </Flex>
-        )
-    }
-
-    const handleSignIn = () => {
-        navigate('/login')
-    }
-
-    const handleCreateAccount = () => {
-
-    }
 
     return (
         <Flex

@@ -1,9 +1,8 @@
 import { Flex, Input, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useUser } from '../../../context/UserContext';
-import { USERS_LIST } from './../../../data/tempUsers';
 import DisplaySearchResults from './DisplaySearchResults';
-import { getAllUserIDS, getUsernames } from '../../../firebase/api'
+import { getUsernames } from '../../firebase/api';
+import { useUser } from '../../context/UserContext';
 
 function SearchBar({ handle }) {
     const [input, setInput] = useState('')

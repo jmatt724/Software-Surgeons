@@ -4,11 +4,8 @@ import {
     Stat,
     StatLabel,
     StatNumber,
-    StatHelpText,
-    StatArrow,
-    StatGroup,
 } from '@chakra-ui/react'
-import { useUser } from '../../../context/UserContext'
+import { useUser } from '../../context/UserContext'
 
 function BalanceStat() {
     const { user } = useUser()

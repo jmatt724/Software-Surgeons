@@ -1,15 +1,12 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
-import { useUser } from '../../../context/UserContext'
-//import { sortTransaction } from './sortingTransactions'
+import { useUser } from '../../context/UserContext'
 import TransactionCard from './TransactionCard'
 import ViewAll from './ViewAll'
 
 function MyTransactions() {
-    const { user, sortTransaction, getTransactionsArray } = useUser()
-    //const transactions = user.transactions
-    //console.log(getTransactionsArray())
-    //sortTransaction(transactions, user.sortState)
+    const { getTransactionsArray } = useUser()
+
     const transactions = getTransactionsArray()
 
     return (

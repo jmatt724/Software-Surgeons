@@ -1,8 +1,8 @@
-import { Box, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
+import React from 'react'
 import BucketsLayout from '../components/budget_buckets/BucketsLayout';
 import PageLayout from '../components/PageLayout';
-import Sidebar from '../components/sidebar/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 function BudgetBuddy() {
     
