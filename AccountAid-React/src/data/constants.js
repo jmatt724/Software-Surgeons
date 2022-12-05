@@ -437,7 +437,7 @@ export const PAGES = [
     'Acts as a database key that allows the user to access their information from it.'
     ]},
     { id: 'make_payments', label: 'Make Payments',
-    descriptoin: ['This is where the functionality to make payments to your friends takes place.',
+    description: ['This is where the functionality to make payments to your friends takes place.',
     'The search bar allows you to search for any user by their username to select them for payment.',
     'Once selected, there will be various places to enter in information about the payment.',
     'Fields such as amount and a description for the payment are some of the field’s users will need to enter.',
