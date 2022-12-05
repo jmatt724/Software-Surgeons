@@ -23,3 +23,7 @@ For any money wielding individual who needs to organize their finances, AccountA
 - Navigate to the project's working directory
 - Run `docker run -d -p 3000:3000 jjones2023/accounttest`
 - Navigate to localhost:3000 on any browser
+
+## **How to run tests on the application:**
+- Navigate to the project's working directory
+- Run `npm test` from the terminal
