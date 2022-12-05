@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const UserContext = createContext()
 
@@ -14,6 +14,10 @@ export function UserProvider({ children }) {
         setCurrentID(uid)
     }
 
+    useEffect(() => {
+        getBucketAmount('Bills')
+    }, [user])
+
     const setCurrentUser = (user) => {
         setUser(user)
     }
@@ -22,106 +26,89 @@ export function UserProvider({ children }) {
         return user.userID
     }
 
+    const calculateBucketAmount = (bucket) => {
+        const initialValue = 0
+        const total = getBucketPayments(bucket)
+        const newTotal = total.reduce((prev, current) => prev+parseFloat(current.amount), initialValue)
+        return newTotal
+    }
+
+    const getBucketCategories = () => {
+        if(!user.buckets) {
+            return []
+        }
+        const buckets = Object.keys(user.buckets)
+        const categories = buckets.map((bucket) => user.buckets[bucket].category)
+        return categories
+    }
+
+    const getBucketId = (category) => {
+        const ids = Object.keys(user.buckets)
+        for(let i = 0; i < ids.length; i++){
+            if(user.buckets[ids[i]].category===category){
+                return ids[i]
+            }
+        }
+    }
+
+    const getBucketPayments = (category) => {
+        if(!!user.transactions){
+            const bucketPayments = getTransactionsArray().filter((payment) => category===payment.category)
+            return bucketPayments
+        }
+        return []
+
+    }
+
+    const getBucketAmount = (category) => {
+        const bucketAmount = getBucketPayments(category).reduce((prev, curr) => prev+parseFloat(curr.amount), 0)
+        return parseFloat(bucketAmount).toFixed(2)
+    }
+
+    const getBucketsArray = () => {
+        if(!user || user===undefined){ return []; }
+        //console.log(user?.transactions)
+        try{
+            const keys = Object.keys(user.buckets)
+            const buckets = keys.map((id) => user.buckets[id])
+            return buckets
+        } catch {
+        }
+    }
+    
+    const getTransactionsArray = () => {
+        if(!user || user===undefined){ return []; }
+        //console.log(user?.transactions)
+        try{
+            const keys = Object.keys(user.transactions)
+            const transactions = keys.map((id) => user.transactions[id])
+            return sortTransactions(transactions)
+        } catch {
+        }
+    }
+
+    const sortTransactions = (array) => {
+        if(!!user.transactions){
+            array.sort((a,b) => {
+                const yearA = parseInt(a.date.substring(a.date.indexOf(',')+1))
+                const [dayA, monthA] = parseDate(a.date)
+                const dateA = dayA+monthA+yearA
+                const yearB = parseInt(b.date.substring(b.date.indexOf(',')+1))
+                const [dayB, monthB] = parseDate(b.date)
+                const dateB = dayB+monthB+yearB
+                return dateB-dateA
+            })
+        }
+        return array
+        
+    }
+
     const getCurrencySymbol = () => {
         if(user.currency === 'USD') {
             return '$'
         } else if(user.currency === 'EUR') {
             return '£'
         }
-    }
-
-    const sortTransaction = (arr, sort) => {
-        const temp = arr
-        if(sort==='Date'){
-            temp.sort((a, b) => {
-                const [ dayA, monthA ] = parseDate(a.date)
-                const [ dayB, monthB ] = parseDate(b.date)
-                return dayB-dayA && monthB-monthA
-            })
-            setUser((prev) => {
-                const updated = {
-                    ...prev,
-                    transactions: temp, 
-                }
-                return updated
-            })
-        }
-        else if(sort==='Category'){
-            temp.sort((a, b) => {
-                const categoryA = a.category.toUpperCase(); // ignore upper and lowercase
-                const categoryB = b.category.toUpperCase(); // ignore upper and lowercase
-                if (categoryA < categoryB) {
-                    return -1;
-                }
-                if (categoryA > categoryB) {
-                    return 1;
-                }
-    
-                // names must be equal
-                return 0;
-            })
-            setUser((prev) => {
-                const updated = {
-                    ...prev,
-                    transactions: temp, 
-                }
-                return updated
-            })
-        }
-        else if(sort==='From'){
-            temp.sort((a, b) => {
-                const senderA = a.sender.toUpperCase(); // ignore upper and lowercase
-                const senderB = b.sender.toUpperCase(); // ignore upper and lowercase
-                if (senderA < senderB) {
-                    return 1;
-                }
-                if (senderA > senderB) {
-                    return -1;
-                }
-    
-                // names must be equal
-                return 0;
-            })
-            setUser((prev) => {
-                const updated = {
-                    ...prev,
-                    transactions: temp, 
-                }
-                return updated
-            })
-        }
-        else if(sort==='To'){
-            temp.sort((a, b) => {
-                const receiverA = a.recipiant.toUpperCase(); // ignore upper and lowercase
-                const receiverB = b.recipiant.toUpperCase(); // ignore upper and lowercase
-                if (receiverA < receiverB) {
-                    return 1;
-                }
-                if (receiverA > receiverB) {
-                    return -1;
-                }
-    
-                // names must be equal
-                return 0;
-            })
-            setUser((prev) => {
-                const updated = {
-                    ...prev,
-                    transactions: temp, 
-                }
-                return updated
-            })
-            
-        }
-        else if(sort==='Amount'){
-            temp.sort((a, b) => {
-                const amountA = parseFloat(a.amount).toFixed(2)
-                const amountB = parseFloat(b.amount).toFixed(2)
-                return amountB-amountA
-            })
-            return temp
-        }
-        
     }
     
     const parseDate = (date) => {
@@ -180,6 +167,7 @@ export function UserProvider({ children }) {
     
     const defaultUser = {
         user,
+        setUser,
         updateBalance,
         getCurrencySymbol,
         removeCard,
@@ -189,7 +177,14 @@ export function UserProvider({ children }) {
         getUserID,
         currentID,
         updateCurrentID,
-        sortTransaction,
+        getBucketCategories,
+        getTransactionsArray,
+        getBucketPayments,
+        calculateBucketAmount,
+        sortTransactions,
+        getBucketsArray,
+        getBucketAmount,
+        getBucketId,
     }
     return (
         <UserContext.Provider value={defaultUser}>

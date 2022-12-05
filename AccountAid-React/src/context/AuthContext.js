@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase/firebase'
-import { signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged, signOut, deleteUser } from 'firebase/auth'
+import { signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged, signOut, deleteUser, setPersistence, browserSessionPersistence } from 'firebase/auth'
+import useLocalStorage from './../hooks/useLocalStorage';
 
 const AuthContext = React.createContext()
 
@@ -47,12 +48,11 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
-            setCurrentUser(user)
-            setLoading(false)
+                setCurrentUser(user)
+                setLoading(false)
         })
         return unsubscribe
     }, [])
-    
     
     const value = {
         currentUser,

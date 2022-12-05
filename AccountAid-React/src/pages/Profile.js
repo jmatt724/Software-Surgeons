@@ -1,13 +1,9 @@
 import { Avatar, Box, Heading, Image } from '@chakra-ui/react'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
 import { useUser } from '../context/UserContext'
 
 function Profile() {
     const { user } = useUser()
-    const { currentUser, logout } = useAuth()
-    const navigate = useNavigate()
 
     return (
         <>

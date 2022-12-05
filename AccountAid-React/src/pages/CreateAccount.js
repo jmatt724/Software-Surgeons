@@ -1,7 +1,7 @@
 import { Button, Flex, FormControl, Heading, Link, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ControlledInput from '../components/feature_components/login/ControlledInput'
+import ControlledInput from '../components/Login/ControlledInput'
 import ShowLoading from '../components/ui_components/ShowLoading'
 import { useAuth } from '../context/AuthContext'
 import { addData } from '../firebase/api'
@@ -43,8 +43,6 @@ function CreateAccount() {
             username: username,
             userID: uid,
         })
-        alert('You successfully signed in!');
-      }).finally(() => {
         navigate('/dashboard') // finally navigate to dashboard page
       })
       .catch((error) => { // error handling

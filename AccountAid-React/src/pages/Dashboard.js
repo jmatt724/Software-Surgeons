@@ -1,56 +1,41 @@
-import { Avatar, Box, Button, Flex, Grid, GridItem, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, GridItem, Heading, HStack, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import BalanceStat from '../components/feature_components/bank_balance/BalanceStat'
-import CreditCard from '../components/feature_components/credit_cards/CreditCard'
-import Expenses from '../components/feature_components/dashboard/Expenses'
-import MakePaymentWidget from '../components/feature_components/dashboard/MakePaymentWidget'
-import MyTransactions from '../components/feature_components/dashboard/MyTransactions'
-import YourCards from '../components/feature_components/dashboard/YourCards'
+import { updateField } from '../firebase/api'
+import BalanceStat from '../components/Dashboard/BalanceStat'
+import MyTransactions from '../components/Dashboard/MyTransactions'
 import { useUser } from '../context/UserContext'
-import { calcBalance, calcDigitalWallet } from '../data/calculateBalance'
-import { getUser, updateField } from '../firebase/api'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
-import Sidebar from '../components/sidebar/Sidebar'
+import Sidebar from '../components/Sidebar/Sidebar'
 import PageLayout from '../components/PageLayout'
+import FriendList from '../components/FriendList/FriendList'
+import { useDb } from '../context/DbContext'
 
 
 function Dashboard() {
-    const { user, setCurrentUser } = useUser()
-    const { currentUser, logout } = useAuth()
-    const { isLoading, setIsLoading } = useIsLoading()
+    const { user } = useUser()
+    const { logout } = useAuth()
+    const { setUserContext } = useDb()
+    const { isLoading } = useIsLoading()
     const navigate = useNavigate()
-    const LOADING_TIME = 200
 
     const handleAddFunds = () => {
         const newBalance = (parseFloat(user.balance)+ 1000.00).toFixed(2).toString()
         updateField(user, 'balance', newBalance).then(() => {
-            const curr = getUser(user.userID)
-            curr.then((value) => {
-                setCurrentUser(value) // after promise resolves, we setCurrentUser to be the updated user
-            })
+            setUserContext()
         })
     }
-
-    useEffect(() => {
-        // on page refresh GET the current user from database
-        const curr = getUser(currentUser.uid)
-        setIsLoading(true) // set loading true while awaiting getUser
-        curr.then((value) => {
-            setCurrentUser(value) // after promise resolves, we setCurrentUser to be the authenticated user
-        }).then(() => {
-            setTimeout(() => { // then give loading a little time so it doesn't flash on the screen
-                setIsLoading(false)
-            }, LOADING_TIME)
-        })
-    }, [currentUser.uid, currentUser])
 
     const handleLogout = () => { // handle logging out a user
         logout()
         navigate('/login')
     }
+
+    useEffect(() => {
+        setUserContext()
+    }, [])
 
     return (
         <PageLayout>
@@ -101,9 +86,10 @@ function Dashboard() {
                             </Button>
                         </Flex>
                     </GridItem>
-                    <GridItem colSpan={2} rowSpan={1} bg='papayawhip'></GridItem>
+                    <GridItem colSpan={2} rowSpan={1}>
+                        <FriendList />
+                    </GridItem>
                     <GridItem colSpan={4} rowSpan={2} ml="-75px">
-                        {/*<MakePaymentWidget />*/}
                         <Box height={75}></Box>
                         <MyTransactions />
                     </GridItem>

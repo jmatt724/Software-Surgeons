@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import getCurrentDate from '../components/feature_components/calendar/getCurrentDate'
+import getCurrentDate from '../components/MakePayments/getCurrentDate'
 import { dayNames, monthNames, yearRange } from '../data/calendarData'
 
 const CalendarContext = createContext()
@@ -23,11 +23,6 @@ export function CalendarProvider({ children }) {
         selectedYear: year,
         payments: []
     })
-
-    
-    // Currently, any month I go to, it tries to highlight the current day
-    // maybe setup currentDay to also keep track of the month and year
-    // This way when I change months or years, it won't try to highlight the current day
 
     useEffect(() => {
         updateCurrentDate() // set the current date on page load

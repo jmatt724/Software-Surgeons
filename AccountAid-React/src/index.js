@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { CalendarProvider } from './context/CalendarContext';
 import { AuthProvider } from './context/AuthContext';
+import { DbProvider } from './context/DbContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,9 +17,11 @@ root.render(
       <ChakraTheme>
         <AuthProvider>
           <UserProvider>
-            <CalendarProvider>
-              <App />
-            </CalendarProvider>
+            <DbProvider>
+              <CalendarProvider>
+                <App />
+              </CalendarProvider>
+            </DbProvider>
           </UserProvider>
         </AuthProvider>
       </ChakraTheme>

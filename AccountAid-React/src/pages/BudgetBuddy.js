@@ -1,13 +1,31 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
+import BucketsLayout from '../components/budget_buckets/BucketsLayout';
+import PageLayout from '../components/PageLayout';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 function BudgetBuddy() {
+    
     return (
-        <>
-            <Box>
-                <Heading>Budget Buddy</Heading>
-            </Box>
-        </>
+        <PageLayout>
+        <Flex overflow={'hidden'}>
+        <Grid
+            h='100vh'
+            w='100vw'
+                    templateRows='repeat(4, 1fr)'
+                    templateColumns='repeat(6, 1fr)'
+                    gap={2}
+                    p={2}
+                >
+                <GridItem rowSpan={4} colSpan={1}>
+                    <Sidebar />
+                </GridItem>
+                <GridItem rowSpan={4} colSpan={5}>
+                    <BucketsLayout />
+                </GridItem>
+        </Grid>
+        </Flex>
+        </PageLayout>
     )
 }
 
