@@ -43,14 +43,17 @@ function ShowPaymentDetails({ reciever }) {
             category: 'Web Payment',
             amount: amount
         }
-        const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
-        const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
-        updateField(user, 'balance', senderBalance)
-        updateTransactions(user, 'transactions', paymentID, userPayment)
-        updateField(reciever.data, 'balance', recieverBalance)
-        updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment).then(() => {
+
+        if(parseFloat(amount).toFixed(2) > parseFloat(user.balance)){
+            const senderBalance = ((parseFloat(user.balance) - parseFloat(amount)).toFixed(2).toString())
+            const recieverBalance = ((parseFloat(reciever.data.balance) + parseFloat(amount)).toFixed(2).toString())
+            updateField(user, 'balance', senderBalance)
+            updateTransactions(user, 'transactions', paymentID, userPayment)
+            updateField(reciever.data, 'balance', recieverBalance)
+            updateTransactions(reciever.data, 'transactions', paymentID, recieverPayment).then(() => {
             navigate('/dashboard')
-        })
+            })
+        }
     }
 
     const handleCategory = (e) => {setCategory(e.target.value)}
@@ -124,7 +127,7 @@ function ShowPaymentDetails({ reciever }) {
         </Box>
         </Stack>
         <Button height={45} mt={10} bg={'primary.main'} onClick={handleSubmit} color={'primary.snow'}
-            isDisabled={category==='' || amount==='' || amount==='0.00'}
+            isDisabled={category==='' || amount==='' || amount==='0.00' || parseFloat(amount).toFixed(2) > parseFloat(user.balance)}
         >Make Payment</Button>
     </Flex>
   )
