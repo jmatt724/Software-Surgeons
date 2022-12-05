@@ -8,7 +8,7 @@ import { useUser } from '../context/UserContext'
 import { useIsLoading } from '../hooks/useIsLoading'
 import { useAuth } from './../context/AuthContext';
 import ShowLoading from './../components/ui_components/ShowLoading';
-import Sidebar from '../components/Sidebar/Sidebar'
+import Sidebar from '../components/sidebar/Sidebar'
 import PageLayout from '../components/PageLayout'
 import FriendList from '../components/FriendList/FriendList'
 import { useDb } from '../context/DbContext'

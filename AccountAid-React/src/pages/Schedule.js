@@ -2,7 +2,7 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
 import CalendarWindow from '../components/Calendar/CalendarWindow'
 import PageLayout from '../components/PageLayout'
-import Sidebar from '../components/Sidebar/Sidebar'
+import Sidebar from '../components/sidebar/Sidebar'
 
 function Schedule() {
   return (

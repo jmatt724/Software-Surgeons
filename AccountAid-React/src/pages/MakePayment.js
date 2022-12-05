@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import SearchBar from '../components/MakePayments/SearchBar'
 import ShowPaymentDetails from '../components/MakePayments/ShowPaymentDetails'
 import PageLayout from '../components/PageLayout'
-import Sidebar from '../components/Sidebar/Sidebar'
+import Sidebar from '../components/sidebar/Sidebar'
 import { useDb } from '../context/DbContext'
 import { getUser } from '../firebase/api'
 

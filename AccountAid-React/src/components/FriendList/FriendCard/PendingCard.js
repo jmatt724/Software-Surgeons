@@ -10,7 +10,6 @@ import { useDb } from '../../../context/DbContext'
 function PendingCard({ username, data }, props) {
     const { user } = useUser()
     const { setUserContext } = useDb()
-    console.log("USERNAME: ", data.uid)
     
     const handleAddFriend = async () => {
         await getUser(data.uid).then((value) => {
