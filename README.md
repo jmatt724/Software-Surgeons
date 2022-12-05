@@ -21,6 +21,5 @@ For any money wielding individual who needs to organize their finances, AccountA
 
 ## **How to run the application:**
 - Navigate to the project's working directory
-- Run `docker build -t "Software-Surgeons:AccountAid-React"`
-- Run `docker run --name deploy -dp 3000:3000 Software-Surgeons:AccountAid-React`
+- Run `docker run -d -p 3000:3000 jjones2023:accountaid`
 - Navigate to localhost:3000 on any browser
