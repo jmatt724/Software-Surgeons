@@ -6,7 +6,7 @@ function ArchCategory({ category, data }) {
     return (
         <Flex
             width={1850}
-            height={500}
+            height={800}
             bg={'white'}
             borderRadius={'md'}
             boxShadow={'md'}

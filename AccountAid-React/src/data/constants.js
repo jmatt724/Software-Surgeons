@@ -448,11 +448,11 @@ export const PAGES = [
     description: ['Issues of separation of concerns – We addressed this issue in the fact that we kept each function on each separate page. For the most part the page’s only shared communication is to Firebase. This helps keeping our coupling down as the pages don’t really rely on each other to function. This somewhat gives us modules for each page. Where each page would have files to implement functionality, but those files never interact with files outside of their module. This allowed us to tackle one problem at a time during development. When we would work on a “module” for example thew make_payments page, since we separated our concerns, this work would never affect the dashboard or the scheduling page. We addressed the concept of avoiding duplication of functionality especially in dealing with Firebase. This was the result of many of our pages requiring API calls to the database to retrieve data. So, to avoid using the same function over and over we moved these function into a firebase file that all of the features that required a call to firebase could use. This prevented us from writing the same functions over and over within different files. This made our functions involving firebase cross-cutting concerns since these would often interact with more than one file. With dealing with security, we chose Firebase to use its built in Authorization technology. This allowed us to just import their auth functions and use within our app so that we could have security outside of our app.']},
 
     {id: "things_used", label: "Technologies Used",
-    description: ['NPM – for package management for Node.js', 'Node.js – for backend JavaScript runtime environment', 
-    'React – for front-end JavaScript libraries',
-    'Chakra – UI component libraries for React applications',
-    'Firebase Cloud Firestore – NoSQL Google cloud database that works for Node.js',
-    'Firebase Auth – provides backend services, easy-to-use SDKs. It supports authentication using emails and passwords.',
-    'Docker – for containerizing the project']}
+    description: ['NPM – for package management for Node.js', ' Node.js – for backend JavaScript runtime environment', 
+    ' React – for front-end JavaScript libraries',
+    ' Chakra – UI component libraries for React applications',
+    ' Firebase Cloud Firestore – NoSQL Google cloud database that works for Node.js',
+    ' Firebase Auth – provides backend services, easy-to-use SDKs. It supports authentication using emails and passwords.',
+    ' Docker – for containerizing the project']}
 
 ]
